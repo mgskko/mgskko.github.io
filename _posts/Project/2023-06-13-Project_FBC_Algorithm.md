@@ -93,7 +93,7 @@ depth와 Percentile을 이용한 분할 예시 (임의 데이터, Parameter = 0.
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
-**[깃허브 링크](<https://github.com/mgskko/Project_Analysis_of_soccer_player_data>)**
+**[깃허브 링크](<https://github.com/mgskko/Teamproject_FBC_Algorithm>)**
 {: .notice--primary}
 
 
