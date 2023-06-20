@@ -25,13 +25,13 @@ depth의 증분은 인접 정점의 depth의 합을 반복 횟수의 제곱으�
 
 ### Figure 1
 
-**depth 증분 계산 공식**
+**<center>depth 증분 계산 공식</center>**
 
 ![image](https://github.com/mgskko/Algorithm/assets/100071667/a0abbdc0-f6b7-4a6a-9596-9783fe593f4c){: width="50%" height="40%" .align-center}
 
 ### Figure 2.
 
-**depth와 Percentile을 이용한 분할 예시 (임의 데이터, Parameter = 0.25)**
+**<center>depth와 Percentile을 이용한 분할 예시 (임의 데이터, Parameter = 0.25)</center>**
 
 ![image](https://github.com/mgskko/Algorithm/assets/100071667/9c9c2f19-2acf-41f0-b017-747ed6fc12f0){: width="80%" height="70%" .align-center}
 
