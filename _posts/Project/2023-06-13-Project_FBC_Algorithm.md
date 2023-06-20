@@ -8,6 +8,8 @@ toc: true
 
 # FBC(Friend-Base-Clustering) Algorithms for Graph Data
 
+---
+
 ## Ⅰ. Background
 
  그래프(Graph)는 정점(vertex, 혹은 node)과 이를 연결하는 간선(edge)들로 이루어져 있다. 간선은 두 정점이 연관성을 가진다는 것을 의미하므로, 특정 정점의 차수(degree)가 클수록 해당 그래프 내에서 더 많은 정점과의 연관 관계를 가지고 있다고 볼 수 있다. 이를 바탕으로 차수가 가장 큰 정점은 자신이 속한 그래프에서 중심성이 제일 높다고 해석하는 지표가 연결 중심성(degree centrality)이다. 본지에선 여기에서 더 나아가, 한 정점 자신의 차수 뿐 아니라, 그 정점과 인접한 정점의 차수 또한 그래프 내의 중심성을 매기는 데 중요한 척도가 된다고 해석했다. 이러한 생각을 바탕으로, 연결 중심성 계산 방식을 수정하여 중심이 되는 정점과 그와 가까운 정점들을 클러스터링하는 FBC(Friend Base Clustering) 알고리즘을 개발했다.
@@ -25,14 +27,13 @@ depth의 증분은 인접 정점의 depth의 합을 반복 횟수의 제곱으�
 
 ### Figure 1
 
-depth 증분 계산 공식
-
+**<center>depth 증분 계산 공식</center>**
 
 ![image](https://github.com/mgskko/Algorithm/assets/100071667/a0abbdc0-f6b7-4a6a-9596-9783fe593f4c){: width="50%" height="40%" .align-center}
 
 ### Figure 2.
 
-depth와 Percentile을 이용한 분할 예시 (임의 데이터, Parameter = 0.25)
+**<center>depth와 Percentile을 이용한 분할 예시 (임의 데이터, Parameter = 0.25)</center>**
 
 ![image](https://github.com/mgskko/Algorithm/assets/100071667/9c9c2f19-2acf-41f0-b017-747ed6fc12f0){: width="80%" height="70%" .align-center}
 
@@ -71,7 +72,6 @@ depth와 Percentile을 이용한 분할 예시 (임의 데이터, Parameter = 0.
 
 * Cytoscape를 활용하여 Clustering 결과를 출력한 모습. (파랑에서 주황으로 갈수록 큰 depth값을 가짐.)
 
-
 ## Ⅴ. Conclusion
 
 1.	**Strength**
@@ -86,18 +86,9 @@ depth와 Percentile을 이용한 분할 예시 (임의 데이터, Parameter = 0.
     2.	충분한 density가 보장되지 않으면 부적절하게 클러스터링이 된다.
     3.	주어진 입력 그래프에 적응적이지 않다. 다시 말해 동작 인수를 데이터에 맞도록 조정하는 작업이 필요하다
 
-
-
-
 ---
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
 **[깃허브 링크](<https://github.com/mgskko/Teamproject_FBC_Algorithm>)**
 {: .notice--primary}
-
-
-
-
-
-
