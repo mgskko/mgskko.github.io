@@ -66,6 +66,9 @@
                 {% if category[0] == "DataAnalysis" %}
                 <li><a href="/categories/DataAnalysis" class="">이것이 데이터 분석이다(with 파이썬)({{category[1].size}})</a></li>
                 {% endif %}
+                {% if category[0] == "Analysis" %}
+                <li><a href="/categories/Analysis" class="">데이터 분석({{category[1].size}})</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
 
