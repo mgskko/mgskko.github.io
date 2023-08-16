@@ -112,6 +112,8 @@ FROM <테이블> 별칭A
 [WHERE 검색 조건]
 ```
 
+<br>
+
 # <span style="color:blue">유니온(UNION)</span>
 
 > 두 개 이상의 SELECT 문의 결과 집합을 결합하는 작업
@@ -120,6 +122,8 @@ FROM <테이블> 별칭A
 <u>단, 컬럼의 개수가 같아야하고, 각 컬럼의 데이터타입이 같아야합니다.</u>
 
 `UNION` 과 `UNION ALL` 의 두 가지 유형의 <u>UNION</u>이 있습니다. `UNION`을 사용하여 얻은 결과에는 중복이 포함되지 않습니다. 반면에 `UNION ALL`을 사용하여 얻은 결과는 중복을 유지합니다.
+
+<br>
 
 # <span style="color:blue">SQL의 JOIN과 UNION의 차이점</span>
 

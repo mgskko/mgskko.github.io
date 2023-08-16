@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "MySQL - DATE_FORMAT 날짜 변환"
+title:  "[MySQL] DATE_FORMAT 날짜 변환"
 categories: DataBase
 tag: [MySQL, DATABASE, cs]
 toc: true
