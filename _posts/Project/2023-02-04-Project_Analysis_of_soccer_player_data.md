@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[프로젝트] ⚽축구 분석 사이트(트랜스퍼마켓)를 통한 축구 선수 데이터 비교⚽"
+title: "[프로젝트] ⚽축구 분석 사이트(트랜스퍼마켓)를 통한 축구 선수 나이에 따른 몸값 비교⚽"
 categories: Project
 tag: [python, Project]
 toc: true

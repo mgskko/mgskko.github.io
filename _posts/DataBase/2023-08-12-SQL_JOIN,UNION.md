@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "[mySQL] 조인(JOIN)과 유니온(UNION)"
+title:  "[MySQL] 조인(JOIN)과 유니온(UNION)"
 categories: DataBase
 tag: [MySQL, DATABASE, cs]
 toc: true
