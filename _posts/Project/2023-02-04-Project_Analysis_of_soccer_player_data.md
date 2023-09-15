@@ -6,10 +6,6 @@ tag: [python, Project]
 toc: true
 ---
 
-## ⚽축구 분석 사이트(트랜스퍼마켓)를 통한 축구 선수 데이터 비교⚽
-
-
-
 ## 1. 주제 선정 이유
 
  최근에 데이터 관련 직업이 많이 뜨고 있는 직업이다. 데이터 분야는 IT뿐만이 아니라 많은 곳에서 쓰이게 되는 분야가 되었다. 그중에 스포츠도 포함이 된다. 예전부터 야구는 데이터를 많이 사용하는 반면 축구는 그렇지는 않았다. 점점 시간이 변하면서 현대축구도 데이터로 가지고 상대를 분석하고 우리 팀을 분석해 전술을 펼친다. 기술이 발달 되면서 골, 어시스트, 선방, 슈팅 등등 수많은 영역에 데이터를 사용함으로 패턴을 찾고 분석을 한다. 그중에서 내가 선택을 한 분야는 축구 분석 사이트 통해 축구 선수별 데이터를 파이썬으로 뽑아 선수들의 데이터를 비교해보는 것이다. 
@@ -146,10 +142,10 @@ len(twenty21_24)
 len(twenty25_29)
 len(over_20)
 ```
-    36
-    199
-    225
-    40
+    37
+    187
+    231
+    45
 
 구간을 20살 이하, 20살~24살, 25살~29살, 30살 이상으로 나이를 나눠 각 변수에 저장해준다. len()을 통해 구간별 축구 선수 수를 구할 수 있다.
 
@@ -168,7 +164,7 @@ plt.show()
 
 소수점 2번째 자리까지 나타낸 다음 원그래프를 만들어준다.
 
-![image](https://user-images.githubusercontent.com/100071667/216762960-f2484a8d-c8d9-4dcd-880d-2b8d813515df.png){: width="100%" height="100%"}
+![image](https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/9d69ab57-67b2-4a81-b6f2-09ee34491434){: width="80%" height="70%" .align-center}
 
 위의 원그래프를 보면 확실히 20대 선수들이 많다는 것을 알 수 있다. 20살 이상 25살 미만인 선수들도 39.80%라는 높은 비율을 차지하고 있지만 20대에서도 축구 선수 전성기라고 불리는 20대 후반의 선수들이 무려 45%를 차지하고 있다. 또한 10대 선수와 30대 선수는 비율이 각각 7.2%와 8.0%인 것을 확인할 수 있다. 몸값을 측정할 때 아직 성장기인 10대와 전성기가 지난 30대 선수들보다 신체적으로 가장 발달하여 있는 20대일수록 몸값이 높은 축구 선수일 확률이 높다는 것을 보여준다. 
 
@@ -181,7 +177,7 @@ df[df['나이']==most_value_player]
 
     나이를 입력하시오 = 29
 
-![image](https://user-images.githubusercontent.com/100071667/216763067-eaf7256a-db6d-4acd-94f8-a886ed604a5e.png)
+![image](https://user-images.githubusercontent.com/100071667/216763067-eaf7256a-db6d-4acd-94f8-a886ed604a5e.png){: width="80%" height="70%" .align-center}
 
 
 이렇게 원하는 나이의 선수들을 확인할 수도 있다. 내가 확인 해 본 나이대는 축구 선수로 전성기인 29살을 확인해보았다. 1위는 이집트와 리버풀에서 뛰고 있는 살라로 그 뒤에 네이마르, 마네가 뒤따르고 있다. 4위에는 한국의 손흥민 선수도 기록되어 있으며 전 세계적으로 15위의 몸값을 자랑하고 있다.
@@ -206,7 +202,7 @@ plt.show()
 
 df[]안에 나이별 선수로 나눈 후 ‘count’ 열을 따로 생성해 함수 안에 저장해준다. 
 
-![image](https://user-images.githubusercontent.com/100071667/216763239-15310c5b-43cb-416b-abd8-c8f27ceaa1a2.png)
+![image](https://user-images.githubusercontent.com/100071667/216763239-15310c5b-43cb-416b-abd8-c8f27ceaa1a2.png){: width="80%" height="70%" .align-center}
 
 ```python
 print('가장 많은 나이는',max(df['나이']),'이고 가장 적은 나이는', min(df['나이']),'이다.')
@@ -349,24 +345,72 @@ plt.legend()
 plt.show()
 ```
 
-![image](https://user-images.githubusercontent.com/100071667/216763486-b23e6eff-b7b1-4a18-b50c-dfad95633521.png)
+![image](https://user-images.githubusercontent.com/100071667/216763486-b23e6eff-b7b1-4a18-b50c-dfad95633521.png){: width="80%" height="70%" .align-center}
 
 그래프로 나타내어 조사해보면 상대적으로 활약을 많이 할 수 있는 공격수인 ‘Centre-Forward’ 포지션에 30대 선수가 가장 많다는 것을 볼 수 있다. 그다음으로는 ‘Central Midfield’, ‘Centre-Back’ 순으로 많다는 것을 알 수가 있다. ‘Goalkeeper’, ‘Left Midfield’, ‘Right Midfield’의 포지션은 한 명도 없다는 것 또한 알 수 있다. 이 포지션들은 전반적으로 많은 선수가 분포해 있지 않기도 한다.
 
+## 5. 선형 회귀를 이용한 나이별 몸값 예측
+
+```python
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# 데이터 로드
+data = pd.read_csv('선수데이터.csv')
+
+# '몸값' 열에서 '€' 및 'm' 문자 제거 및 숫자로 변환
+data['몸값'] = data['몸값'].str.replace('€', '').str.replace('m', '').astype(float)
+
+# 나이와 몸값 열 선택
+X = data[['나이']]
+y = data['몸값']
+
+# 선형 회귀 모델 생성 및 학습
+model = LinearRegression()
+model.fit(X, y)
+
+# 나이를 입력받아 몸값 예측
+age_to_predict = float(input("나이를 입력하세요: "))
+predicted_value = model.predict([[age_to_predict]])
+print(f'{age_to_predict}세 선수의 몸값 예측: €{predicted_value[0]:.2f}m')
+```
+
+```
+나이를 입력하세요: 23
+23.0세 선수의 몸값 예측: €38.10m
+```
+
+선형 회귀 모델을 사용하여 나이에 따른 몸값을 예측하고 해봤습니다. 즉, 나이 변수를 사용하여 선형 회귀 모델을 학습하고, 그 모델을 사용하여 특정 나이에 대한 몸값을 예측
+
+## 6. 태블로 활용
+
+### 6-1. 태블로를 활용한 팀별 분포
 
 
-## 5. 수행 결과 및 결과에 대한 검토/분석
+<img width="1032" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/e609f63e-257f-4d64-b275-c25477682b84">{: width="80%" height="70%" .align-center}
+
+### 6-3. 태블로를 활용한 다양한 분포
+
+
+| 평균 몸값 | 몸값 합계 | 인원 합계 |
+|:-:|:-:|:-:|
+|<img width="1269" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/9180bb1d-93a0-4ed6-942e-03dc7554681a">{: width="80%" height="70%" .align-center} |<img width="1276" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/67c7f12f-2a9f-4906-9b04-118a2309799d">{: width="80%" height="70%" .align-center} | <img width="1275" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/bdeaadbf-58bd-4783-b57d-68d689daa479">{: width="80%" height="70%" .align-center} |
+
+
+## 7. 수행 결과 및 결과에 대한 검토/분석
 
 축구 선수의 나이와 몸값과의 관계를 총 4가지로 분석을 해 보았다. 가장 먼저 눈에 띄는 것은 확실히 전성기가 지난 30대 선수와 아직 성장기인 10대 선수들보다 신체적으로 월등한 20대 축구 선수들이 매우 높은 몸값을 가지고 있다. 이를 통해 알 수 있는 것은 몸값이 높다고 해서 그 선수의 실력이 높다고는 말할 수가 없다는 것 또한 알 수가 있다. 가장 먼저 최근 발롱도르를 수상한 메시, 호날두, 모드리치와 같은 선수들은 30대이지만 몸값이 높은 편이 아니다. 이처럼 실력과 몸값은 같다고 말할 순 없다는 것이다. 트랜스퍼마켓에서 몸값을 책정할 때 고려하는 점이 그 선수의 발전 가능성, 나이, 가장 중요한 실력이라고 한다. 나이가 많을수록 곧 은퇴에 가까워진다는 것을 알 수 있듯이 나이가 많은 선수는 몸값이 낮음을 알 수가 있고 가장 중요한 실력에서는 나이가 어린 10대 선수들에게 발전 가능성과 나이 면에서 높은 점수를 주었다는 것을 알 수 있다. 20대 선수 중 20대 중반의 선수들이 몸값이 높은 선수가 많이 분포하는 데 이유는 아무래도 실력과 적지 않은 나이, 발전 가능성이 있기에 높게 쳐준다고 생각한다. 이처럼 파이썬으로 데이터를 정리해 분석을 바탕으로 결론을 내릴 수 있다. 
 
-## 6. 분석 내용 기반 향후 활용방안 또는 기대효과
+## 8. 분석 내용 기반 향후 활용방안 또는 기대효과
 
 
 분석한 데이터를 통해 검토해본 결과 나이와 몸값이 관련이 있다는 것을 알 수 있다. 이 데이터를 통해 나이뿐만 아니라 몸값과 포지션의 관계 등 새로운 데이터들을 만들 수도 있다. 축구 분석가나 축구와 관련된 기자들이 글을 쓸 때 만든 데이터를 참고할 수 있다.
 
-## 7. 보완 사항
+## 9. 보완 사항
 
 축구 선수의 몸값과 국가에 따라 분류를 하지 못해서 아쉬웠다. 특히 지도를 통해 국가를 대륙별로도 나타내어 어느 대륙의 선수가 많은지 확인을 할 수 없는 게 보완 사항 중 한 가지였다. 또한 나이와 포지션과의 관계에서 일일이 다 작성하는 방법보다 더 좋은 방법이 있을 거 같아서 생각해 봤지만 찾지 못해 일일이 작성한 방법이 아쉬웠다고 말 할 수 있다.
+
+
 
 ---
 
