@@ -392,10 +392,17 @@ print(f'{age_to_predict}세 선수의 몸값 예측: €{predicted_value[0]:.2f}
 ### 6-3. 태블로를 활용한 다양한 분포
 
 
-| 평균 몸값 | 몸값 합계 | 인원 합계 |
-|:-:|:-:|:-:|
-|<img width="1269" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/9180bb1d-93a0-4ed6-942e-03dc7554681a">{: width="80%" height="70%" .align-center} |<img width="1276" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/67c7f12f-2a9f-4906-9b04-118a2309799d">{: width="80%" height="70%" .align-center} | <img width="1275" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/bdeaadbf-58bd-4783-b57d-68d689daa479">{: width="80%" height="70%" .align-center} |
+| 평균 몸값 | 
+|:-:|
+|<img width="1269" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/9180bb1d-93a0-4ed6-942e-03dc7554681a">{: width="80%" height="70%" .align-center} |
 
+| 몸값 합계 | 
+|:-:|
+|<img width="1276" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/67c7f12f-2a9f-4906-9b04-118a2309799d">{: width="80%" height="70%" .align-center} |
+
+| 인원 합계 | 
+|:-:|
+|<img width="1275" alt="image" src="https://github.com/mgskko/Project_Analysis_of_soccer_player_data/assets/100071667/bdeaadbf-58bd-4783-b57d-68d689daa479">{: width="80%" height="70%" .align-center} |
 
 ## 7. 수행 결과 및 결과에 대한 검토/분석
 
