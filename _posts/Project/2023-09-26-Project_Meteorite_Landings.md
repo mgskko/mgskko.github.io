@@ -3,7 +3,7 @@ layout: single
 title: "[프로젝트] Meteorite Landings 데이터로 본 국가별 운석 충돌 통계"
 categories: Project
 tag: [python, Project, MySQL, Tableau]
-toc: true
+toc: false
 ---
 
 
