@@ -2,7 +2,7 @@
 layout: single
 title:  "정규화(Normalization)와 정규화 과정(1NF, 2NF, 3NF, BCNF)"
 categories: DataBase
-tag: [MySQL, DATABASE, cs]
+tag: [DATABASE, cs]
 toc: true
 ---
 
