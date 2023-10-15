@@ -5,7 +5,7 @@ categories: DataBase
 tag: [DATABASE, cs]
 toc: true
 date: 2023-10-14
-last_modified_at: 2023-10-14
+last_modified_at: 2023-10-15
 sitemap:
   changefreq: daily
   priority : 1.0
@@ -46,7 +46,7 @@ sitemap:
 
 ![image](https://github.com/mgskko/sql-for-data-analysis-kr/assets/100071667/a706ce7c-3d89-40ad-a175-228663236e23){: width="80%" height="70%" .align-center}
 
-### 외부 스키마(External Schema)
+## 외부 스키마(External Schema)
 
 > 사용자나 응용 프로그래머가 각 개인의 입장에서 필요로 하는 데이터베이스의 `논리적 구조`를 정의한 것
 
@@ -55,7 +55,7 @@ sitemap:
 <br>
 
 
-### 개념 스키마(Conceptual Schema)
+## 개념 스키마(Conceptual Schema)
 
 > 개체 간의 관계와 `제약조건`을 나타내고 데이터베이스의 접근 권한, 보안 정책 및 `무결성 규정`에 관한 명세를 정의
 
@@ -63,7 +63,7 @@ sitemap:
 
 <br>
 
-### 내부 스키마(Internal Schema)
+## 내부 스키마(Internal Schema)
 
 > 데이터베이스의 `물리적 구조`를 정의
 
