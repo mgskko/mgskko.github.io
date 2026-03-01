@@ -1,39 +1,107 @@
----
-# Only the main Sass file needs front matter (the dashes are enough)
----
+
 
 @charset "utf-8";
 
-// 1. 폰트 설정 (Pretendard: 토스 폰트와 가장 유사한 무료 폰트)
+// 1. 폰트 설정 (Pretendard)
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 
-// 2. 토스 스타일 컬러 및 폰트 변수 재정의
+// 2. cho.sh 스타일 (미니멀, 모노크롬) 변수 재정의
 $system-font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
 $global-font-family: $system-font-family !default;
 $header-font-family: $system-font-family !default;
 $caption-font-family: $system-font-family !default;
 
-// 색상 (Toss Blue)
-$primary-color: #3182f6 !default; 
-$text-color: #333d4b !default;       // 진한 회색 (가독성)
+// 색상 (Black & White)
+$primary-color: #000000 !default;     // 포인트 컬러: 블랙
+$text-color: #1a1a1a !default;        // 텍스트: 아주 진한 회색
+$link-color: #000000 !default;        // 링크: 블랙
 $background-color: #ffffff !default;
-$code-background-color: #f9fafb !default; // 아주 연한 회색
+$code-background-color: #f4f4f5 !default;
+$border-color: #e5e7eb !default;
+$footer-background-color: #ffffff !default; // 푸터 배경: 흰색
 
 // 3. Minimal Mistakes 테마 가져오기
 @import "minimal-mistakes";
 
 // 4. 추가 커스텀 스타일 (테마 로드 후 덮어쓰기)
 body {
-  background-color: #f9fafb; // 배경을 완전 흰색보다는 아주 연한 회색으로 눈이 편안하게
+  background-color: #ffffff; // 배경: 완전한 흰색
+  color: #111;
 }
 
-// 버튼 둥글게 (토스 스타일)
-.btn {
-  border-radius: 8px !important;
-  font-weight: 600;
+// 상단 헤더 (Masthead) - 플랫 디자인
+.masthead {
+  background-color: #ffffff;
+  border-bottom: 1px solid $border-color;
+  box-shadow: none !important; // 그림자 제거
+  
+  .masthead__menu-item {
+    font-weight: 700; // 메뉴 글씨 굵게
+  }
 }
 
-// 링크 색상 조정
+// 메인 콘텐츠 영역 (중앙 정렬 및 가독성 확보)
+.page__content {
+  max-width: 800px !important; // 본문 너비를 적당히 좁혀서 집중도 향상
+  margin: 0 auto;
+}
+
+// 링크 스타일
 a {
+  color: inherit;
   text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// 버튼 스타일 (직각, 블랙)
+.btn--primary {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-radius: 0 !important; // 둥근 모서리 제거
+}
+
+// 글 목록 (Archive) 스타일 - cho.sh 처럼 심플한 리스트로 변경
+.archive__item {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0; // 얇은 구분선
+  
+  // 썸네일/요약글 숨기기 (제목 위주로 깔끔하게)
+  .archive__item-excerpt {
+    display: none;
+  }
+  
+  .archive__item-teaser {
+    display: none;
+  }
+
+  .archive__item-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// 푸터 (Footer) - 심플하게
+.page__footer {
+  background-color: #ffffff !important;
+  color: #666;
+  border-top: 1px solid $border-color;
+  box-shadow: none;
+  
+  footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em 0;
+  }
 }
