@@ -20,7 +20,7 @@ title: "Study Note"
 title_separator: "|"
 subtitle: # site tagline that appears below site title in masthead
 name: "Myung Seok Ko"
-description: "공부일지"
+description: "공부일지1"
 url: "https://mgskko.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
 repository: "mgskko/mgskko.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
