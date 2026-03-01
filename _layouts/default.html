@@ -17,16 +17,11 @@
     {% endif %}
 
     <style> 
-      ::-webkit-scrollbar{width: 16px;}
-      ::-webkit-scrollbar-track {background-color:#f0c674; border-radius: 16px;}
-      ::-webkit-scrollbar-thumb {background-color:#f0c674; border-radius: 16px;}
-      ::-webkit-scrollbar-thumb:hover {background: #f70a1e;}
-      ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment 
-      {
-          width:12px;height:12px;background:transparent;
-      }  
-
-      
+      /* 스크롤바 커스텀 (토스 블루) */
+      ::-webkit-scrollbar { width: 12px; }
+      ::-webkit-scrollbar-track { background-color: #f5f5f5; }
+      ::-webkit-scrollbar-thumb { background-color: #3182f6; border-radius: 10px; border: 3px solid #f5f5f5; }
+      ::-webkit-scrollbar-thumb:hover { background-color: #1b64da; }
     </style>
   </head>
 
@@ -58,7 +53,7 @@
     <script>
       addBackToTop({
       diameter: 56,
-      backgroundColor: 'rgb(240, 128, 128)',
+      backgroundColor: '#3182f6',
       textColor: '#fff'
     })</script>
     
