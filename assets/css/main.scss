@@ -120,3 +120,31 @@ a {
   border-radius: 10px;
   border: 3px solid #f5f5f5;
 }
+
+// 페이지네이션 (이전글/다음글) 커스텀 스타일
+.pagination_prev_next {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.pagination_prev_next--pager {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid $border-color;
+  text-align: center;
+  font-weight: 700;
+  color: $text-color !important;
+  
+  &:hover {
+    background-color: $code-background-color;
+    text-decoration: none;
+  }
+}
+
+.disabled-first-child, .disabled-last-child {
+  opacity: 0.4;
+  pointer-events: none;
+}
