@@ -321,4 +321,3 @@ print(df_seg.to_string(index=False))
 
 ---
 
-*다음 편에서는 **"SQL로 리텐션 코호트 테이블을 직접 만들어보는 법"**을 다뤄볼게요. 🚀*
