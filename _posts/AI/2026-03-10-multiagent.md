@@ -29,7 +29,7 @@ toc: true
 
 ---
 
-![Single Agent vs Multi-Agent](/assets/images/fig1_single_vs_multi.png)
+![Single Agent vs Multi-Agent]({{ site.baseurl }}/assets/images/fig1_single_vs_multi.png)
 
 ## 멀티 에이전트 시스템이란?
 
@@ -74,7 +74,7 @@ toc: true
 
 ---
 
-![Multi-Agent Collaboration Patterns](/assets/images/fig2_patterns.png)
+![Multi-Agent Collaboration Patterns]({{ site.baseurl }}/assets/images/fig2_patterns.png)
 
 ## 핵심 협업 패턴 3가지
 
@@ -127,7 +127,7 @@ LangGraph는 2025년 10월 1.0 정식 릴리스 이후 프로덕션 환경에서
 
 LangGraph는 에이전트 워크플로우를 **방향 그래프(Directed Graph)**로 모델링합니다.
 
-![LangGraph Workflow](/assets/images/fig3_langgraph_flow.png)
+![LangGraph Workflow]({{ site.baseurl }}/assets/images/fig3_langgraph_flow.png)
 
 ### 핵심 개념 3가지
 
@@ -278,7 +278,7 @@ writer_node    → 최종 보고서 작성
 
 ---
 
-![Framework Comparison Radar](/assets/images/fig4_framework_radar.png)
+![Framework Comparison Radar]({{ site.baseurl }}/assets/images/fig4_framework_radar.png)
 
 ## 프레임워크 비교 — LangGraph vs CrewAI vs AutoGen
 
