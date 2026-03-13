@@ -209,7 +209,7 @@ print(df_churn[['month','churn_rate','churned','revenue_lost']].to_string(index=
    Dec        4.40      801      24030000
 ```
 
-![Churn & N-Day Retention](../assets/images/fig4_churn_retention.png)
+![Churn & N-Day Retention](/assets/images/fig4_churn_retention.png)
 
 Churn Rate이 8.2%에서 4.4%로 절반 수준으로 개선됐지만, 이탈로 인한 월 매출 손실(약 2,400~2,500만원)은 거의 그대로입니다. **MAU가 꾸준히 늘면서 이탈자 수 자체는 유지**되기 때문입니다. 이처럼 비율과 절대값을 함께 봐야 실제 비즈니스 영향을 정확히 파악할 수 있습니다.
 
