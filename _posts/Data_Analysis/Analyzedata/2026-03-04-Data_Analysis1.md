@@ -62,7 +62,7 @@ print(df_funnel.to_string(index=False))
     Referral    3200            37.65          3.20
 ```
 
-![AARRR Funnel & LTV/CAC](/assets/images/fig3_ltv_funnel.png)
+![AARRR Funnel & LTV/CAC](../assets/images/fig3_ltv_funnel.png)
 
 위 퍼널에서 분석가가 주목할 포인트는 **Activation → Retention 전환(54.76%)보다 Acquisition → Activation 전환(42%)이 훨씬 낮다**는 점입니다. 유입된 사용자 중 절반 이상이 핵심 기능을 경험하기도 전에 이탈한다는 뜻이므로, 온보딩 개선이 최우선 과제가 됩니다.
 
@@ -106,7 +106,7 @@ print(df[['month','mau','dau','stickiness']].to_string(index=False))
    Dec  85000  32300       38.00
 ```
 
-![DAU/MAU Stickiness](/assets/images/fig1_dau_mau.png)
+![DAU/MAU Stickiness](../assets/images/fig1_dau_mau.png)
 
 **Stickiness 해석 기준:**
 
@@ -157,7 +157,7 @@ print(df_retention.to_string())
 2024-06   100.0    61.0     NaN     NaN     NaN     NaN     NaN
 ```
 
-![Cohort Retention Heatmap](/assets/images/fig2_retention_cohort.png)
+![Cohort Retention Heatmap](../assets/images/fig2_retention_cohort.png)
 
 **코호트 분석에서 읽어야 할 것들:**
 
@@ -209,7 +209,7 @@ print(df_churn[['month','churn_rate','churned','revenue_lost']].to_string(index=
    Dec        4.40      801      24030000
 ```
 
-![Churn & N-Day Retention](/assets/images/fig4_churn_retention.png)
+![Churn & N-Day Retention](../assets/images/fig4_churn_retention.png)
 
 Churn Rate이 8.2%에서 4.4%로 절반 수준으로 개선됐지만, 이탈로 인한 월 매출 손실(약 2,400~2,500만원)은 거의 그대로입니다. **MAU가 꾸준히 늘면서 이탈자 수 자체는 유지**되기 때문입니다. 이처럼 비율과 절대값을 함께 봐야 실제 비즈니스 영향을 정확히 파악할 수 있습니다.
 
@@ -251,7 +251,7 @@ print(df_ch[['channel','ltv_cac_ratio','payback_months','priority']].to_string(i
      Display Ads           2.00            12.0   🔴 축소
 ```
 
-![LTV vs CAC by Channel](/assets/images/fig3_ltv_funnel.png)
+![LTV vs CAC by Channel](../assets/images/fig3_ltv_funnel.png)
 
 **분석가가 이 표에서 이끌어낼 인사이트:**
 
