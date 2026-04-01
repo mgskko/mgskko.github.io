@@ -252,7 +252,7 @@ Update the match creation form with custom match (자체전) support:
 
 ---
 
-![Supabase goal_events 테이블](/assets/images/ep04_lovable_internal_match_form.jpg)
+![Supabase goal_events 테이블](/assets/images/ep04_lovable_internal_match_form.jpg){: width="50%" .center}
 
 ---
 
@@ -303,7 +303,7 @@ WHERE m.id = $1;
 
 ---
 
-![Supabase goal_events 테이블](/assets/images/ep04_match_detail_fixed.jpg)
+![Supabase goal_events 테이블](/assets/images/ep04_match_detail_fixed.jpg){: width="50%" .center}
 
 ---
 
