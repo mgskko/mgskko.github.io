@@ -252,9 +252,7 @@ Update the match creation form with custom match (자체전) support:
 
 ---
 
-> 📸 **[이미지 필요]**
-> Lovable에서 자체전 폼 UI가 생성된 화면 캡처.
-> 자체전 체크박스 ON일 때 팀A/팀B 입력 필드가 보이는 화면.
+![Supabase goal_events 테이블](/assets/images/ep04_lovable_internal_match_form.jpg)
 
 ---
 
@@ -305,9 +303,7 @@ WHERE m.id = $1;
 
 ---
 
-> 📸 **[이미지 필요]**
-> 자체전 Match Detail 페이지에 골/도움 기록이 정상적으로 렌더링된 화면 캡처.
-> 버그 수정 후 "이제 잘 나온다"는 게 보이면 됨.
+![Supabase goal_events 테이블](/assets/images/ep04_match_detail_fixed.jpg)
 
 ---
 
