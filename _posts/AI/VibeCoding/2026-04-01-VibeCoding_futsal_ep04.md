@@ -76,7 +76,7 @@ ALTER COLUMN opponent_team_id DROP NOT NULL;
 
 결국 이런 상황이 됐다.
 
-```mermaid
+<div class="mermaid">
 graph TD
     A["자체전 경기 생성"]
     B["is_internal = TRUE 저장"]
@@ -86,7 +86,7 @@ graph TD
     F["어느 팀 골인지 모름 🤔"]
 
     A --> B --> C --> D --> E --> F
-```
+</div>
 
 **플래그만 붙인다고 해결이 안 됐다.** 자체전의 본질적인 문제는 "한 경기 안에 두 팀이 있다"는 것이었다.
 
@@ -309,7 +309,7 @@ WHERE m.id = $1;
 
 ## 시행착오 정리
 
-```mermaid
+<div class="mermaid">
 graph LR
     P1["1차: is_internal 플래그\n→ A/B팀 분기 없음\n❌ 실패"]
     P2["2차: teams에 자체전 삽입\n→ 연령대 분석 오염\n❌ 실패"]
@@ -318,7 +318,7 @@ graph LR
     B2["LEFT JOIN으로 수정\n✅ 해결"]
 
     P1 --> P2 --> P3 --> B1 --> B2
-```
+</div>
 
 이 과정에서 배운 것이 하나 있다.
 

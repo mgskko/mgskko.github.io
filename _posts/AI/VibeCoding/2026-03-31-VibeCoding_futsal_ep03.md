@@ -68,7 +68,7 @@ toc: true
 
 **Gemini가 잡아준 테이블 구조:**
 
-```mermaid
+<div class="mermaid">
 erDiagram
     matches {
         uuid id PK
@@ -126,7 +126,7 @@ erDiagram
     matches }o--|| teams : "vs"
     players ||--o{ match_rosters : "plays"
     players ||--o{ goal_events : "scores"
-```
+</div>
 
 테이블 6개다. 엑셀의 평면적인 구조가 관계형 DB로 바뀐 것이다.
 

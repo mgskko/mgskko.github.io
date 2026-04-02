@@ -28,7 +28,7 @@ toc: true
 
 ## 세 도구의 역할 구조
 
-```mermaid
+<div class="mermaid">
 graph TD
     ME["🙋 나 (도메인 전문가)"]
     GEM["🤖 Gemini\n설계 + 프롬프트 변환"]
@@ -43,7 +43,7 @@ graph TD
     SUP -->|"데이터 응답"| APP
     APP -->|"오류 발생"| ME
     ME -->|"오류 메시지 전달"| GEM
-```
+</div>
 
 Lovable이 코드를 만들고, Supabase가 데이터를 저장하고, Gemini가 그 사이에서 설계와 번역을 담당한다. 나는 도메인 지식을 공급하고, 오류가 나면 다시 Gemini한테 가져간다.
 
@@ -95,7 +95,7 @@ Gemini는 두 가지 역할을 했다.
 
 삼각편대가 실제로 어떻게 돌아가는지 흐름으로 보면 이렇다.
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant 나
     participant Gemini
@@ -112,7 +112,7 @@ sequenceDiagram
     나->>Gemini: 오류 메시지 전달
     Gemini->>나: 원인 분석 + 해결책
     나->>Lovable: 수정 프롬프트 입력
-```
+</div>
 
 반복이 핵심이다. 한 번에 완성되는 게 아니라, 이 루프를 계속 돌면서 앱이 완성된다.
 
@@ -258,7 +258,7 @@ Calculate on page load using Supabase RPC or client-side aggregation.
 
 실제로 앱이 어떻게 돌아가는지 구조로 보면 이렇다.
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Frontend["⚡ Frontend (Lovable 생성)"]
         UI["React 컴포넌트"]
@@ -288,7 +288,7 @@ graph LR
     AUTH --> RLS
     RLS --> DB
     DB --> M & P & G & MQ & T
-```
+</div>
 
 핵심은 **supabase-js 클라이언트** 하나다. 이 라이브러리가 프론트엔드에서 DB를 직접 쿼리할 수 있게 해준다. 별도의 백엔드 서버가 없다.
 
