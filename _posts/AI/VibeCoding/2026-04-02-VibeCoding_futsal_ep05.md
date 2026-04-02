@@ -132,9 +132,7 @@ Use Tailwind CSS pill style: rounded-full, bg-opacity-20.
 
 ---
 
-> 📸 **[이미지 필요]**
-> 선수 프로필 카드에 뱃지 칩들이 붙어 있는 화면 캡처.
-> `💀 자체전 여포`, `⚡ 극장골 장인` 같은 칩이 보이면 됨.
+![Supabase goal_events 테이블](/assets/images/ep05_player_badge_card.jpg){: width="50%" .center}
 
 ---
 
