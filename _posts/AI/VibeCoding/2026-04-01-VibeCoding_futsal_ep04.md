@@ -142,7 +142,7 @@ GROUP BY t.age_category;
 
 결론은 **자체전은 teams 테이블에서 제거하고, is_internal 플래그와 team_side 컬럼으로만 처리한다** 였다.
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph 외부경기["외부 경기 (is_internal = FALSE)"]
         M1["matches"]
@@ -157,7 +157,7 @@ graph LR
         M2 --> N
         M2 --> R
     end
-```
+</div>
 
 자체전이면 `opponent_team_id = NULL`, 선수 팀 배정은 `match_rosters.team_side`로만 처리한다.
 
