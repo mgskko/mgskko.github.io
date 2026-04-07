@@ -185,7 +185,7 @@ toc: true
 
 <div class="mermaid-wrapper">
 
-```mermaid
+<div class="mermaid">
 flowchart LR
     A(["👤 유입<br/>Acquisition"]) -->|42%| B(["⚡ 활성화<br/>Activation"])
     B -->|55%| C(["🔄 유지<br/>Retention"])
@@ -196,14 +196,14 @@ flowchart LR
     style C fill:#2d2a1e,stroke:#E3B341,color:#F0F6FC
     style D fill:#3d2a1a,stroke:#F0883E,color:#F0F6FC
     style E fill:#2e1a3d,stroke:#BC8CFF,color:#F0F6FC
-```
+</div>
 
 </div>
 
 각 단계 사이의 숫자가 **전환율(Conversion Rate)** 입니다. 분석가의 일은 "어느 단계에서 사람이 가장 많이 빠져나가는가"를 찾아내는 것입니다.
 
 <div class="img-wrapper">
-  <img src="./assets/images/fig1_aarrr_funnel.png" alt="AARRR 퍼널 & 핵심 지표 매핑">
+  <img src="/assets/images/fig1_aarrr_funnel.png" alt="AARRR 퍼널 & 핵심 지표 매핑">
   <div class="img-caption">📊 AARRR 퍼널 — 각 단계별 사용자 이탈과 핵심 지표 매핑</div>
 </div>
 
@@ -243,7 +243,7 @@ flowchart LR
 단순한 리텐션 수치 하나보다, **가입 시점이 같은 집단(Cohort)** 을 묶어서 비교할 때 진짜 인사이트가 나옵니다.
 
 <div class="img-wrapper">
-  <img src="./assets/images/fig2_retention.png" alt="Retention 분석 — Classic vs Rolling 곡선 + Cohort Heatmap">
+  <img src="/assets/images/fig2_retention.png" alt="Retention 분석 — Classic vs Rolling 곡선 + Cohort Heatmap">
   <div class="img-caption">📈 Classic/Rolling Retention 곡선 비교 & 월별 코호트 리텐션 히트맵</div>
 </div>
 
@@ -309,7 +309,7 @@ df['cvr'] = (df['conversions'] / df['visitors'] * 100).round(2)
 **신규 모바일(2%) vs 기존 웹(8%)** 사이에 4배 차이. 전체 평균만 봤다면 이 격차를 완전히 놓쳤을 것입니다.
 
 <div class="img-wrapper">
-  <img src="./assets/images/fig4_funnel_stickiness.png" alt="Micro→Macro 전환 퍼널 & DAU/MAU Stickiness 트렌드">
+  <img src="/assets/images/fig4_funnel_stickiness.png" alt="Micro→Macro 전환 퍼널 & DAU/MAU Stickiness 트렌드">
   <div class="img-caption">🔽 Micro → Macro 전환 퍼널 & 월별 DAU/MAU Stickiness 추이</div>
 </div>
 
@@ -359,7 +359,7 @@ $$\text{LTV} = 30{,}000 \times \frac{1}{0.05} = 600{,}000\text{원}$$
 </div>
 
 <div class="img-wrapper">
-  <img src="./assets/images/fig3_ltvcac_abtest.png" alt="LTV/CAC 채널별 분석 & A/B 테스트 통계적 유의성">
+  <img src="/assets/images/fig3_ltvcac_abtest.png" alt="LTV/CAC 채널별 분석 & A/B 테스트 통계적 유의성">
   <div class="img-caption">💹 채널별 LTV vs CAC 비율 분석 & A/B 테스트 통계적 유의성(p-value) 개념</div>
 </div>
 
