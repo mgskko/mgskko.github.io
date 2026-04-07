@@ -455,8 +455,19 @@ Recharts 라이브러리를 활용하고, 데이터는 Supabase에서 직접 가
 
 ---
 
-{% include fancy-img.html src="/assets/images/ep07_dashboard_main_charts.jpg" alt="Supabase goal_events 테이블 분석 대시보드 화면" width="60%" %}
-
+<div style="margin: 2.5rem auto; text-align: center; max-width: 80%;">
+  <div style="background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.1);">
+    <div style="background: #f1f3f4; height: 26px; display: flex; align-items: center; padding: 0 12px; border-bottom: 1px solid #e0e0e0;">
+      <span style="width: 9px; height: 9px; background: #ff5f56; border-radius: 50%; margin-right: 6px;"></span>
+      <span style="width: 9px; height: 9px; background: #ffbd2e; border-radius: 50%; margin-right: 6px;"></span>
+      <span style="width: 9px; height: 9px; background: #27c93f; border-radius: 50%;"></span>
+    </div>
+    <img src="/assets/images/ep07_dashboard_main_charts.jpg" alt="Dashboard" style="width: 100%; display: block;">
+  </div>
+  <p style="margin-top: 1rem; font-size: 0.85rem; color: #888; font-style: italic;">
+    Supabase goal_events 테이블 분석 대시보드 화면
+  </p>
+</div>
 ---
 
 ## 데이터가 주는 불편한 진실
