@@ -1,0 +1,2 @@
+{%- assign rt_chars = include.content | strip_html | strip_newlines | size -%}
+{%- assign rt = rt_chars | divided_by: site.reading_chars_per_minute -%}{%- if rt < 1 -%}{%- assign rt = 1 -%}{%- endif -%}

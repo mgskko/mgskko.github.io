@@ -1,0 +1,36 @@
+---
+layout: default
+title: "태그"
+permalink: /tags/
+nav: tags
+---
+{%- assign tags = "" | split: "" -%}
+{%- for p in site.posts -%}{%- for t in p.tag -%}{%- assign tags = tags | push: t -%}{%- endfor -%}{%- endfor -%}
+{%- assign uniq = tags | uniq | sort_natural -%}
+<section class="container page-head reveal">
+  <h1 class="page-title">태그로 찾아볼까요?</h1>
+  <p class="page-desc">{{ uniq.size }}개의 태그가 있어요. 하나를 고르면 관련 글을 모아 보여드려요</p>
+</section>
+
+<section class="container">
+  <div class="card tagbox reveal">
+    <label class="field">
+      {% include icon.html name="search" %}
+      <input type="search" placeholder="태그 이름으로 걸러보기" data-tag-filter autocomplete="off" aria-label="태그 검색">
+    </label>
+    <div class="tagcloud" data-tags>
+      {%- for t in uniq -%}
+        {%- assign n = 0 -%}{%- for x in tags -%}{%- if x == t -%}{%- assign n = n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+        <button class="chip pressable" type="button" data-tag="{{ t | escape }}" data-n="{{ n }}">#{{ t }}<b>{{ n }}</b></button>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <section class="tag-result" data-tag-result hidden>
+    <div class="section-head">
+      <div><h2 class="section-title" data-tag-title></h2><p class="section-desc" data-tag-count></p></div>
+      <button class="chip chip--sm pressable" type="button" data-tag-clear>{% include icon.html name="x" %}선택 해제</button>
+    </div>
+    <ul class="list card" data-tag-list></ul>
+  </section>
+</section>

@@ -1,95 +1,82 @@
 ---
 layout: default
+nav: post
 ---
+{%- assign key = page.categories[0] -%}
+{%- include cat-meta.html key=key -%}
+{%- include read-time.html content=content -%}
 
-{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
-  {% include page__hero.html %}
-{% elsif page.header.video.id and page.header.video.provider %}
-  {% include page__hero_video.html %}
-{% endif %}
+<article class="post container" data-post>
+  <header class="post__head reveal">
+    <a class="chip chip--cat pressable" href="{{ cm_url | relative_url }}"><span class="cat-icon cat-icon--xs s{{ cm_slot }}">{% include icon.html name=cm_icon %}</span>{{ cm_label }}</a>
+    <h1 class="post__title">{{ page.title | escape }}</h1>
+    <p class="post__meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: site.date_format }}</time>
+      <i class="dot"></i>{% include icon.html name="clock" %}{{ rt }}분이면 읽어요
+    </p>
+  </header>
 
-{% assign breadcrumbs_enabled = site.breadcrumbs %}
-{% if page.breadcrumbs != null %}
-  {% assign breadcrumbs_enabled = page.breadcrumbs %}
-{% endif %}
-{% if page.url != "/" and breadcrumbs_enabled %}
-  {% unless paginator %}
-    {% include breadcrumbs.html %}
-  {% endunless %}
-{% endif %}
-
-<div id="main" role="main">
-  {% include sidebar.html %}
-
-  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
-    {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
-
-    <div class="page__inner-wrap">
-      {% unless page.header.overlay_color or page.header.overlay_image %}
-        <header>
-          {% if page.title %}<h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="{{ page.url | absolute_url }}" class="u-url" itemprop="url">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
-          </h1>{% endif %}
-          {% include page__meta.html %}
-        </header>
-      {% endunless %}
-
-      <section class="page__content e-content" itemprop="text">
-        {% if page.toc %}
-          <aside class="sidebar__right {% if page.toc_sticky %}sticky{% endif %}">
-            <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-{{ page.toc_icon | default: 'file-alt' }}"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: "On this page" }}</h4></header>
-              {% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" skip_no_ids=true %}
-            </nav>
-          </aside>
-        {% endif %}
+  <div class="post__layout">
+    <div class="post__main">
+      <div class="card prose reveal" data-prose>
         {{ content }}
-        {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
+      </div>
+
+      {% if page.tag.size > 0 %}
+      <div class="post__tags">
+        {% for t in page.tag %}<a class="chip chip--sm pressable" href="{{ '/tags/' | relative_url }}#{{ t | uri_escape }}">#{{ t }}</a>{% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="post__actions">
+        <button class="btn btn--ghost pressable" type="button" data-copy-link>{% include icon.html name="link" %}링크 복사</button>
+        <button class="btn btn--ghost pressable" type="button" data-share>{% include icon.html name="share" %}공유하기</button>
+      </div>
+
+      <nav class="pager" aria-label="이전 글, 다음 글">
+        {% if page.previous %}
+        <a class="pager__item card pressable" href="{{ page.previous.url | relative_url }}"><span class="pager__label">{% include icon.html name="back" %}이전 글</span><span class="pager__title">{{ page.previous.title | escape }}</span></a>
+        {% else %}<span class="pager__item pager__item--empty"><span class="pager__label">첫 번째 글이에요</span></span>{% endif %}
+        {% if page.next %}
+        <a class="pager__item pager__item--next card pressable" href="{{ page.next.url | relative_url }}"><span class="pager__label">다음 글{% include icon.html name="chevron" %}</span><span class="pager__title">{{ page.next.title | escape }}</span></a>
+        {% else %}<span class="pager__item pager__item--next pager__item--empty"><span class="pager__label">가장 최근 글이에요</span></span>{% endif %}
+      </nav>
+
+      {%- assign related = site.categories[key] | where_exp: "p", "p.url != page.url" -%}
+      {% if related.size > 0 %}
+      <section class="related">
+        <h2 class="section-title section-title--sm">{{ cm_label }}의 다른 글</h2>
+        <ul class="list card">
+          {% for p in related limit: 4 %}{% include post-row.html post=p %}{% endfor %}
+        </ul>
       </section>
+      {% endif %}
 
-      <footer class="page__meta">
-        {% if site.data.ui-text[site.locale].meta_label %}
-          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
-        {% endif %}
-        {% include page__taxonomy.html %}
-        {% include page__date.html %}
-      </footer>
-
-      {% if page.share %}{% include social-share.html %}{% endif %}
-
-      {% include post_pagination.html %}
+      {% if page.comments != false %}{% include comments.html %}{% endif %}
     </div>
 
-    {% if jekyll.environment == 'production' and site.comments.provider and page.comments %}
-      {% include comments.html %}
-    {% endif %}
-  </article>
+    <aside class="toc" data-toc hidden aria-label="목차">
+      <p class="toc__title">목차</p>
+      <ol class="toc__list" data-toc-list></ol>
+    </aside>
+  </div>
+</article>
 
-  {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
-  {% if page.id and page.related and site.related_posts.size > 0 %}
-    <div class="page__related">
-      <h2 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h2>
-      <div class="grid__wrapper">
-        {% for post in site.related_posts limit:4 %}
-          {% include archive-single.html type="grid" %}
-        {% endfor %}
-      </div>
-    </div>
-  {% comment %}<!-- otherwise show recent posts if no related when `related: true` -->{% endcomment %}
-  {% elsif page.id and page.related %}
-    <div class="page__related">
-      <h2 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h2>
-      <div class="grid__wrapper">
-        {% for post in site.posts limit:4 %}
-          {% if post.id == page.id %}
-            {% continue %}
-          {% endif %}
-          {% include archive-single.html type="grid" %}
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
+<button class="fab pressable" type="button" data-toc-open hidden aria-label="목차 열기">{% include icon.html name="list" %}</button>
+<button class="fab fab--top pressable" type="button" data-top aria-label="맨 위로">{% include icon.html name="up" %}</button>
+
+<div class="sheet" data-sheet hidden>
+  <div class="sheet__backdrop" data-sheet-close></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-label="목차">
+    <span class="sheet__handle" aria-hidden="true"></span>
+    <p class="sheet__title">목차</p>
+    <ol class="toc__list" data-toc-sheet></ol>
+  </div>
 </div>
+
+<div class="lightbox" data-lightbox hidden><img alt=""></div>
+
+{% if content contains "\[" or content contains "\(" or page.math %}
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js" async></script>
+{% endif %}
