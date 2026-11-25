@@ -1,5 +1,5 @@
-{%- comment -%} 시리즈 내비게이터: 같은 카테고리 글을 오래된 순으로 {%- endcomment -%}
-{%- assign s_posts = site.categories[include.key] | reverse -%}
+{%- comment -%} 시리즈 내비게이터: 전달받은 글 목록(posts)을 오래된 순으로 {%- endcomment -%}
+{%- assign s_posts = include.posts | reverse -%}
 {%- assign s_idx = 0 -%}
 {%- for sp in s_posts -%}{%- if sp.url == page.url -%}{%- assign s_idx = forloop.index -%}{%- endif -%}{%- endfor -%}
 {%- assign s_total = s_posts.size -%}
@@ -7,7 +7,7 @@
 <details class="series card" data-series>
   <summary class="series__head pressable">
     <span class="series__meta">
-      <span class="series__eyebrow">{{ include.label }} 시리즈</span>
+      <span class="series__eyebrow">{{ include.label }}</span>
       <span class="series__count"><b>{{ s_idx }}</b> / {{ s_total }}번째 글</span>
     </span>
     <span class="series__bar" aria-hidden="true"><i style="--w: {{ s_pct }}"></i></span>

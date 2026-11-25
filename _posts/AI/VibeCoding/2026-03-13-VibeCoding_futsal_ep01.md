@@ -2,12 +2,13 @@
 layout: single
 title: "1편. 엑셀로 2년을 버티다 — 기획자가 앱을 만들어야겠다고 결심한 날"
 categories: VibeCoding
+series: "풋살 앱 연재"
 tag: [VibeCoding, Lovable, Supabase, Gemini, 바이브코딩, 풀스택, 사이드프로젝트]
 toc: true
 ---
 
 
-> **바이브코딩 일대기** | 수학과·컴공과 출신 기획자가 Lovable로 풀스택 앱을 처음 만든 현실 연재. 총 10편.
+> **바이브코딩 일대기** | 수학과·컴공과 출신 기획자가 Lovable로 풀스택 앱을 처음 만든 현실 연재.
 
 ---
 
@@ -137,7 +138,7 @@ Lovable은 자연어 프롬프트를 입력하면 React 기반의 웹앱을 실�
 
 ## 이 시리즈에서 다루는 것
 
-10편에 걸쳐 이 과정을 기록한다.
+7편에 걸쳐 이 과정을 기록한다.
 
 단순한 "AI로 투두앱 만들기" 수준이 아니다. 실제 복잡한 도메인 로직이 있는 앱을 만드는 과정이다.
 
@@ -153,9 +154,3 @@ Lovable은 자연어 프롬프트를 입력하면 React 기반의 웹앱을 실�
 ---
 
 ![완성된 앱 화면](/assets/images/ep01_app_final_preview.jpg)
-
----
-
-**다음 편:** [2편. Lovable + Supabase + Gemini 삼각편대 — 첫 화면이 생성되기까지]()
-
----

@@ -2,6 +2,7 @@
 layout: single
 title: "6편. AI가 틀렸을 때 — 프롬프트로 멱살 잡는 법"
 categories: VibeCoding
+series: "풋살 앱 연재"
 tag: [VibeCoding, Lovable, Gemini, 바이브코딩, 버그, 할루시네이션, 프롬프트엔지니어링]
 toc: true
 ---
@@ -10,7 +11,7 @@ toc: true
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 
-> **바이브코딩 일대기** | 수학과·컴공과 출신 기획자가 Lovable로 풀스택 앱을 처음 만든 현실 연재. 총 10편.
+> **바이브코딩 일대기** | 수학과·컴공과 출신 기획자가 Lovable로 풀스택 앱을 처음 만든 현실 연재.
 
 ---
 
@@ -326,11 +327,3 @@ AI가 틀리는 건 AI가 나빠서가 아니다.
 </div>
 
 7편에서는 이 모든 데이터가 쌓인 후 실제 통계 분석을 돌려보는 과정을 다룬다. 연령대별 승률, 구장별 전적, 쿼터별 득실 추이.
-
----
-
-**다음 편:** [7편. 통계의 진화 — 연령대별 승률과 우리가 발견한 것들]()
-
----
-
-*바이브코딩 일대기 전체 목차는 [여기]()에서 확인할 수 있습니다.*

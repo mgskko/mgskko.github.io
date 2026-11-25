@@ -2,13 +2,14 @@
 layout: single
 title: "5편. 뱃지 시스템 — 팀원들의 심장을 훔친 게임화 설계"
 categories: VibeCoding
+series: "풋살 앱 연재"
 tag: [VibeCoding, Lovable, Gamification, 바이브코딩, 뱃지, 통계, ChartJS]
 toc: true
 ---
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-> **바이브코딩 일대기** | 수학과·컴공과 출신 기획자가 Lovable로 풀스택 앱을 처음 만든 현실 연재. 총 10편.
+> **바이브코딩 일대기** | 수학과·컴공과 출신 기획자가 Lovable로 풀스택 앱을 처음 만든 현실 연재.
 
 ---
 
@@ -347,11 +348,3 @@ document.addEventListener('DOMContentLoaded', function() {
 뱃지 아이디어는 Gemini가 줬다. 근데 "자체전 여포"라는 개념은 우리 팀 문화를 아는 내가 만든 거다. 장고호가 자체전에서 유독 강하다는 걸 아는 사람이 팀 안에 있어야 이 칭호가 의미 있다.
 
 6편에서는 AI가 틀렸을 때 — 할루시네이션과 싸우는 방법을 다룬다.
-
----
-
-**다음 편:** [6편. AI가 틀렸을 때 — 프롬프트로 멱살 잡는 법]()
-
----
-
-*바이브코딩 일대기 전체 목차는 [여기]()에서 확인할 수 있습니다.*
