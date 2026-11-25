@@ -2,7 +2,7 @@
 layout: single
 title: "블로그를 통째로 갈아엎다 — Claude Code와 대화만으로 만든 Study Note 리뉴얼"
 categories: VibeCoding
-date: 2026-11-25 18:00:00 +0900
+date: 2026-11-25 01:00:00 +0900
 tag: [VibeCoding, 바이브코딩, ClaudeCode, Jekyll, GitHubPages, UI/UX, 블로그]
 toc: true
 ---
