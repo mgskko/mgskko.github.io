@@ -1,0 +1,10 @@
+{%- comment -%} include.key 로 분야 정보 조회 → cm_label, cm_url, cm_group, cm_slot, cm_icon {%- endcomment -%}
+{%- assign cm = site.data.categories.items[include.key] -%}
+{%- if cm -%}
+  {%- assign cm_label = cm.label -%}{%- assign cm_url = cm.url -%}{%- assign cm_desc = cm.desc -%}
+  {%- assign cm_g = site.data.categories.groups | where: "id", cm.group | first -%}
+{%- else -%}
+  {%- assign cm_label = include.key -%}{%- assign cm_url = "/categories/" | append: include.key -%}{%- assign cm_desc = "" -%}
+  {%- assign cm_g = site.data.categories.groups | where: "id", "dev" | first -%}
+{%- endif -%}
+{%- assign cm_group = cm_g.id -%}{%- assign cm_group_label = cm_g.label -%}{%- assign cm_slot = cm_g.slot -%}{%- assign cm_icon = cm_g.icon -%}

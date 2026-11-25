@@ -1,0 +1,6 @@
+<nav class="tabbar" aria-label="하단 메뉴">
+  <a class="tab" href="{{ '/' | relative_url }}" data-nav="home">{% include icon.html name="home" %}<span>홈</span></a>
+  <a class="tab" href="{{ '/categories/' | relative_url }}" data-nav="categories">{% include icon.html name="grid" %}<span>카테고리</span></a>
+  <a class="tab" href="{{ '/tags/' | relative_url }}" data-nav="tags">{% include icon.html name="tag" %}<span>태그</span></a>
+  <button class="tab" type="button" data-search-open>{% include icon.html name="search" %}<span>검색</span></button>
+</nav>

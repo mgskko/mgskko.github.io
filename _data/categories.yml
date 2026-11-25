@@ -1,0 +1,48 @@
+# 분야(그룹) : 색은 slot 순서(1~5)로 고정한다. 순서를 바꾸면 색 구분 검증이 깨진다.
+groups:
+  - id: coding
+    label: "코딩테스트"
+    slot: 1
+    icon: code
+    desc: "알고리즘 문제를 풀고 접근 방법을 정리해요"
+  - id: cs
+    label: "CS"
+    slot: 2
+    icon: cpu
+    desc: "운영체제, 데이터베이스 같은 컴퓨터 기초"
+  - id: data
+    label: "데이터"
+    slot: 3
+    icon: chart
+    desc: "분석, 시각화, 데이터 운영"
+  - id: ai
+    label: "AI · ML"
+    slot: 4
+    icon: spark
+    desc: "머신러닝, 딥러닝, 수학 기초와 AI 활용"
+  - id: dev
+    label: "개발"
+    slot: 5
+    icon: terminal
+    desc: "언어, 도구, 프로젝트와 바이브코딩"
+
+# 카테고리 키 = 글의 categories 값
+items:
+  Programmers:     { label: "프로그래머스",          group: coding, url: "/categories/Programmers",     desc: "프로그래머스 코딩테스트 문제 풀이" }
+  Baekjoon:        { label: "백준",                  group: coding, url: "/categories/Baekjoon",        desc: "백준 온라인 저지 문제 풀이" }
+  os:              { label: "운영체제",              group: cs,     url: "/categories/os",              desc: "프로세스, 메모리, 스케줄링" }
+  DataBase:        { label: "데이터베이스",          group: cs,     url: "/categories/DataBase",        desc: "데이터베이스 개념과 SQL" }
+  Tableau:         { label: "태블로",                group: data,   url: "/categories/Tableau",         desc: "태블로 굿모닝 굿애프터눈 시각화 실습" }
+  DataAnalysis:    { label: "데이터 분석 (파이썬)",  group: data,   url: "/categories/DataAnalysis",    desc: "이것이 데이터 분석이다 with 파이썬" }
+  DataAnalytics:   { label: "데이터 애널리틱스",     group: data,   url: "/categories/DataAnalytics",   desc: "지표와 분석 실무" }
+  Analyzedata:     { label: "데이터 분석 실습",      group: data,   url: "/categories/Analyzedata",     desc: "직접 분석해 본 데이터" }
+  Data_Operation:  { label: "데이터 운영",           group: data,   url: "/categories/Data_Operation",  desc: "파이프라인, 품질, 거버넌스" }
+  Hongong_mldl:    { label: "혼공 머신러닝·딥러닝",  group: ai,     url: "/categories/Hongong_mldl",    desc: "혼자 공부하는 머신러닝+딥러닝" }
+  MachineLearning: { label: "머신러닝",              group: ai,     url: "/categories/MachineLearning", desc: "머신러닝 개념 정리" }
+  AI:              { label: "AI",                    group: ai,     url: "/categories/AI",              desc: "AI 활용과 프롬프트" }
+  Linear-algebra:  { label: "선형대수",              group: ai,     url: "/categories/Linear-algebra",  desc: "선형대수 with 파이썬" }
+  Python:          { label: "파이썬",                group: dev,    url: "/categories/Python",          desc: "파이썬 문법과 활용" }
+  VibeCoding:      { label: "바이브코딩",            group: dev,    url: "/categories/VibeCoding",      desc: "AI와 함께 만드는 서비스" }
+  Project:         { label: "프로젝트",              group: dev,    url: "/categories/Project",         desc: "직접 진행한 프로젝트" }
+  GitHub:          { label: "Git · GitHub",          group: dev,    url: "/categories/GitHub",          desc: "버전 관리와 협업" }
+  Develop:         { label: "개발",                  group: dev,    url: "/categories/Develop",         desc: "개발 공부 기록" }

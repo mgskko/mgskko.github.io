@@ -1,10 +1,35 @@
 ---
-layout: archive
+layout: default
+nav: categories
 ---
+{%- assign key = page.category -%}
+{%- include cat-meta.html key=key -%}
+{%- assign posts = site.categories[key] -%}
+<section class="container page-head reveal">
+  <a class="backlink pressable" href="{{ '/categories/' | relative_url }}">{% include icon.html name="back" %}카테고리</a>
+  <div class="page-head__row">
+    <span class="cat-icon cat-icon--lg s{{ cm_slot }}">{% include icon.html name=cm_icon %}</span>
+    <div>
+      <p class="eyebrow eyebrow--plain">{{ cm_group_label }}</p>
+      <h1 class="page-title">{{ cm_label }}</h1>
+    </div>
+  </div>
+  {% if cm_desc != "" %}<p class="page-desc">{{ cm_desc }}</p>{% endif %}
+</section>
 
-{{ content }}
+<section class="container stats stats--3" aria-label="요약">
+  <div class="stat card reveal"><span class="stat__label">글</span><strong class="stat__value"><span data-count="{{ posts.size | default: 0 }}">{{ posts.size | default: 0 }}</span><small>개</small></strong></div>
+  <div class="stat card reveal"><span class="stat__label">처음 쓴 날</span><strong class="stat__value stat__value--sm">{{ posts.last.date | date: site.date_format | default: "-" }}</strong></div>
+  <div class="stat card reveal"><span class="stat__label">최근 쓴 날</span><strong class="stat__value stat__value--sm">{{ posts.first.date | date: site.date_format | default: "-" }}</strong></div>
+</section>
 
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-<div class="entries-{{ entries_layout }}">
-  {% include posts-category.html taxonomy=page.taxonomy type=entries_layout %}
-</div>
+<section class="container">
+  {% if posts.size > 0 %}
+  <ul class="list card" data-list data-page-size="15">
+    {%- for post in posts %}{% include post-row.html post=post %}{% endfor %}
+  </ul>
+  <button class="btn btn--ghost btn--block pressable" type="button" data-more hidden>더 보기</button>
+  {% else %}
+  <div class="card empty"><p>아직 글이 없어요</p></div>
+  {% endif %}
+</section>

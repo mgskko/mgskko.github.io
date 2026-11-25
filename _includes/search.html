@@ -1,0 +1,14 @@
+<div class="palette" data-palette hidden>
+  <div class="palette__backdrop" data-search-close></div>
+  <div class="palette__panel" role="dialog" aria-modal="true" aria-label="글 검색">
+    <div class="palette__field">
+      {% include icon.html name="search" %}
+      <input class="palette__input" type="search" placeholder="어떤 글을 찾고 있나요?" autocomplete="off" spellcheck="false" data-search-input aria-label="검색어">
+      <button class="iconbtn iconbtn--sm pressable" type="button" data-search-close aria-label="검색 닫기">{% include icon.html name="x" %}</button>
+    </div>
+    <p class="palette__hint" data-search-hint>최근 글</p>
+    <ul class="palette__list" data-search-results role="listbox"></ul>
+    <div class="palette__foot"><span><kbd>↑</kbd><kbd>↓</kbd> 이동</span><span><kbd>Enter</kbd> 열기</span><span><kbd>Esc</kbd> 닫기</span></div>
+  </div>
+</div>
+<div class="toast" role="status" aria-live="polite" data-toast></div>

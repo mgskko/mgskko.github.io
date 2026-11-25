@@ -1,72 +1,20 @@
----
----
-
 <!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
--->
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-    {% if page.use_math %}
-      {% include mathjax_support.html %}
-    {% endif %}
-
-    <style> 
-      /* 스크롤바 커스텀 (토스 블루) */
-      ::-webkit-scrollbar { width: 12px; }
-      ::-webkit-scrollbar-track { background-color: #f5f5f5; }
-      ::-webkit-scrollbar-thumb { background-color: #3182f6; border-radius: 10px; border: 3px solid #f5f5f5; }
-      ::-webkit-scrollbar-thumb:hover { background-color: #1b64da; }
-    </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'default' // 'dark', 'forest', 'neutral' 등으로 변경 가능
-    });
-  });
-</script>
-
-  </head>
-
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
-    {% include_cached skip-links.html %}
-    {% include_cached masthead.html %}
-
-    <div class="initial-content">
-      {{ content }}
-    </div>
-
-    {% if site.search == true %}
-      <div class="search-content">
-        {% include_cached search/search_form.html %}
-      </div>
-    {% endif %}
-
-    <div id="footer" class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include_cached footer.html %}
-      </footer>
-    </div>
-
-    {% include scripts.html %}
-
-
-    <script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
-    <script>
-      addBackToTop({
-      diameter: 56,
-      backgroundColor: '#3182f6',
-      textColor: '#fff'
-    })</script>
-    
-  </body>
+<html lang="{{ site.lang | default: 'ko' }}">
+<head>
+  {% include head.html %}
+</head>
+<body data-page="{{ page.nav | default: layout.nav | default: 'post' }}">
+  {% include icons.html %}
+  <a class="skip" href="#main">본문으로 건너뛰기</a>
+  {% include header.html %}
+  <main id="main" class="main">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  {% include tabbar.html %}
+  {% include search.html %}
+  <script>window.SITE={search:"{{ '/search.json' | relative_url }}"};</script>
+  <script src="{{ '/assets/js/app.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  {% if layout.charts or page.charts %}<script src="{{ '/assets/js/charts.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>{% endif %}
+</body>
 </html>

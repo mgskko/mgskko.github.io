@@ -1,0 +1,59 @@
+---
+layout: default
+title: "카테고리"
+permalink: /categories/
+nav: categories
+---
+{%- assign total = site.posts.size -%}
+{%- assign maxc = 1 -%}{%- for c in site.categories -%}{%- if c[1].size > maxc -%}{%- assign maxc = c[1].size -%}{%- endif -%}{%- endfor -%}
+<section class="container page-head reveal">
+  <h1 class="page-title">어떤 분야를 볼까요?</h1>
+  <p class="page-desc">{{ site.categories.size }}개 카테고리, {{ total }}개의 글을 분야별로 모았어요</p>
+</section>
+
+<section class="container">
+  <article class="card chart-card reveal">
+    <header class="chart-card__head"><div><h2 class="card__title">분야별 비중</h2><p class="card__sub">전체 {{ total }}개 글 기준</p></div></header>
+    <div class="stack" role="img" aria-label="분야별 글 비중">
+      {%- for g in site.data.categories.groups -%}
+        {%- assign gcount = 0 -%}
+        {%- for item in site.data.categories.items -%}{%- if item[1].group == g.id -%}{%- assign ik = item[0] -%}{%- assign n = site.categories[ik].size | default: 0 -%}{%- assign gcount = gcount | plus: n -%}{%- endif -%}{%- endfor -%}
+        {%- if gcount > 0 -%}<span class="stack__seg s{{ g.slot }}" style="--w: {{ gcount | times: 100.0 | divided_by: total }}" title="{{ g.label }} · {{ gcount }}개"></span>{%- endif -%}
+      {%- endfor -%}
+    </div>
+    <ul class="legend legend--cat">
+      {%- for g in site.data.categories.groups -%}
+        {%- assign gcount = 0 -%}
+        {%- for item in site.data.categories.items -%}{%- if item[1].group == g.id -%}{%- assign ik = item[0] -%}{%- assign n = site.categories[ik].size | default: 0 -%}{%- assign gcount = gcount | plus: n -%}{%- endif -%}{%- endfor -%}
+        <li><i class="swatch s{{ g.slot }}"></i>{{ g.label }}<b>{{ gcount }}</b><span class="muted">{{ gcount | times: 100.0 | divided_by: total | round }}%</span></li>
+      {%- endfor -%}
+    </ul>
+  </article>
+
+  {%- for g in site.data.categories.groups %}
+  <section class="group reveal" id="{{ g.id }}">
+    <div class="section-head">
+      <div class="group__head">
+        <span class="cat-icon s{{ g.slot }}">{% include icon.html name=g.icon %}</span>
+        <div><h2 class="section-title section-title--sm">{{ g.label }}</h2><p class="section-desc">{{ g.desc }}</p></div>
+      </div>
+    </div>
+    <div class="cat-grid">
+      {%- for item in site.data.categories.items -%}
+        {%- if item[1].group == g.id -%}
+          {%- assign ik = item[0] -%}{%- assign cposts = site.categories[ik] -%}
+          {%- if cposts.size > 0 -%}
+          <a class="cat-card card pressable" href="{{ item[1].url | relative_url }}">
+            <span class="cat-card__count">{{ cposts.size }}<small>개</small></span>
+            <span class="cat-card__name">{{ item[1].label }}</span>
+            <span class="cat-card__desc">{{ item[1].desc }}</span>
+            <span class="cat-card__date">최근 {{ cposts.first.date | date: site.date_format }}</span>
+            <span class="meter"><i style="--w: {{ cposts.size | times: 100.0 | divided_by: maxc }}"></i></span>
+          </a>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endfor %}
+</section>

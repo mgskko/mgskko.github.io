@@ -1,0 +1,8 @@
+---
+layout: null
+permalink: /search.json
+---
+[{%- for p in site.posts -%}
+{%- assign pk = p.categories[0] -%}{%- assign cm = site.data.categories.items[pk] -%}
+{"t":{{ p.title | jsonify }},"u":{{ p.url | relative_url | jsonify }},"c":{{ p.categories[0] | jsonify }},"cl":{{ cm.label | default: p.categories[0] | jsonify }},"g":{{ p.tag | jsonify }},"d":"{{ p.date | date: site.date_format }}","b":{{ p.content | strip_html | normalize_whitespace | truncate: 3000 | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}]
