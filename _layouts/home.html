@@ -35,6 +35,44 @@ charts: true
   </div>
 </section>
 
+<section class="container" aria-labelledby="series-title">
+  <div class="section-head reveal">
+    <div>
+      <h2 class="section-title" id="series-title">시리즈로 읽기</h2>
+      <p class="section-desc">순서대로 읽으면 더 잘 이해되는 글들이에요</p>
+    </div>
+  </div>
+  <div class="bento">
+    {%- assign s_list = "VibeCoding,os,Tableau,Hongong_mldl,Linear-algebra,DataAnalysis" | split: "," -%}
+    {%- for sk in s_list -%}
+      {%- assign sp = site.categories[sk] -%}
+      {%- if sp.size > 1 -%}
+      {%- include cat-meta.html key=sk -%}
+      {%- assign s_first = sp | reverse | first -%}
+      {%- assign s_latest = sp | first -%}
+      {%- include title-parse.html title=s_first.title -%}
+      <a class="bento__item card pressable reveal s{{ cm_slot }}{% if forloop.first %} bento__item--hero{% endif %}" href="{{ s_first.url | relative_url }}">
+        <span class="bento__top">
+          <span class="cat-icon s{{ cm_slot }}">{% include icon.html name=cm_icon %}</span>
+          <span class="bento__count">{{ sp.size }}<small>편</small></span>
+        </span>
+        <span class="bento__name">{{ cm_label }}</span>
+        <span class="bento__desc">{{ cm_desc }}</span>
+        {%- if forloop.first -%}
+        <span class="bento__eps">
+          {%- assign s_rev = sp | reverse -%}
+          {%- for e in s_rev limit: 4 -%}{%- include title-parse.html title=e.title -%}<span class="bento__ep"><b>{{ forloop.index }}</b><span>{{ tp_title | escape }}</span></span>{%- endfor -%}
+        </span>
+        {%- include title-parse.html title=s_first.title -%}
+        {%- endif -%}
+        <span class="bento__dots" aria-hidden="true">{% for x in sp limit: 12 %}<i></i>{% endfor %}{% if sp.size > 12 %}<em>+{{ sp.size | minus: 12 }}</em>{% endif %}</span>
+        <span class="bento__cta">1편부터 읽기 · {{ tp_title | truncate: 22 }}{% include icon.html name="chevron" %}</span>
+      </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
 <section class="container" aria-labelledby="activity-title">
   <div class="section-head reveal">
     <div>

@@ -1,0 +1,28 @@
+{%- comment -%} 시리즈 내비게이터: 같은 카테고리 글을 오래된 순으로 {%- endcomment -%}
+{%- assign s_posts = site.categories[include.key] | reverse -%}
+{%- assign s_idx = 0 -%}
+{%- for sp in s_posts -%}{%- if sp.url == page.url -%}{%- assign s_idx = forloop.index -%}{%- endif -%}{%- endfor -%}
+{%- assign s_total = s_posts.size -%}
+{%- assign s_pct = s_idx | times: 100.0 | divided_by: s_total -%}
+<details class="series card" data-series>
+  <summary class="series__head pressable">
+    <span class="series__meta">
+      <span class="series__eyebrow">{{ include.label }} 시리즈</span>
+      <span class="series__count"><b>{{ s_idx }}</b> / {{ s_total }}번째 글</span>
+    </span>
+    <span class="series__bar" aria-hidden="true"><i style="--w: {{ s_pct }}"></i></span>
+    <span class="series__toggle">전체 보기{% include icon.html name="chevron" %}</span>
+  </summary>
+  <ol class="series__list">
+    {%- for sp in s_posts -%}
+      {%- include title-parse.html title=sp.title -%}
+      <li{% if sp.url == page.url %} class="is-current" aria-current="page"{% elsif forloop.index < s_idx %} class="is-read"{% endif %}>
+        <a href="{{ sp.url | relative_url }}"><span class="series__n">{{ forloop.index }}</span><span class="series__t">{{ tp_title | escape }}</span></a>
+      </li>
+    {%- endfor -%}
+  </ol>
+</details>
+{%- assign s_prev_i = s_idx | minus: 2 -%}
+{%- assign s_next_i = s_idx -%}
+{%- if s_idx > 1 -%}{%- assign series_prev = s_posts[s_prev_i] -%}{%- else -%}{%- assign series_prev = nil -%}{%- endif -%}
+{%- if s_idx < s_total -%}{%- assign series_next = s_posts[s_next_i] -%}{%- else -%}{%- assign series_next = nil -%}{%- endif -%}

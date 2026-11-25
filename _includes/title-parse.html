@@ -1,0 +1,80 @@
+{%- comment -%}
+  제목을 화면용으로 분해한다 (원본 제목은 그대로 둔다)
+  결과: tp_title, tp_sub, tp_kind(pro|boj|""), tp_level, tp_tier, tp_tnum, tp_no, tp_lang, tp_ep, tp_facet
+{%- endcomment -%}
+{%- assign t = include.title | strip -%}
+{%- assign tp_sub = "" -%}{%- assign tp_kind = "" -%}{%- assign tp_level = "" -%}{%- assign tp_tier = "" -%}{%- assign tp_tnum = "" -%}
+{%- assign tp_no = "" -%}{%- assign tp_lang = "" -%}{%- assign tp_ep = "" -%}{%- assign tp_facet = "" -%}{%- assign tp_suffix = "" -%}
+
+{%- comment -%} 끝의 (언어) {%- endcomment -%}
+{%- if t contains "(" -%}
+  {%- assign tp_last = t | split: "(" | last -%}
+  {%- assign tp_lc = tp_last | remove: ")" | strip | downcase -%}
+  {%- if tp_lc == "mysql" or tp_lc == "python" or tp_lc == "oracle" or tp_lc == "sql" or tp_lc == "java" or tp_lc == "c++" or tp_lc == "javascript" -%}
+    {%- assign tp_suffix = "(" | append: tp_last -%}
+    {%- case tp_lc -%}{%- when "mysql" -%}{%- assign tp_lang = "MySQL" -%}{%- when "python" -%}{%- assign tp_lang = "Python" -%}{%- when "sql" -%}{%- assign tp_lang = "SQL" -%}{%- else -%}{%- assign tp_lang = tp_last | remove: ")" | strip -%}{%- endcase -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if t contains "[프로그래머스]" -%}
+  {%- assign tp_kind = "pro" -%}
+  {%- assign tp_stars = t | split: "⭐" | size | minus: 1 -%}
+  {%- if tp_stars > 0 -%}{%- assign tp_level = tp_stars | prepend: "Lv." -%}{%- assign tp_facet = tp_level -%}{%- endif -%}
+  {%- assign tp_title = t | remove: "[프로그래머스]" | remove: "⭐" -%}
+  {%- if tp_suffix != "" -%}{%- assign tp_title = tp_title | remove: tp_suffix -%}{%- endif -%}
+  {%- assign tp_title = tp_title | strip -%}
+
+{%- elsif t contains "[백준" -%}
+  {%- assign tp_kind = "boj" -%}
+  {%- assign tp_no = t | split: "번]" | first | remove: "[백준" | strip -%}
+  {%- assign tp_parts = t | split: "]" -%}
+  {%- if t contains "🥉" -%}{%- assign tp_tier = "bronze" -%}{%- assign tp_tname = "Bronze" -%}{%- elsif t contains "🥈" -%}{%- assign tp_tier = "silver" -%}{%- assign tp_tname = "Silver" -%}{%- elsif t contains "🥇" -%}{%- assign tp_tier = "gold" -%}{%- assign tp_tname = "Gold" -%}{%- elsif t contains "💎" -%}{%- assign tp_tier = "platinum" -%}{%- assign tp_tname = "Platinum" -%}{%- endif -%}
+  {%- if tp_tier != "" -%}
+    {%- assign tp_tnum = tp_parts[1] | remove: "[" | remove: "🥉" | remove: "🥈" | remove: "🥇" | remove: "💎" | strip -%}
+    {%- assign tp_facet = tp_tname | append: " " | append: tp_tnum -%}
+    {%- assign tp_title = tp_parts | slice: 2, 99 | join: "]" -%}
+  {%- else -%}
+    {%- assign tp_title = tp_parts | slice: 1, 99 | join: "]" -%}
+  {%- endif -%}
+  {%- if tp_suffix != "" -%}{%- assign tp_title = tp_title | remove: tp_suffix -%}{%- endif -%}
+  {%- assign tp_title = tp_title | strip -%}
+
+{%- elsif t contains "[OS] 운영체제(" -%}
+  {%- assign tp_rest = t | remove: "[OS] 운영체제(" -%}
+  {%- assign tp_ch = tp_rest | split: "장)" | first | strip -%}
+  {%- assign tp_rest = tp_rest | split: "장)" | last | strip -%}
+  {%- assign tp_title = tp_rest | split: " - " | first | strip -%}
+  {%- assign tp_pt = tp_rest | split: " - " | last | strip -%}
+  {%- assign tp_ep = tp_ch | append: "장" -%}{%- if tp_pt != tp_title -%}{%- assign tp_ep = tp_ep | append: " · " | append: tp_pt -%}{%- endif -%}
+
+{%- elsif t contains "[혼공머신러닝]" -%}
+  {%- assign tp_w = t | remove: "[혼공머신러닝]" | strip | split: " " -%}
+  {%- if tp_w[1] == "-" -%}
+    {%- assign tp_ep = tp_w[0] | append: "-" | append: tp_w[2] -%}
+    {%- assign tp_title = tp_w | slice: 3, 99 | join: " " -%}
+  {%- else -%}
+    {%- assign tp_title = tp_w | join: " " -%}
+  {%- endif -%}
+
+{%- else -%}
+  {%- assign tp_title = t -%}
+  {%- assign tp_first = t | slice: 0 -%}
+  {%- if tp_first == "[" and t contains "] " -%}
+    {%- assign tp_bp = t | split: "] " -%}
+    {%- assign tp_title = tp_bp | slice: 1, 99 | join: "] " | strip -%}
+  {%- endif -%}
+  {%- assign tp_n = tp_title | split: ". " | first -%}
+  {%- assign tp_nn = tp_n | remove: "편" -%}
+  {%- assign tp_chk = tp_nn | plus: 0 | append: "" -%}
+  {%- if tp_chk == tp_nn and tp_title contains ". " and tp_n.size < 5 -%}
+    {%- assign tp_ep = tp_n -%}{%- if tp_n == tp_nn -%}{%- assign tp_ep = tp_n | append: "편" -%}{%- endif -%}
+    {%- assign tp_title = tp_title | split: ". " | slice: 1, 99 | join: ". " | strip -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} "제목 — 부제" 분리 {%- endcomment -%}
+{%- if tp_title contains " — " -%}
+  {%- assign tp_sub = tp_title | split: " — " | slice: 1, 99 | join: " — " | strip -%}
+  {%- assign tp_title = tp_title | split: " — " | first | strip -%}
+{%- endif -%}
+{%- if tp_title == "" -%}{%- assign tp_title = t -%}{%- endif -%}

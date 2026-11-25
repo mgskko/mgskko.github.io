@@ -23,7 +23,17 @@ nav: categories
   <div class="stat card reveal"><span class="stat__label">최근 쓴 날</span><strong class="stat__value stat__value--sm">{{ posts.first.date | date: site.date_format | default: "-" }}</strong></div>
 </section>
 
+{% if key == "Programmers" or key == "Baekjoon" %}
+<section class="container" data-facets>
+  <article class="card chart-card reveal">
+    <header class="chart-card__head"><div><h2 class="card__title">난이도 분포</h2><p class="card__sub" data-facet-summary>&nbsp;</p></div></header>
+    <ol class="rank" data-facet-chart aria-label="난이도별 문제 수"></ol>
+  </article>
+</section>
+{% endif %}
+
 <section class="container">
+  {% if key == "Programmers" or key == "Baekjoon" %}<div class="chips-scroll" role="tablist" aria-label="난이도 필터" data-filter data-filter-attr="facet"></div>{% endif %}
   {% if posts.size > 0 %}
   <ul class="list card" data-list data-page-size="15">
     {%- for post in posts %}{% include post-row.html post=post %}{% endfor %}
