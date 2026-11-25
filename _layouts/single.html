@@ -7,8 +7,14 @@ post_js: true
 {%- include cat-meta.html key=key -%}
 {%- assign is_series = false -%}
 {%- assign cm_raw = site.data.categories.items[key] -%}
-{%- if cm_raw.series and site.categories[key].size > 1 -%}{%- assign is_series = true -%}{%- endif -%}
-{%- if is_series -%}{%- capture series_html -%}{% include series-nav.html key=key label=cm_label %}{%- endcapture -%}{%- endif -%}
+{%- if page.series -%}
+  {%- assign s_src = site.posts | where: "series", page.series -%}
+  {%- if s_src.size > 1 -%}{%- assign is_series = true -%}{%- assign s_label = page.series -%}{%- endif -%}
+{%- elsif cm_raw.series and site.categories[key].size > 1 -%}
+  {%- assign s_src = site.categories[key] -%}
+  {%- assign is_series = true -%}{%- assign s_label = cm_label | append: " 시리즈" -%}
+{%- endif -%}
+{%- if is_series -%}{%- capture series_html -%}{% include series-nav.html posts=s_src label=s_label %}{%- endcapture -%}{%- endif -%}
 {%- include read-time.html content=content -%}
 {%- include title-parse.html title=page.title -%}
 

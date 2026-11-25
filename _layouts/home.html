@@ -45,9 +45,15 @@ charts: true
   <div class="bento">
     {%- assign s_list = "VibeCoding,os,Tableau,Hongong_mldl,Linear-algebra,DataAnalysis" | split: "," -%}
     {%- for sk in s_list -%}
-      {%- assign sp = site.categories[sk] -%}
+      {%- if sk == "VibeCoding" -%}
+        {%- assign sp = site.posts | where: "series", "풋살 앱 연재" -%}
+      {%- else -%}
+        {%- assign sp = site.categories[sk] -%}
+      {%- endif -%}
       {%- if sp.size > 1 -%}
       {%- include cat-meta.html key=sk -%}
+      {%- assign b_name = cm_label -%}{%- assign b_desc = cm_desc -%}
+      {%- if sk == "VibeCoding" -%}{%- assign b_name = "풋살 앱 연재" -%}{%- assign b_desc = "Lovable과 Supabase로 풋살 기록 앱을 만든 이야기" -%}{%- endif -%}
       {%- assign s_first = sp | reverse | first -%}
       {%- assign s_latest = sp | first -%}
       {%- include title-parse.html title=s_first.title -%}
@@ -56,8 +62,8 @@ charts: true
           <span class="cat-icon s{{ cm_slot }}">{% include icon.html name=cm_icon %}</span>
           <span class="bento__count">{{ sp.size }}<small>편</small></span>
         </span>
-        <span class="bento__name">{{ cm_label }}</span>
-        <span class="bento__desc">{{ cm_desc }}</span>
+        <span class="bento__name">{{ b_name }}</span>
+        <span class="bento__desc">{{ b_desc }}</span>
         {%- if forloop.first -%}
         <span class="bento__eps">
           {%- assign s_rev = sp | reverse -%}

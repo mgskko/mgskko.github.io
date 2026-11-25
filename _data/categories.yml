@@ -42,7 +42,7 @@ items:
   AI:              { label: "AI",                    group: ai,     url: "/categories/AI",              desc: "AI 활용과 프롬프트" }
   Linear-algebra:  { label: "선형대수",              group: ai,     url: "/categories/Linear-algebra",  desc: "선형대수 with 파이썬", series: true }
   Python:          { label: "파이썬",                group: dev,    url: "/categories/Python",          desc: "파이썬 문법과 활용" }
-  VibeCoding:      { label: "바이브코딩",            group: dev,    url: "/categories/VibeCoding",      desc: "AI와 함께 만드는 서비스", series: true }
+  VibeCoding:      { label: "바이브코딩",            group: dev,    url: "/categories/VibeCoding",      desc: "AI와 함께 만드는 서비스" }
   Project:         { label: "프로젝트",              group: dev,    url: "/categories/Project",         desc: "직접 진행한 프로젝트" }
   GitHub:          { label: "Git · GitHub",          group: dev,    url: "/categories/GitHub",          desc: "버전 관리와 협업" }
   Develop:         { label: "개발",                  group: dev,    url: "/categories/Develop",         desc: "개발 공부 기록" }
