@@ -73,7 +73,7 @@
     var first = new Date(start); first.setDate(first.getDate() - first.getDay()); // 그 주 일요일
     var weeks = Math.ceil(((end - first) / 86400000 + 1) / 7);
     // 카드 폭에 맞춰 칸 크기 결정 (작은 화면은 가로 스크롤)
-    var cell = Math.max(11, Math.min(18, Math.floor((heatBox.clientWidth - left) / weeks) - gap));
+    var cell = Math.max(11, Math.min(30, Math.floor((heatBox.clientWidth - left) / weeks) - gap));
     var step = cell + gap;
     var W = left + weeks * step, H = top + 7 * step;
     var svg = svgEl("svg", { width: W, height: H, viewBox: "0 0 " + W + " " + H });
@@ -217,4 +217,11 @@
   if (firstCard.classList.contains("is-in") || !("IntersectionObserver" in window)) start();
   else firstCard.addEventListener("revealed", start);
   setTimeout(start, 1500);
+
+  // 창 크기가 바뀌면 히트맵 칸 크기를 다시 계산
+  var lastW = heatBox.clientWidth, rt;
+  window.addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { if (drawn && heatBox.clientWidth !== lastW) { lastW = heatBox.clientWidth; drawHeatmap(currentYear); } }, 200);
+  });
 })();

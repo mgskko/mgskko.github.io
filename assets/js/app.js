@@ -106,21 +106,61 @@
   });
 
   /* ---------- Paged list ("더 보기") + filter ---------- */
+  var TIER = { Bronze: 0, Silver: 1, Gold: 2, Platinum: 3 };
+  function facetOrder(a, b) {
+    var lv = /^Lv\.(\d)/;
+    if (lv.test(a) && lv.test(b)) return a.match(lv)[1] - b.match(lv)[1];
+    var pa = a.split(" "), pb = b.split(" ");
+    if (TIER[pa[0]] !== TIER[pb[0]]) return (TIER[pa[0]] || 0) - (TIER[pb[0]] || 0);
+    return pb[1] - pa[1]; // 같은 티어는 5 → 1 (쉬운 것부터)
+  }
+
   $$("[data-list]").forEach(function (list) {
     var size = parseInt(list.getAttribute("data-page-size"), 10) || 12;
-    var more = list.parentNode.querySelector("[data-more]");
-    var filterBar = list.parentNode.querySelector("[data-filter]");
-    var countEl = list.parentNode.querySelector("[data-list-count]");
+    var scope = list.parentNode;
+    var more = scope.querySelector("[data-more]");
+    var filterBar = scope.querySelector("[data-filter]");
+    var attr = (filterBar && filterBar.getAttribute("data-filter-attr")) || "group";
+    var countEl = scope.querySelector("[data-list-count]");
     var rows = $$(".row", list);
     var filter = "all", shown = size;
 
+    // 난이도(facet) 칩과 분포 차트는 목록에서 직접 만든다
+    if (attr === "facet" && filterBar) {
+      var counts = {};
+      rows.forEach(function (r) { var f = r.getAttribute("data-facet"); if (f) counts[f] = (counts[f] || 0) + 1; });
+      var facets = Object.keys(counts).sort(facetOrder);
+      filterBar.innerHTML = '<button class="chip pressable is-active" type="button" data-filter-value="all">전체 <b>' + rows.length + "</b></button>" +
+        facets.map(function (f) { return '<button class="chip pressable" type="button" data-filter-value="' + esc(f) + '">' + esc(f) + " <b>" + counts[f] + "</b></button>"; }).join("");
+      var chart = $("[data-facet-chart]");
+      if (chart) {
+        var max = Math.max.apply(null, facets.map(function (f) { return counts[f]; }));
+        chart.innerHTML = facets.map(function (f) {
+          return '<li class="rank__item"><button class="rank__name rank__btn" type="button" data-facet-pick="' + esc(f) + '">' + esc(f) +
+            '</button><span class="rank__track"><span class="rank__bar" data-w="' + (counts[f] / max * 100).toFixed(1) + '"></span></span><span class="rank__val">' + counts[f] + "개</span></li>";
+        }).join("");
+        var top = facets.slice().sort(function (a, b) { return counts[b] - counts[a]; })[0];
+        var sum = $("[data-facet-summary]");
+        if (sum && top) sum.textContent = top + " 문제를 가장 많이 풀었어요 · 막대를 누르면 그 난이도만 볼 수 있어요";
+        var grow = function () { $$(".rank__bar", chart).forEach(function (b) { b.style.width = b.getAttribute("data-w") + "%"; }); };
+        var card = chart.closest(".reveal");
+        if (card && !card.classList.contains("is-in")) card.addEventListener("revealed", grow); else requestAnimationFrame(grow);
+        chart.addEventListener("click", function (e) {
+          var b = e.target.closest("[data-facet-pick]");
+          if (!b) return;
+          var chip = filterBar.querySelector('[data-filter-value="' + b.getAttribute("data-facet-pick") + '"]');
+          if (chip) { chip.click(); filterBar.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); }
+        });
+      }
+    }
+
     function render(animateFrom) {
-      var match = rows.filter(function (r) { return filter === "all" || r.getAttribute("data-group") === filter; });
+      var match = rows.filter(function (r) { return filter === "all" || r.getAttribute("data-" + attr) === filter; });
       rows.forEach(function (r) { r.classList.add("is-hidden"); r.classList.remove("is-entering"); });
       match.slice(0, shown).forEach(function (r, i) {
         r.classList.remove("is-hidden");
         if (animateFrom != null && i >= animateFrom && !reduceMotion) {
-          r.style.animationDelay = (i - animateFrom) * 30 + "ms";
+          r.style.animationDelay = Math.min(i - animateFrom, 12) * 30 + "ms";
           r.classList.add("is-entering");
         }
       });
@@ -281,14 +321,55 @@
   }
   $$("[data-sheet-close]").forEach(function (b) { b.addEventListener("click", closeSheet); });
 
-  /* ---------- Lightbox ---------- */
+  /* ---------- Lightbox (갤러리) ---------- */
   var lightbox = $("[data-lightbox]");
+  var gallery = [], gIndex = 0;
+  function showImage(i) {
+    if (!gallery.length) return;
+    gIndex = (i + gallery.length) % gallery.length;
+    var src = gallery[gIndex];
+    var big = lightbox.querySelector("img");
+    big.classList.remove("is-loaded");
+    big.onload = function () { big.classList.add("is-loaded"); };
+    big.src = src.currentSrc || src.src;
+    big.alt = src.alt || "";
+    var cap = $("[data-lb-cap]", lightbox), alt = (src.alt || "").trim();
+    cap.textContent = alt && !/^image$/i.test(alt) ? alt : "";
+    $("[data-lb-count]", lightbox).textContent = gallery.length > 1 ? (gIndex + 1) + " / " + gallery.length : "";
+    lightbox.classList.toggle("is-single", gallery.length < 2);
+  }
+  function openLightbox(i) {
+    if (!lightbox) return;
+    lightbox.hidden = false;
+    document.documentElement.style.overflow = "hidden";
+    showImage(i);
+    requestAnimationFrame(function () { lightbox.classList.add("is-open"); });
+  }
   function closeLightbox() {
     if (!lightbox || lightbox.hidden) return;
     lightbox.classList.remove("is-open");
+    document.documentElement.style.overflow = "";
     setTimeout(function () { lightbox.hidden = true; }, 200);
   }
-  if (lightbox) lightbox.addEventListener("click", closeLightbox);
+  if (lightbox) {
+    lightbox.addEventListener("click", function (e) {
+      if (e.target.closest("[data-lb-prev]")) { showImage(gIndex - 1); return; }
+      if (e.target.closest("[data-lb-next]")) { showImage(gIndex + 1); return; }
+      if (e.target.tagName !== "IMG") closeLightbox();
+    });
+    var tx = null;
+    lightbox.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener("touchend", function (e) {
+      if (tx == null) return;
+      var dx = e.changedTouches[0].clientX - tx; tx = null;
+      if (Math.abs(dx) > 50) showImage(gIndex + (dx < 0 ? 1 : -1));
+    });
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.hidden) return;
+      if (e.key === "ArrowRight") showImage(gIndex + 1);
+      if (e.key === "ArrowLeft") showImage(gIndex - 1);
+    });
+  }
 
   /* ---------- Post page ---------- */
   if (prose) {
@@ -318,20 +399,16 @@
       });
     });
 
-    // 이미지 확대
-    $$("img", prose).forEach(function (img) {
+    // 이미지 확대 (글 안의 모든 이미지를 갤러리로)
+    gallery = $$("img", prose);
+    gallery.forEach(function (img, i) {
       img.loading = "lazy";
-      img.addEventListener("click", function () {
-        if (!lightbox) return;
-        var big = lightbox.querySelector("img");
-        big.src = img.currentSrc || img.src; big.alt = img.alt || "";
-        lightbox.hidden = false;
-        requestAnimationFrame(function () { lightbox.classList.add("is-open"); });
-      });
+      img.decoding = "async";
+      img.addEventListener("click", function () { openLightbox(i); });
     });
 
     // 목차 + 앵커 + 스크롤 스파이
-    var heads = $$("h2[id], h3[id]", prose);
+    var heads = $$("h2[id], h3[id]", prose).filter(function (h) { return !h.closest("[hidden]"); });
     var tocBox = $("[data-toc]"), tocList = $("[data-toc-list]"), tocSheet = $("[data-toc-sheet]"), tocOpen = $("[data-toc-open]");
     heads.forEach(function (h) {
       var a = document.createElement("a");
@@ -347,7 +424,9 @@
     });
     if (heads.length >= 2 && tocList) {
       var html = heads.map(function (h) {
-        var text = h.textContent.trim();
+        var num = h.querySelector(".hnum"), text = "";
+        Array.prototype.forEach.call(h.childNodes, function (n) { if (!(n.nodeType === 1 && (n.classList.contains("hnum") || n.classList.contains("anchor")))) text += n.textContent; });
+        text = (num ? num.textContent + ". " : "") + text.trim();
         return '<li class="lv' + h.tagName.charAt(1) + '"><a href="#' + esc(h.id) + '" data-id="' + esc(h.id) + '">' + esc(text) + "</a></li>";
       }).join("");
       tocList.innerHTML = html; tocSheet.innerHTML = html;

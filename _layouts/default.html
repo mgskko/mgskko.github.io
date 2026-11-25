@@ -14,6 +14,7 @@
   {% include tabbar.html %}
   {% include search.html %}
   <script>window.SITE={search:"{{ '/search.json' | relative_url }}"};</script>
+  {% if layout.post_js %}<script src="{{ '/assets/js/post.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>{% endif %}
   <script src="{{ '/assets/js/app.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   {% if layout.charts or page.charts %}<script src="{{ '/assets/js/charts.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>{% endif %}
 </body>

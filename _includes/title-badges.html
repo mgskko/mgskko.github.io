@@ -1,0 +1,4 @@
+{%- if tp_kind == "pro" and tp_level != "" -%}<span class="badge badge--lv" data-lv="{{ tp_level | remove: 'Lv.' }}">{{ tp_level }}</span>{%- endif -%}
+{%- if tp_kind == "boj" -%}{%- if tp_tier != "" -%}<span class="badge badge--tier badge--{{ tp_tier }}">{{ tp_facet }}</span>{%- endif -%}{%- if tp_no != "" -%}<span class="badge">#{{ tp_no }}</span>{%- endif -%}{%- endif -%}
+{%- if tp_ep != "" -%}<span class="badge badge--ep">{{ tp_ep }}</span>{%- endif -%}
+{%- if tp_lang != "" -%}<span class="badge badge--lang">{{ tp_lang }}</span>{%- endif -%}

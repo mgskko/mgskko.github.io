@@ -1,11 +1,14 @@
 {%- assign p = include.post -%}
 {%- assign pk = p.categories[0] -%}
 {%- include cat-meta.html key=pk -%}
-<li class="row" data-group="{{ cm_group }}" data-cat="{{ pk }}">
+{%- include title-parse.html title=p.title -%}
+<li class="row" data-group="{{ cm_group }}" data-cat="{{ pk }}"{% if tp_facet != "" %} data-facet="{{ tp_facet }}"{% endif %}>
   <a class="row__link pressable" href="{{ p.url | relative_url }}">
     <span class="cat-icon s{{ cm_slot }}">{% include icon.html name=cm_icon %}</span>
     <span class="row__body">
-      <span class="row__title">{{ p.title | escape }}</span>
+      <span class="row__badges">{% include title-badges.html %}</span>
+      <span class="row__title">{{ tp_title | escape }}</span>
+      {%- if tp_sub != "" %}<span class="row__sub">{{ tp_sub | escape }}</span>{% endif %}
       <span class="row__meta">{{ cm_label }}<i class="dot"></i><time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: site.date_format }}</time></span>
     </span>
     {% include icon.html name="chevron" class="row__chev" %}

@@ -1,23 +1,37 @@
 ---
 layout: default
 nav: post
+post_js: true
 ---
 {%- assign key = page.categories[0] -%}
 {%- include cat-meta.html key=key -%}
+{%- assign is_series = false -%}
+{%- assign cm_raw = site.data.categories.items[key] -%}
+{%- if cm_raw.series and site.categories[key].size > 1 -%}{%- assign is_series = true -%}{%- endif -%}
+{%- if is_series -%}{%- capture series_html -%}{% include series-nav.html key=key label=cm_label %}{%- endcapture -%}{%- endif -%}
 {%- include read-time.html content=content -%}
+{%- include title-parse.html title=page.title -%}
 
-<article class="post container" data-post>
+<article class="post container" data-post data-kind="{{ tp_kind }}">
   <header class="post__head reveal">
-    <a class="chip chip--cat pressable" href="{{ cm_url | relative_url }}"><span class="cat-icon cat-icon--xs s{{ cm_slot }}">{% include icon.html name=cm_icon %}</span>{{ cm_label }}</a>
-    <h1 class="post__title">{{ page.title | escape }}</h1>
-    <p class="post__meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: site.date_format }}</time>
-      <i class="dot"></i>{% include icon.html name="clock" %}{{ rt }}분이면 읽어요
-    </p>
+    <div class="post__chips">
+      <a class="chip chip--cat pressable" href="{{ cm_url | relative_url }}"><span class="cat-icon cat-icon--xs s{{ cm_slot }}">{% include icon.html name=cm_icon %}</span>{{ cm_label }}</a>
+      {% include title-badges.html %}
+    </div>
+    <h1 class="post__title">{{ tp_title | escape }}</h1>
+    {% if tp_sub != "" %}<p class="post__sub">{{ tp_sub | escape }}</p>{% endif %}
+    <div class="post__metarow">
+      <p class="post__meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: site.date_format }}</time>
+        <i class="dot"></i>{% include icon.html name="clock" %}{{ rt }}분이면 읽어요
+      </p>
+      <a class="btn btn--sm btn--primary pressable" data-source hidden target="_blank" rel="noopener"></a>
+    </div>
   </header>
 
   <div class="post__layout">
     <div class="post__main">
+      {% if is_series %}{{ series_html }}{% endif %}
       <div class="card prose reveal" data-prose>
         {{ content }}
       </div>
@@ -33,13 +47,22 @@ nav: post
         <button class="btn btn--ghost pressable" type="button" data-share>{% include icon.html name="share" %}공유하기</button>
       </div>
 
-      <nav class="pager" aria-label="이전 글, 다음 글">
-        {% if page.previous %}
-        <a class="pager__item card pressable" href="{{ page.previous.url | relative_url }}"><span class="pager__label">{% include icon.html name="back" %}이전 글</span><span class="pager__title">{{ page.previous.title | escape }}</span></a>
-        {% else %}<span class="pager__item pager__item--empty"><span class="pager__label">첫 번째 글이에요</span></span>{% endif %}
-        {% if page.next %}
-        <a class="pager__item pager__item--next card pressable" href="{{ page.next.url | relative_url }}"><span class="pager__label">다음 글{% include icon.html name="chevron" %}</span><span class="pager__title">{{ page.next.title | escape }}</span></a>
-        {% else %}<span class="pager__item pager__item--next pager__item--empty"><span class="pager__label">가장 최근 글이에요</span></span>{% endif %}
+      {%- if is_series -%}
+        {%- assign pg_prev = series_prev -%}{%- assign pg_next = series_next -%}
+        {%- assign pg_prev_label = "이전 편" -%}{%- assign pg_next_label = "다음 편" -%}
+        {%- assign pg_first = "시리즈의 첫 글이에요" -%}{%- assign pg_last = "시리즈의 마지막 글이에요" -%}
+      {%- else -%}
+        {%- assign pg_prev = page.previous -%}{%- assign pg_next = page.next -%}
+        {%- assign pg_prev_label = "이전 글" -%}{%- assign pg_next_label = "다음 글" -%}
+        {%- assign pg_first = "첫 번째 글이에요" -%}{%- assign pg_last = "가장 최근 글이에요" -%}
+      {%- endif %}
+      <nav class="pager" aria-label="{{ pg_prev_label }}, {{ pg_next_label }}">
+        {% if pg_prev %}{% include title-parse.html title=pg_prev.title %}
+        <a class="pager__item card pressable" href="{{ pg_prev.url | relative_url }}"><span class="pager__label">{% include icon.html name="back" %}{{ pg_prev_label }}</span><span class="pager__title">{{ tp_title | escape }}</span></a>
+        {% else %}<span class="pager__item pager__item--empty"><span class="pager__label">{{ pg_first }}</span></span>{% endif %}
+        {% if pg_next %}{% include title-parse.html title=pg_next.title %}
+        <a class="pager__item pager__item--next card pressable{% if is_series %} pager__item--accent{% endif %}" href="{{ pg_next.url | relative_url }}"><span class="pager__label">{{ pg_next_label }}{% include icon.html name="chevron" %}</span><span class="pager__title">{{ tp_title | escape }}</span></a>
+        {% else %}<span class="pager__item pager__item--next pager__item--empty"><span class="pager__label">{{ pg_last }}</span></span>{% endif %}
       </nav>
 
       {%- assign related = site.categories[key] | where_exp: "p", "p.url != page.url" -%}
@@ -74,7 +97,13 @@ nav: post
   </div>
 </div>
 
-<div class="lightbox" data-lightbox hidden><img alt=""></div>
+<div class="lightbox" data-lightbox hidden>
+  <figure class="lightbox__fig"><img alt=""><figcaption class="lightbox__cap" data-lb-cap></figcaption></figure>
+  <button class="lightbox__btn lightbox__btn--prev" type="button" data-lb-prev aria-label="이전 이미지">{% include icon.html name="back" %}</button>
+  <button class="lightbox__btn lightbox__btn--next" type="button" data-lb-next aria-label="다음 이미지">{% include icon.html name="chevron" %}</button>
+  <button class="lightbox__btn lightbox__close" type="button" data-lb-close aria-label="닫기">{% include icon.html name="x" %}</button>
+  <span class="lightbox__count" data-lb-count></span>
+</div>
 
 {% if content contains "\[" or content contains "\(" or page.math %}
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
