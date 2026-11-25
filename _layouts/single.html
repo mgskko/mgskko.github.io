@@ -109,3 +109,16 @@ post_js: true
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js" async></script>
 {% endif %}
+
+{% if content contains 'class="mermaid"' %}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js" defer></script>
+<script>
+  window.addEventListener("load", function () {
+    if (!window.mermaid) return;
+    var t = document.documentElement.getAttribute("data-theme");
+    var dark = t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    window.mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "neutral", fontFamily: "Pretendard Variable, Pretendard, sans-serif", securityLevel: "strict" });
+    window.mermaid.run({ querySelector: ".prose .mermaid" });
+  });
+</script>
+{% endif %}
