@@ -50,6 +50,10 @@
   --r-lg: 20px;
   --r-xl: 24px;
   --gutter: 20px;
+  --wrap: 1080px;   /* 페이지 전체 폭 */
+  --read: 760px;    /* 글 본문 폭 */
+  --toc: 220px;     /* 목차 폭 */
+  --toc-gap: 40px;
   --topbar-h: 60px;
   --tabbar-h: 64px;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -188,7 +192,7 @@ kbd {
 
 /* 3. Layout ---------------------------------------------------------------- */
 .main { min-height: 70vh; padding-bottom: 32px; }
-.container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); }
+.container { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
 .grid-2 { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 12px; }
 @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
 
@@ -204,7 +208,7 @@ kbd {
   transition: border-color 0.2s ease, background-color 0.25s ease;
 }
 .topbar.is-scrolled { border-bottom-color: var(--line); }
-.topbar__inner { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); height: var(--topbar-h); display: flex; align-items: center; gap: 24px; }
+.topbar__inner { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); height: var(--topbar-h); display: flex; align-items: center; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--t1); font-weight: 800; font-size: 18px; letter-spacing: -0.04em; }
 .brand__mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 10px; background: var(--blue); color: #fff; font-size: 16px; font-weight: 800; }
 .topnav { display: none; gap: 4px; }
@@ -266,7 +270,7 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 }
 
 /* Footer */
-.footer { max-width: 1080px; margin: 48px auto 0; padding: 32px var(--gutter) 40px; border-top: 1px solid var(--line); }
+.footer { max-width: var(--wrap); margin: 48px auto 0; padding: 32px var(--gutter) 40px; border-top: 1px solid var(--line); }
 .footer__inner { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
 .footer__title { color: var(--t1); font-weight: 800; }
 .footer__desc { color: var(--t3); font-size: 14px; margin-top: 2px; }
@@ -543,15 +547,15 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 
 /* 6. Post ------------------------------------------------------------------ */
 .post { padding-top: 28px; }
-.post__head { max-width: 760px; margin-bottom: 24px; }
+.post__head { max-width: var(--read); margin-bottom: 24px; }
 .post__title { margin-top: 16px; font-size: clamp(26px, 4.4vw, 36px); font-weight: 800; letter-spacing: -0.045em; line-height: 1.32; }
 .post__meta { display: flex; align-items: center; flex-wrap: wrap; margin-top: 14px; color: var(--t3); font-size: 14px; }
 .post__meta .i { width: 15px; height: 15px; margin-right: 4px; }
 .post__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
 @media (min-width: 1200px) {
-  .post__layout { grid-template-columns: minmax(0, 760px) 220px; justify-content: start; gap: 40px; }
+  .post__layout { grid-template-columns: minmax(0, var(--read)) var(--toc); justify-content: start; gap: var(--toc-gap); }
 }
-.post__main { min-width: 0; max-width: 760px; }
+.post__main { min-width: 0; max-width: var(--read); }
 .post__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
 .post__actions { display: flex; gap: 8px; margin-top: 20px; }
 .post__actions .btn { flex: 1; height: 48px; font-size: 15px; }
@@ -898,3 +902,44 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
   .tabs__tab { padding: 12px 10px; font-size: 14px; }
 }
 .bento__ep > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+
+/* ==========================================================================
+   10. 큰 화면 : 화면 크기에 맞춰 폭과 글자 크기를 늘린다
+   ========================================================================== */
+/* 글 페이지는 본문+목차 폭에 맞춰 가운데 정렬 (양옆 빈 공간을 균등하게) */
+.post.container { max-width: calc(var(--read) + var(--gutter) * 2); }
+@media (min-width: 1200px) {
+  /* 본문 폭 = 전체 폭 - 목차 - 간격 - 양쪽 여백 → 상단 바와 같은 선에 맞는다 */
+  :root { --read: calc(var(--wrap) - var(--toc) - var(--toc-gap) - var(--gutter) * 2); }
+  .post.container { max-width: var(--wrap); }
+}
+
+@media (min-width: 1440px) {
+  :root { --wrap: 1320px; --toc: 240px; --gutter: 32px; }
+  .prose { font-size: 17.5px; }
+}
+@media (min-width: 1720px) {
+  :root { --wrap: 1560px; --toc: 260px; --toc-gap: 48px; --gutter: 40px; }
+  body { font-size: 17px; }
+  .prose { font-size: 18px; padding: 56px 64px 64px; }
+  .prose h2 { font-size: 26px; }
+  .prose h3 { font-size: 21px; }
+  .prose pre { font-size: 15px; }
+  .post__title { font-size: 40px; }
+  .row__title { font-size: 17px; }
+  .hero__title { font-size: 54px; }
+  .toc__list a { font-size: 14.5px; }
+}
+@media (min-width: 2200px) {
+  :root { --wrap: 1880px; --toc: 300px; --toc-gap: 56px; --gutter: 48px; }
+  body { font-size: 18px; }
+  .prose { font-size: 19px; }
+  .prose pre { font-size: 16px; }
+  .post__title { font-size: 44px; }
+}
+/* 목차가 숨는 중간 화면(768~1199px)도 본문을 상단 바 폭에 맞춘다 */
+@media (min-width: 768px) and (max-width: 1199px) {
+  :root { --read: calc(var(--wrap) - var(--gutter) * 2); }
+  .post.container { max-width: var(--wrap); }
+}
