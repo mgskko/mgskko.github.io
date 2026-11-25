@@ -3,148 +3,919 @@
 ---
 @charset "utf-8";
 
-// 1. 폰트 설정 (Noto Sans KR)
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+// ============================================================
+// 1. 폰트 : Pretendard (한글 가독성 중심 오픈소스 폰트)
+// ============================================================
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 
-// 2. 폰트 변수 재정의
-$system-font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
-$global-font-family: $system-font-family !default;
-$header-font-family: $system-font-family !default;
-$caption-font-family: $system-font-family !default;
+// ============================================================
+// 2. 디자인 토큰
+// ============================================================
+$blue: #3182f6;
+$blue-press: #1b64da;
+$blue-weak: #e8f3ff;
 
-// 색상 (Black & White)
-$primary-color: #000000 !default;     // 포인트 컬러: 블랙
-$text-color: #1a1a1a !default;        // 텍스트: 아주 진한 회색
-$link-color: #000000 !default;        // 링크: 블랙
-$background-color: #ffffff !default;
-$code-background-color: #f4f4f5 !default;
-$border-color: #e5e7eb !default;
-$footer-background-color: #ffffff !default; // 푸터 배경: 흰색
+$bg: #f2f4f6;
+$surface: #ffffff;
 
-// 3. Minimal Mistakes 테마 가져오기
+$text-1: #191f28; // 제목, 핵심 텍스트
+$text-2: #4e5968; // 본문
+$text-3: #8b95a1; // 보조, 날짜
+$text-4: #b0b8c1; // 비활성
+
+$line: #e5e8eb;
+$grey-100: #f9fafb;
+$grey-200: #f2f4f6;
+$grey-300: #e5e8eb;
+
+$red: #f04452;
+$green: #00c471;
+
+$radius-card: 20px;
+$radius-md: 12px;
+$radius-pill: 999px;
+
+$gutter: 20px;
+$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+// ============================================================
+// 3. Minimal Mistakes 변수 재정의
+// ============================================================
+$sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", Roboto, sans-serif !default;
+$monospace: "SF Mono", "JetBrains Mono", Menlo, Consolas, "Noto Sans Mono", monospace !default;
+$global-font-family: $sans-serif !default;
+$header-font-family: $sans-serif !default;
+$caption-font-family: $sans-serif !default;
+
+$background-color: $bg !default;
+$text-color: $text-2 !default;
+$primary-color: $blue !default;
+$link-color: $blue !default;
+$link-color-hover: $blue-press !default;
+$link-color-visited: $blue !default;
+$border-color: $line !default;
+$code-background-color: $grey-200 !default;
+$code-background-color-dark: $grey-200 !default;
+$footer-background-color: $bg !default;
+$masthead-link-color: $text-1 !default;
+$masthead-link-color-hover: $blue !default;
+$navicon-link-color-hover: $blue !default;
+
+// ============================================================
+// 4. 테마 로드
+// ============================================================
 @import "minimal-mistakes";
 
-// 4. 추가 커스텀 스타일 (테마 로드 후 덮어쓰기)
+// ============================================================
+// 5. 베이스
+// ============================================================
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  @include breakpoint($large) { font-size: 16px; }
+  @include breakpoint($x-large) { font-size: 16px; }
+}
+
 body {
-  background-color: #ffffff; // 배경: 완전한 흰색
-  color: #111;
+  background-color: $bg;
+  color: $text-2;
+  font-family: $sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
-// 상단 헤더 (Masthead) - 플랫 디자인
-.masthead {
-  background-color: #ffffff;
-  border-bottom: 1px solid $border-color;
-  box-shadow: none !important; // 그림자 제거
-  
-  .masthead__menu-item {
-    font-weight: 700; // 메뉴 글씨 굵게
-  }
+::selection {
+  background: rgba(49, 130, 246, 0.2);
+  color: $text-1;
 }
 
-// 메인 콘텐츠 영역 (중앙 정렬 및 가독성 확보)
-.page__content {
-  max-width: 800px !important; // 본문 너비를 적당히 좁혀서 집중도 향상
-  margin: 0 auto;
-}
-
-// 링크 스타일
 a {
-  color: inherit;
+  color: $blue;
   text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
+  transition: color 0.15s ease;
+
+  &:hover { color: $blue-press; text-decoration: none; }
 }
 
-// 버튼 스타일 (직각, 블랙)
-.btn--primary {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border-radius: 0 !important; // 둥근 모서리 제거
+h1, h2, h3, h4, h5, h6 {
+  color: $text-1;
+  font-family: $sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+  margin: 2em 0 0.6em;
 }
 
-// 글 목록 (Archive) 스타일 - cho.sh 처럼 심플한 리스트로 변경
-.archive__item {
-  border: none !important;
-  box-shadow: none !important;
-  padding: 1rem 0;
-  border-bottom: 1px solid #f0f0f0; // 얇은 구분선
-  
-  // 썸네일/요약글 숨기기 (제목 위주로 깔끔하게)
-  .archive__item-excerpt {
-    display: none;
-  }
-  
-  .archive__item-teaser {
-    display: none;
+// ============================================================
+// 6. 상단 바 (Masthead) : 56px, 얇고 깔끔하게
+// ============================================================
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid rgba(229, 232, 235, 0.7);
+  box-shadow: none;
+  animation: none;
+
+  &__inner-wrap {
+    max-width: 1080px;
+    padding: 0 $gutter;
+    min-height: 56px;
+    align-items: center;
+    font-family: $sans-serif;
   }
 
-  .archive__item-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    
+  .site-title {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: $text-1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .greedy-nav {
+    background: transparent;
+    min-height: 56px;
+
     a {
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
+      color: $text-1;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 0 14px;
+      border-radius: 10px;
+      transition: background 0.15s ease, transform 0.1s ease;
+
+      &:hover { background: $grey-200; color: $text-1; }
+      &:active { transform: scale(0.96); }
+    }
+
+    .visible-links li:first-child a { margin-left: 0; font-weight: 800; padding-left: 0; &:hover { background: transparent; } }
+    .search__toggle, button { color: $text-2; transition: transform 0.1s ease; &:active { transform: scale(0.92); } }
+    .hidden-links { border-radius: $radius-md; border: 0; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); }
+  }
+}
+
+// ============================================================
+// 7. 페이지 레이아웃
+// ============================================================
+#main {
+  max-width: 1080px;
+  padding: 0 $gutter;
+  margin-top: 8px;
+  animation: fade-up 0.4s $ease both;
+
+  @include breakpoint($large) { padding: 0 $gutter; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.breadcrumbs {
+  font-size: 13px;
+  color: $text-3;
+  margin: 20px 0 4px;
+  a { color: $text-3; &:hover { color: $blue; } }
+  .current { color: $text-2; font-weight: 600; }
+}
+
+// ============================================================
+// 8. 사이드바 프로필 : 카드
+// ============================================================
+.sidebar {
+  @include breakpoint($large) {
+    margin-top: 16px;
+  }
+
+  .author__avatar img {
+    width: 96px;
+    height: 96px;
+    max-width: 96px;
+    border-radius: 50%;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    object-fit: cover;
+  }
+}
+
+.author__content, .author__urls-wrapper {
+  font-family: $sans-serif;
+}
+
+.author__name {
+  color: $text-1;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 12px 0 4px;
+}
+
+.author__bio {
+  color: $text-3;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.author__urls {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+
+  a { color: $text-2; font-size: 14px; &:hover { color: $blue; } }
+  li { margin: 4px 0; }
+  .btn, .btn--inverse {
+    border-radius: $radius-md;
+  }
+}
+
+@include breakpoint($large) {
+  .sidebar > * {
+    // 프로필 영역을 카드처럼 보이게
+  }
+
+  .author__avatar { margin-bottom: 4px; }
+
+  .sidebar .author__content,
+  .sidebar .author__urls-wrapper {
+    background: transparent;
+  }
+}
+
+.author__urls-wrapper button {
+  background: $surface;
+  color: $text-1;
+  border: 0;
+  border-radius: $radius-md;
+  font-weight: 600;
+  box-shadow: none;
+  transition: transform 0.1s ease, background 0.15s ease;
+
+  &:hover { background: $grey-200; color: $text-1; }
+  &:active { transform: scale(0.97); }
+}
+
+// 카테고리 메뉴 (사이드바)
+.nav__list {
+  margin: 20px 0 0;
+  font-family: $sans-serif;
+
+  .nav__items { margin: 0; padding: 0; }
+  .nav__total {
+    color: $text-3;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0 0 8px;
+    strong { color: $blue; font-weight: 700; }
+  }
+
+  .nav__sub-title {
+    display: block;
+    margin: 18px 0 4px;
+    padding: 0;
+    border: 0;
+    color: $text-1;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: none;
+  }
+
+  ul { margin: 0; padding: 0; list-style: none; }
+  li { margin: 0; }
+  ul ul a {
+    display: block;
+    margin: 0 -8px;
+    padding: 6px 8px;
+    border: 0;
+    border-radius: 8px;
+    color: $text-2;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.45;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+
+    &:hover { background: $surface; color: $blue; }
+    &:active { transform: scale(0.98); }
+  }
+}
+
+// ============================================================
+// 9. 글 상세 : 흰 카드
+// ============================================================
+.page {
+  .page__inner-wrap {
+    background: $surface;
+    border-radius: 24px;
+    padding: 28px $gutter 40px;
+    margin-top: 12px;
+
+    @include breakpoint($medium) { padding: 40px 40px 48px; }
+  }
+
+  &__title {
+    color: $text-1;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: -0.04em;
+    margin: 0 0 12px;
+
+    @include breakpoint($medium) { font-size: 32px; }
+  }
+
+  &__title a, &__title a:hover { color: $text-1; border: 0; }
+
+  &__meta {
+    color: $text-3;
+    font-size: 13px;
+    margin: 0 0 24px;
+    a { color: $text-3; }
+    i { color: $text-4; }
+  }
+
+  &__content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: $text-2;
+
+    p, ul, ol { margin-bottom: 1.2em; }
+    strong, b { color: $text-1; font-weight: 700; }
+
+    h1, h2, h3, h4 {
+      color: $text-1;
+      margin-top: 2.2em;
+      padding: 0;
+      border: 0;
+    }
+    h1 { font-size: 26px; }
+    h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-top: 2.6em;
+      padding-top: 0;
+      border: 0;
+    }
+    h3 { font-size: 18px; font-weight: 700; }
+    h4 { font-size: 16px; font-weight: 700; }
+
+    a:not(.btn) {
+      color: $blue;
+      border-bottom: 1px solid rgba(49, 130, 246, 0.3);
+      &:hover { border-bottom-color: $blue; }
+    }
+
+    hr {
+      border: 0;
+      height: 8px;
+      background: $grey-200;
+      margin: 2.4em -20px;
+      @include breakpoint($medium) { margin: 2.4em -40px; }
+    }
+
+    li { margin: 0.3em 0; }
+    li::marker { color: $text-4; }
+
+    img {
+      border-radius: 16px;
     }
   }
 }
 
-// 푸터 (Footer) - 심플하게
-.page__footer {
-  background-color: #ffffff !important;
-  color: #666;
-  border-top: 1px solid $border-color;
+.page__lead { color: $text-3; font-size: 18px; }
+
+// 인용구
+blockquote {
+  margin: 1.6em 0;
+  padding: 16px 20px;
+  background: $blue-weak;
+  border: 0;
+  border-radius: 16px;
+  color: $text-1;
+  font-style: normal;
+  font-weight: 500;
+
+  p:last-child { margin-bottom: 0; }
+  cite, a { color: $blue; }
+}
+
+// 코드
+code, tt {
+  font-family: $monospace;
+  font-size: 0.88em;
+  background: $grey-200;
+  color: $text-1;
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  border: 0;
+}
+
+pre, div.highlighter-rouge, figure.highlight {
+  border-radius: 16px;
+}
+
+div.highlighter-rouge, figure.highlight {
+  background: #191f28;
+  margin: 1.4em 0;
+  border: 0;
   box-shadow: none;
-  
-  footer {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2em 0;
+
+  pre.highlight, pre { background: transparent; margin: 0; border: 0; }
+  code { background: transparent; padding: 0; color: #e5e8eb; font-size: 14px; }
+  pre { padding: 18px 20px; line-height: 1.65; }
+}
+
+.highlight {
+  color: #e5e8eb;
+  .c, .cm, .c1, .cs, .cp { color: #6b7684; font-style: normal; }
+  .k, .kd, .kn, .kp, .kr, .kt, .kc { color: #6cb4ff; }
+  .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx { color: #7ee2b8; }
+  .mi, .mf, .mh, .mo, .m { color: #ffb76b; }
+  .nf, .nc, .nn { color: #f9d776; }
+  .o, .p { color: #c9d1d9; }
+}
+
+// 표
+table {
+  display: table;
+  width: 100%;
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14.5px;
+  margin: 1.6em 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: $surface;
+  box-shadow: 0 0 0 1px $line inset;
+
+  thead { background: $grey-100; }
+  th {
+    color: $text-3;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    border: 0;
+    border-bottom: 1px solid $line;
+    white-space: nowrap;
+  }
+  td {
+    color: $text-2;
+    padding: 14px 16px;
+    border: 0;
+    border-bottom: 1px solid $grey-200;
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:nth-child(even) { background: transparent; }
+  tbody tr:hover { background: $grey-100; }
+}
+
+// 체크박스 리스트
+.task-list-item, li > input[type="checkbox"] { accent-color: $blue; }
+
+// ============================================================
+// 10. 목차 (TOC)
+// ============================================================
+.toc {
+  background: $grey-100;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: none;
+  font-family: $sans-serif;
+  margin-bottom: 24px;
+  overflow: hidden;
+
+  .nav__title {
+    background: transparent;
+    color: $text-1;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 20px 8px;
+    letter-spacing: -0.02em;
+    border-radius: 0;
+  }
+
+  .toc__menu {
+    margin: 0;
+    padding: 0 8px 12px;
+
+    ul { margin: 0; padding: 0; }
+    li { margin: 0; }
+    a {
+      display: block;
+      padding: 7px 12px;
+      border-radius: 10px;
+      color: $text-3;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      transition: background 0.15s ease, color 0.15s ease;
+
+      &:hover { background: $grey-200; color: $text-1; }
+      &.active { background: $blue-weak; color: $blue; font-weight: 700; }
+    }
+    ul ul a { padding-left: 24px; font-size: 13.5px; }
   }
 }
 
-// 스크롤바 커스텀 (토스 블루)
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #3182f6;
-  border-radius: 10px;
-  border: 3px solid #f5f5f5;
+@include breakpoint($large) {
+  // 본문 카드 오른쪽 바깥(24px 간격)에 목차를 붙인다
+  .page:has(.sidebar__right) { padding-right: 224px; }
+  .page__content .sidebar__right.sticky {
+    top: 80px;
+    width: 200px;
+    margin-right: -264px; // 본문 안쪽 여백(40px) + 목차 폭(200px) + 간격(24px)
+    padding-left: 0;
+  }
 }
 
-// 페이지네이션 (이전글/다음글) 커스텀 스타일
+.page .page__content .toc a { border: 0; }
+
+// ============================================================
+// 11. 글 목록 : ListRow 카드
+// ============================================================
+.archive {
+  &__title, .page__title { margin-top: 12px; }
+}
+
+.archive .page__title,
+.page__title {
+  @include breakpoint($small) {}
+}
+
+.list__item, .grid__item {
+  .archive__item {
+    position: relative;
+    background: $surface;
+    border: 0;
+    border-radius: $radius-card;
+    box-shadow: none;
+    margin: 0 0 12px;
+    padding: 22px 24px;
+    transition: transform 0.12s ease, background 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+
+    &:hover { background: #fcfdfd; }
+    &:active { transform: scale(0.98); background: $grey-100; }
+  }
+}
+
+.archive__item {
+  &-excerpt { display: none; }
+  &-teaser { display: none; }
+
+  &-title {
+    margin: 0 0 6px;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: -0.03em;
+    color: $text-1;
+    border: 0;
+
+    a {
+      color: $text-1;
+      display: block;
+      // 카드 전체를 클릭 영역으로
+      &::after { content: ""; position: absolute; inset: 0; border-radius: $radius-card; }
+      &:hover { color: $text-1; }
+    }
+  }
+
+  .page__meta {
+    margin: 0;
+    font-size: 13px;
+    color: $text-3;
+    i { color: $text-4; }
+  }
+}
+
+.archive__subtitle {
+  margin: 28px 4px 12px;
+  padding: 0;
+  border: 0;
+  color: $text-1;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+// 카테고리 / 태그 목록 (taxonomy)
+.taxonomy__index {
+  background: $surface;
+  border-radius: $radius-card;
+  padding: 8px;
+  margin: 0 0 24px;
+
+  li { margin: 0; }
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    margin: 0;
+    border: 0;
+    border-radius: 14px;
+    color: $text-1;
+    font-weight: 600;
+    font-size: 16px;
+    transition: transform 0.1s ease, background 0.15s ease;
+
+    &:hover { background: $grey-100; color: $text-1; }
+    &:active { transform: scale(0.98); }
+  }
+  strong {
+    margin-left: 12px;
+    color: $text-3;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}
+
+.taxonomy__section {
+  background: transparent;
+  margin-bottom: 24px;
+  .archive__subtitle { margin-top: 24px; }
+}
+
+.taxonomy__title { color: $text-1; }
+.taxonomy__count { color: $text-3; font-weight: 600; }
+
+// ============================================================
+// 12. 태그 / 카테고리 뱃지 (pill)
+// ============================================================
+.page__taxonomy {
+  margin-top: 32px;
+
+  .sr-only + .page__taxonomy-item, .page__taxonomy-item {
+    display: inline-block;
+    margin: 0 6px 8px 0;
+    padding: 6px 12px;
+    background: $grey-200;
+    color: $text-2;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    border: 0;
+    border-radius: $radius-pill;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+
+    &:hover { background: $blue-weak; color: $blue; }
+    &:active { transform: scale(0.96); }
+  }
+
+  .page__taxonomy-item::before { content: "#"; opacity: 0.5; margin-right: 1px; }
+  .page__taxonomy-item[rel="category tag"]::before,
+  .page__taxonomy-item[href*="categories"]::before { content: ""; margin: 0; }
+}
+
+.page__meta-sep { display: none; }
+
+.page__footer-follow, .page__footer-follow ul { background: transparent; }
+
+// ============================================================
+// 13. 버튼
+// ============================================================
+.btn {
+  font-family: $sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  border: 0;
+  border-radius: 14px;
+  padding: 0.85em 1.4em;
+  transition: background 0.15s ease, transform 0.1s ease;
+
+  &:active { transform: scale(0.97); }
+
+  &--primary, &--info { background: $blue; color: #fff; &:hover { background: $blue-press; color: #fff; } }
+  &--inverse, &--light-outline { background: $grey-200; color: $text-1; &:hover { background: $grey-300; color: $text-1; } }
+  &--success { background: $green; color: #fff; }
+  &--danger { background: $red; color: #fff; }
+}
+
+// ============================================================
+// 14. 이전 글 / 다음 글, 페이지네이션
+// ============================================================
+.pagination {
+  margin: 28px 0 16px;
+  float: none;
+
+  ul { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+  li { margin: 0; display: block; }
+
+  ul li a, a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 14px;
+    margin: 0;
+    border: 0;
+    border-radius: 12px;
+    background: $surface;
+    color: $text-2;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform 0.1s ease, background 0.15s ease;
+
+    &:hover { background: $grey-300; color: $text-1; }
+    &:active { transform: scale(0.95); }
+    border-radius: 12px !important;
+    &.current, &.current.disabled {
+      background: $blue;
+      color: #fff;
+      opacity: 1;
+    }
+    &.disabled { background: transparent; color: $text-4; }
+  }
+}
+
+.pagination--pager {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85em 1.4em;
+  border: 0;
+  border-radius: 14px;
+  background: $grey-200;
+  color: $text-1;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background 0.15s ease, transform 0.1s ease;
+
+  &:hover { background: $grey-300; color: $text-1; }
+  &:active { transform: scale(0.97); }
+  &.disabled { color: $text-4; background: $grey-100; }
+}
+
 .pagination_prev_next {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 2rem 0;
+  gap: 12px;
+  margin: 32px 0 0;
   width: 100%;
 }
 
 .pagination_prev_next--pager {
   flex: 1;
-  padding: 1rem;
-  border: 1px solid $border-color;
+  padding: 16px 18px;
+  border: 0;
+  border-radius: 16px;
+  background: $grey-100;
+  color: $text-1 !important;
+  font-weight: 600;
+  font-size: 14px;
   text-align: center;
-  font-weight: 700;
-  color: $text-color !important;
-  
-  &:hover {
-    background-color: $code-background-color;
-    text-decoration: none;
+  transition: transform 0.1s ease, background 0.15s ease;
+
+  &:hover { background: $grey-200; text-decoration: none; }
+  &:active { transform: scale(0.98); }
+}
+
+.disabled-first-child, .disabled-last-child { opacity: 0.4; pointer-events: none; }
+
+// ============================================================
+// 15. 관련 글
+// ============================================================
+.page__related {
+  margin-top: 32px;
+  padding-top: 8px;
+  float: none;
+  width: 100%;
+
+  .page__related-title {
+    color: $text-1;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 16px 0 12px;
+    border: 0;
+  }
+
+  .grid__wrapper { margin: 0; }
+  .archive__item { background: $grey-100; padding: 16px 18px; margin: 0 0 8px; }
+  .archive__item-title { font-size: 15px; margin: 0; }
+}
+
+// ============================================================
+// 16. 검색
+// ============================================================
+.search-content {
+  background: rgba(255, 255, 255, 0.98);
+  &__inner-wrap { max-width: 720px; }
+}
+
+.search-input,
+input[type="text"], input[type="search"], input[type="email"], input[type="password"], textarea {
+  font-family: $sans-serif;
+  color: $text-1;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid $line;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 10px 2px;
+  transition: border-color 0.15s ease;
+
+  &:focus {
+    outline: 0;
+    border-bottom: 2px solid $blue;
+    padding-bottom: 9px;
   }
 }
 
-.disabled-first-child, .disabled-last-child {
-  opacity: 0.4;
-  pointer-events: none;
+.search-content__form input { font-size: 20px; font-weight: 600; }
+.search-content .search-content__inner-wrap { padding-top: 24px; }
+
+// ============================================================
+// 17. 댓글, 공유
+// ============================================================
+.page__comments {
+  margin-top: 40px;
+  &-title { color: $text-1; font-weight: 800; font-size: 18px; border: 0; margin-bottom: 12px; }
+}
+
+.page__share {
+  margin-top: 32px;
+  &-title { color: $text-3; font-size: 13px; font-weight: 600; border: 0; margin-bottom: 8px; }
+  .btn { background: $grey-200; color: $text-2; font-size: 13px; padding: 0.6em 1em; &:hover { background: $grey-300; color: $text-1; } }
+}
+
+// ============================================================
+// 18. 푸터
+// ============================================================
+.page__footer {
+  background: transparent;
+  color: $text-3;
+  margin-top: 64px;
+  border: 0;
+  box-shadow: none;
+  font-family: $sans-serif;
+
+  footer {
+    max-width: 1080px;
+    padding: 24px $gutter 48px;
+    margin: 0 auto;
+  }
+
+  a { color: $text-3; &:hover { color: $text-1; } }
+  .fas, .fab, .far, .fal { color: $text-3; }
+  .page__footer-copyright { font-size: 13px; color: $text-4; }
+  .social-icons .fa-fw { color: $text-3; }
+}
+
+// ============================================================
+// 19. 알림 박스
+// ============================================================
+.notice, .notice--primary, .notice--info, .notice--warning, .notice--success, .notice--danger {
+  border-radius: 16px;
+  border: 0;
+  box-shadow: none;
+  font-size: 15px;
+  padding: 1em 1.2em;
+}
+.notice { background: $grey-100; color: $text-1; }
+.notice--info { background: $blue-weak; }
+.notice--success { background: #e6f9f0; }
+.notice--danger { background: #fdecee; }
+.notice--warning { background: #fff4e0; }
+
+// ============================================================
+// 20. 스크롤바
+// ============================================================
+* { scrollbar-width: thin; scrollbar-color: #d1d6db transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #d1d6db;
+  border-radius: 10px;
+  border: 3px solid $bg;
+  &:hover { background: $text-4; }
+}
+
+// ============================================================
+// 21. 모바일 미세 조정
+// ============================================================
+@media (max-width: 600px) {
+  .page .page__inner-wrap { border-radius: 20px; }
+  .list__item .archive__item { padding: 18px 20px; border-radius: 18px; }
+  .archive__item-title { font-size: 17px; }
+}
+
+// 모션 줄이기 설정 존중
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
