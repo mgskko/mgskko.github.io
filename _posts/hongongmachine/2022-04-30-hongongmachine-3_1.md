@@ -93,3 +93,11 @@ print(knr.score(test_input, test_target)) # 테스트 세트의 $R^2$은 0.97464
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 <https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_3%EA%B0%95_1.ipynb>
+
+---
+
+## 직접 해보기
+
+k-최근접 이웃 회귀가 값을 어떻게 예측하는지 직접 확인해 보세요. k를 바꾸면 곡선의 모양이 달라져요.
+
+<div class="sim" data-sim="knn"></div>

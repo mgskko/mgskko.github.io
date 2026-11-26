@@ -1,0 +1,16 @@
+{%- comment -%} 글 요약문: ex_text (include.len 글자까지) {%- endcomment -%}
+{%- assign ex_text = include.post.excerpt_text | default: include.post.description | default: "" -%}
+{%- if ex_text == "" -%}
+  {%- assign ex_parts = include.post.content | split: "</p>" -%}
+  {%- for part in ex_parts -%}
+    {%- if ex_text == "" -%}
+      {%- unless part contains "notice" or part contains "<div" or part contains "<pre" or part contains "<table" or part contains "<script" or part contains "<style" or part contains "<details" or part contains "<img" -%}
+        {%- assign ex_seg = part | split: "</h2>" | last | split: "</h3>" | last | split: "</h4>" | last -%}
+        {%- assign ex_t = ex_seg | strip_html | strip_newlines | strip -%}
+        {%- if ex_t.size > 25 -%}{%- assign ex_text = ex_t -%}{%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- assign ex_len = include.len | default: 120 -%}
+{%- assign ex_text = ex_text | normalize_whitespace | truncate: ex_len -%}

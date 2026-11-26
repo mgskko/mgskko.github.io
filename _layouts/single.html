@@ -81,6 +81,20 @@ post_js: true
       </section>
       {% endif %}
 
+      <aside class="card authorbox reveal" aria-label="글쓴이">
+        <span class="avatar avatar--lg" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
+        <div class="authorbox__body">
+          <p class="authorbox__label">글쓴이</p>
+          <p class="authorbox__name">{{ site.author.name }}</p>
+          <p class="authorbox__bio">{{ site.author.bio }} · 배운 것을 기록하고 데이터로 돌아보는 블로그예요.</p>
+          <div class="side__links">
+            <a class="chip chip--sm pressable" href="{{ '/' | relative_url }}">홈으로</a>
+            <a class="chip chip--sm pressable" href="https://github.com/{{ site.author.github }}" rel="noopener">{% include icon.html name="github" %}GitHub</a>
+            <a class="chip chip--sm pressable" href="{{ '/feed.xml' | relative_url }}">{% include icon.html name="rss" %}구독</a>
+          </div>
+        </div>
+      </aside>
+
       {% if page.comments != false %}{% include comments.html %}{% endif %}
     </div>
 
@@ -128,3 +142,5 @@ post_js: true
   });
 </script>
 {% endif %}
+
+{% if content contains 'data-sim=' %}<script src="{{ '/assets/js/sims.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>{% endif %}

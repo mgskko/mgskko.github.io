@@ -1,0 +1,9 @@
+{%- comment -%} 글 표지: 분야 색 그라디언트 + 아이콘 (이미지 없이 글마다 조금씩 다르게) {%- endcomment -%}
+{%- assign cv_post = include.post -%}
+{%- assign cv_key = cv_post.categories[0] -%}
+{%- include cat-meta.html key=cv_key -%}
+{%- assign cv_seed = cv_post.title | size | modulo: 6 -%}
+<span class="cover s{{ cm_slot }} v{{ cv_seed }}{% if include.class %} {{ include.class }}{% endif %}" aria-hidden="true">
+  <span class="cover__orb"></span><span class="cover__ic">{% include icon.html name=cm_icon %}</span>
+  <span class="cover__tag">{{ cm_label }}</span>
+</span>

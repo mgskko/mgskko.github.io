@@ -1,0 +1,17 @@
+{%- assign p = include.post -%}
+{%- assign pk = p.categories[0] -%}
+{%- include cat-meta.html key=pk -%}
+{%- include title-parse.html title=p.title -%}
+{%- include post-excerpt.html post=p len=110 -%}
+{%- include read-time.html content=p.content -%}
+<li class="row postcard" data-group="{{ cm_group }}" data-cat="{{ pk }}"{% if tp_facet != "" %} data-facet="{{ tp_facet }}"{% endif %}>
+  <a class="postcard__link" href="{{ p.url | relative_url }}" data-tilt-soft>
+    <span class="postcard__thumb">{% include cover.html post=p %}</span>
+    <span class="postcard__body">
+      <span class="row__badges">{% include title-badges.html %}</span>
+      <span class="postcard__title">{{ tp_title | escape }}</span>
+      <span class="postcard__ex">{{ ex_text | escape }}</span>
+      <span class="postcard__meta">{{ cm_label }}<i class="dot"></i><time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: site.date_format }}</time><i class="dot"></i>{{ rt }}분</span>
+    </span>
+  </a>
+</li>

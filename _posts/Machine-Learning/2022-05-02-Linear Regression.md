@@ -82,3 +82,13 @@ Learning Rate가 낮으면 시간이 오래걸립니다. 그러면 converge를 �
 ![Alt text](https://i.esdrop.com/d/f/uVJApfFjHN/DEmuLQ6cWp.jpg)
 
 Learning Rate(α)를 적절히 조정하다보면 어떠한 특이점에서 결과값이 수렴하는 것을 볼 수 있습니다.
+
+---
+
+## 직접 해보기
+
+점을 움직여 직선이 바뀌는 모습을 보고, 아래에서는 경사하강법이 손실을 줄여 가는 과정을 확인해 보세요.
+
+<div class="sim" data-sim="linreg"></div>
+
+<div class="sim" data-sim="gd"></div>

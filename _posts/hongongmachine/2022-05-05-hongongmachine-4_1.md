@@ -227,3 +227,11 @@ proba 배열과 비교해 보면 결과가 일치한 것을 확인해 볼 수 �
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 <https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_4%EA%B0%95_1.ipynb>
+
+---
+
+## 직접 해보기
+
+로지스틱 회귀의 출력에 쓰이는 시그모이드를 포함해, 활성화 함수의 모양과 기울기를 살펴보세요.
+
+<div class="sim" data-sim="activation"></div>
