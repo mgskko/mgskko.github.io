@@ -28,6 +28,37 @@ charts: true
   </div>
 </section>
 
+<section class="container cosmos-wrap reveal" aria-labelledby="cosmos-title">
+  <div class="cosmos card" data-cosmos>
+    <div class="cosmos__head">
+      <div>
+        <h2 class="section-title" id="cosmos-title">지식 은하</h2>
+        <p class="section-desc">글 {{ total }}개가 점 하나씩이에요. 드래그로 돌려 보고, 점을 눌러 글을 열어 보세요</p>
+      </div>
+      <div class="cosmos__modes" role="group" aria-label="배치 방식">
+        <button class="chip pressable is-active" type="button" aria-pressed="true" data-cosmos-mode="cluster" data-desc="분야별로 모인 군집이에요. 점이 클수록 긴 글이에요.">은하</button>
+        <button class="chip pressable" type="button" aria-pressed="false" data-cosmos-mode="helix" data-desc="글을 쓴 순서대로 나선을 따라 올라가요. 위쪽일수록 최근 글이에요.">시간 나선</button>
+        <button class="chip pressable" type="button" aria-pressed="false" data-cosmos-mode="scatter" data-desc="가로는 분야, 세로는 글 길이, 깊이는 작성 시기를 나타내는 3D 산점도예요.">3D 산점도</button>
+      </div>
+    </div>
+    <div class="cosmos__stage">
+      <canvas class="cosmos__cv" aria-label="블로그 글을 점으로 표현한 3D 시각화. 글 목록은 아래 최신 글에서도 볼 수 있어요." role="img"></canvas>
+      <div class="cosmos__tip" data-cosmos-tip hidden></div>
+    </div>
+    <div class="cosmos__foot">
+      <p class="cosmos__desc" data-cosmos-desc>분야별로 모인 군집이에요. 점이 클수록 긴 글이에요.</p>
+      <div class="cosmos__legend" role="group" aria-label="분야 켜고 끄기">
+        {%- for g in site.data.categories.groups %}
+        <button class="chip chip--sm pressable" type="button" aria-pressed="true" data-cosmos-group="{{ g.slot }}"><i class="swatch s{{ g.slot }}"></i>{{ g.label }}</button>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+  {%- capture cosmos_json -%}[{%- for p in site.posts -%}{%- assign pk = p.categories[0] -%}{%- include cat-meta.html key=pk -%}[{{ p.title | jsonify }},{{ p.url | relative_url | jsonify }},{{ cm_slot }},{{ p.date | date: "%s" }},{{ p.content | strip_html | size }},{{ cm_label | jsonify }}]{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- endcapture -%}
+  <script type="application/json" id="cosmos-data">{{ cosmos_json | strip_newlines }}</script>
+  <script src="{{ '/assets/js/cosmos.js' | relative_url }}" defer></script>
+</section>
+
 <div class="container home">
   <div class="home__main" id="feed">
     {%- include post-excerpt.html post=latest len=170 -%}

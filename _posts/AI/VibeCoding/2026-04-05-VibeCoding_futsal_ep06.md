@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "6편. AI가 틀렸을 때 — 프롬프트로 멱살 잡는 법"
+description: "AI가 틀렸을 때 프롬프트로 바로잡는 세 가지 사례와 막혔을 때 쓰는 패턴을 정리했어요."
 categories: VibeCoding
 series: "풋살 앱 연재"
 tag: [VibeCoding, Lovable, Gemini, 바이브코딩, 버그, 할루시네이션, 프롬프트엔지니어링]

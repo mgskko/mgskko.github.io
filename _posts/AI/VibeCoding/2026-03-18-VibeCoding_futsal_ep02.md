@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "2편. Lovable + Supabase + Gemini 삼각편대 — 첫 화면이 생성되기까지"
+description: "Lovable, Supabase, Gemini 세 도구의 역할과 작업 흐름, 첫 화면이 만들어지기까지를 정리했어요."
 categories: VibeCoding
 series: "풋살 앱 연재"
 tag: [VibeCoding, Lovable, Supabase, Gemini, 바이브코딩, 풀스택, React]

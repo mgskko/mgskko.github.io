@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "블로그를 통째로 갈아엎다 — Claude Code와 대화만으로 만든 Study Note 리뉴얼"
+description: "Claude Code와 대화만으로 Study Note 블로그를 처음부터 다시 만든 과정과 시행착오를 단계별로 기록했어요."
 categories: VibeCoding
 date: 2026-11-25 01:00:00 +0900
 tag: [VibeCoding, 바이브코딩, ClaudeCode, Jekyll, GitHubPages, UI/UX, 블로그]

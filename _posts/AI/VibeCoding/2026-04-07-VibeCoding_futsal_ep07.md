@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "7편. 통계의 진화 — 데이터가 말해준 우리 팀의 민낯"
+description: "연령대별 승률, 구장별 전적, 쿼터별 득실, 코트 마진, PPQ로 풋살 팀 데이터를 분석한 기록이에요."
 categories: VibeCoding
 series: "풋살 앱 연재"
 tag: [VibeCoding, 통계, SQL, ChartJS, 바이브코딩, 데이터분석, 풋살]

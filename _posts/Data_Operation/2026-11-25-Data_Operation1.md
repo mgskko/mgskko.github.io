@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "[데이터 운영] 1. 데이터 운영이란? (개념부터 기업 운영 체계까지)"
+description: "데이터 운영의 개념부터 품질 관리, 모니터링, 장애 대응, 거버넌스, 조직 구성까지 기업의 운영 체계를 정리했어요."
 categories: Data_Operation
 tag: [data-operation, dataops, data-quality, data-governance, data-pipeline, data-observability]
 toc: true
