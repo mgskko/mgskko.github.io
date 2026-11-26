@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "트리맵 차트"
+title: "트리맵 차트"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -18,6 +18,6 @@ toc: true
 ![image](https://user-images.githubusercontent.com/100071667/220399277-1417290a-86fa-457c-96b1-12d7dff7c328.png)
 
 [수익]을 마크에 색상으로 배정되어 있는 합계(매출)위에 올려서 색상을 입혀준다.
-합계(매출)을 퀵 테이블 계산에서 구성 비율을 선택해준다. 
+합계(매출)을 퀵 테이블 계산에서 구성 비율을 선택해준다.
 
 ![image](https://user-images.githubusercontent.com/100071667/220400864-4605fec5-0cce-4493-a270-a9f7fd66add9.png)

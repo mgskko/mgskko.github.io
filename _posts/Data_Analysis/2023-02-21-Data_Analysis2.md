@@ -1,15 +1,13 @@
 ---
 layout: single
-title:  "[이것이 데이터 분석이다(with 파이썬)] 국가별 음주 데이터 분석하기"
+title: "[이것이 데이터 분석이다(with 파이썬)] 국가별 음주 데이터 분석하기"
 categories: DataAnalysis
 tag: [python, DataAnalysis]
 toc: true
 ---
 
-
-**[참고 깃허브 링크](<https://github.com/yoonkt200/python-data-analysis>)**
+**[참고 깃허브 링크](https://github.com/yoonkt200/python-data-analysis)**
 {: .notice--primary}
-
 
 ### step.1 탐색: 데이터의 기초 정보 살펴보기
 
@@ -24,7 +22,6 @@ drinks.head(5)
 ```
 
 ![image](https://user-images.githubusercontent.com/100071667/220413851-1675adbf-9d20-4c78-965a-f4a82eb84e14.png)
-
 
 ### step.2 인사이트의 발견: 탐색과 시각화 하기
 
@@ -78,7 +75,6 @@ sns.pairplot(drinks[['beer_servings', 'spirit_servings', 'wine_servings' , 'tota
 plt.show()
 ```
 
-
 ![image](https://user-images.githubusercontent.com/100071667/220419740-cf2cdb36-952c-40e6-9bab-87fffef275a4.png)
 
 첫 번째 그래프가 heatmap그래프, 두 번째 그래프가 pairplot 그래프이다.
@@ -94,7 +90,6 @@ drinks.head(10)
 ```
 
 ![image](https://user-images.githubusercontent.com/100071667/220420954-5dbf4435-6a5b-4b81-977f-6bfc160bce1f.png)
-
 
 ```python
 #파이차트로 시각화하기
@@ -113,7 +108,6 @@ plt.show()
 
 agg()함수는 apply()함수와 거의 동일한 기능을 하지만 apply()에 들어가는 함수 파라미터를 병렬로 설정하여 **그룹에 대한 여러 가지 연산 결과를 동시에 얻을 수 있는 함수**이다.
 
-
 ```python
 #agg()함수를 이용해 대륙별로 분석하기
 # 대륙별 spirit_servings의 평균, 최소, 최대, 합계를 계산합니다.
@@ -123,7 +117,7 @@ result.head()
 
 ![image](https://user-images.githubusercontent.com/100071667/220423760-8a6cde54-efc3-4f6b-8305-9c87b21157cf.png)
 
-####  전체 평균보다 많은 알코올을 섭취하는 대륙은 어디일까?
+#### 전체 평균보다 많은 알코올을 섭취하는 대륙은 어디일까?
 
 전체 평균보다 많은 알코올을 섭취하는 대륙을 탐색할 때는 mean()함수만으로도 가능하다.
 
@@ -142,7 +136,6 @@ SA    6.308333
 Name: total_litres_of_pure_alcohol, dtype: float64
 ```
 
-
 #### 평균 beer_servings가 가장 높은 대륙은 어디일까?
 
 mean()함수만을 이용한 탐색에 idxmax()함수를 적용하면 평균 'beer_servings'가 가장 높은 대륙이 어디인지 찾을 수 있다.
@@ -158,7 +151,7 @@ EU
 ```
 
 AF,AS,EU,OC,OT 대륙 중 EU,OT,AS만이 평균보다 많이 알코올을 섭취하는 대륙인 것을 알 수 있다. 또한 맥주를 가장 좋아하는 대륙은 유럽이라는 결과를 확인할 수 있다.
- 
+
 #### 시각화
 
 ```python
@@ -184,7 +177,6 @@ plt.show()
 
 ![image](https://user-images.githubusercontent.com/100071667/220429991-dfbf5826-8996-4e17-a37e-b8671fdfab16.png)
 
-
 ```python
 #대륙별 total_litres_of_pure_alcohol을 시각화합니다.
 continents = continent_mean.index.tolist()
@@ -204,7 +196,7 @@ plt.title('total_litres_of_pure_alcohol by Continent')
 plt.show()
 ```
 
-![image](https://user-images.githubusercontent.com/100071667/220430901-9ad650e3-9696-4bdc-b095-75bca2e3b4cf.png)  
+![image](https://user-images.githubusercontent.com/100071667/220430901-9ad650e3-9696-4bdc-b095-75bca2e3b4cf.png)
 
 ```python
 # 대륙별 beer_servings을 시각화합니다.
@@ -224,8 +216,6 @@ plt.show()
 ```
 
 ![image](https://user-images.githubusercontent.com/100071667/220431923-f2ca7d6e-6607-48e5-a708-93e8f6432c61.png)
-
-
 
 ### step.4 통계적 분석: 분석 대상 간의 통계적 차이 검정하기
 
@@ -255,7 +245,6 @@ The t-statistic and p-value assuming equal variances is -7.268 and 0.000.
 The t-statistic and p-value assuming equal variances is -7.144 and 0.000.
 ```
 
-
 실행 결과에 등장하는 t-statistic은 t-test의 검정 통계량을 의미하는 것으로, 함께 출력되는 **p-value**와 연관 지어 해석해야 한다. **p-value**는 가설이 얼마나 믿을만한 것인지를 나타내는 지표로, 데이터를 새로 샘플링 했을 때 귀무 가설이 맞다는 전제하에 현재 나온 통계값 이상이 나올 확률 이라고 정의할 수 있다. 만약 **p-value**가 너무 낮으면 귀무 가설이 일어날 확률이 너무 낮기 때문에 귀무 가설을 기각하게 된다. 보통 그 기준은 0.05나 0.01을 기준으로 하며, 이를 **p-value**라고 한다.
 
 #### 대한민국은 얼마나 술을 독하게 마시는 나라일까?
@@ -277,7 +266,6 @@ country_with_rank.head(5)
 ```
 
 ![image](https://user-images.githubusercontent.com/100071667/220435243-55fe1d56-38b0-483d-bc53-3ee87b959626.png)
-
 
 ```python
 country_list = country_with_rank.country.tolist()
@@ -305,7 +293,5 @@ plt.show()
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
-
-**[깃허브 주소](<https://github.com/mgskko/Python_Data_Analysis/blob/main/chapter1/02-drinks-eda.ipynb>)**
+**[깃허브 주소](https://github.com/mgskko/Python_Data_Analysis/blob/main/chapter1/02-drinks-eda.ipynb)**
 {: .notice--primary}
-

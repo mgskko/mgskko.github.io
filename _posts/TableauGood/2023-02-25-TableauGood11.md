@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "히스토그램"
+title: "히스토그램"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -21,7 +21,6 @@ toc: true
 ![image](https://user-images.githubusercontent.com/100071667/221296500-2cabe2be-4d63-467f-afbf-eec31c308b49.png)
 
 ![image](https://user-images.githubusercontent.com/100071667/221296376-87c5639e-77df-448a-820b-f6a4316dfb24.png)
-
 
 측정값에 이쓴 [고객별 첫 주문 후 두 번째 주문까지 걸린 날짜]를 우클릭 후 만들기 -> 구간 차원을 선택하면 구간 차원 만들기 대화 상자가 열리는데 새 필드명은 '두 번째 주문까지 걸린 날짜(구간 차원)'로 입력해주고, 구간 차원 크기를 '10'으로 설정해준다.
 

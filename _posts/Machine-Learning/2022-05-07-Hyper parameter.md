@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "파라미터와 하이퍼파라미터"
+title: "파라미터와 하이퍼파라미터"
 categories: MachineLearning
 tag: [python, Machine Learning]
 toc: true
@@ -15,7 +15,7 @@ toc: true
 ### 2. 하이퍼 파라미터 (Hyper parameter)
 
 모델이 학습할 수 없어서 사용자가 지정해야만 하는 파라미터를 **하이퍼파라미터**라고 합니다.
- 
+
 * 학습률 (Learning Rate)
 * 손실 함수 (Cost Function)
 * 가중치 초기화 (Weight Initialization)

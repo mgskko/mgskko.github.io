@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "파이차트"
+title: "파이차트"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -17,11 +17,9 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/219523556-ca47196e-ee63-42e4-863c-b6781e504ebe.png)
 
-
 레이블로 배정되어 있는 필드 중에서 [합계(매출)]을 우클릭 한 다음 '퀵 테이블 계산'에서 '구성 비율'을 선택하면 매출 비중이 표현이 된다.
 
 ![image](https://user-images.githubusercontent.com/100071667/219523778-beb5030d-d2f4-4d47-b335-590e4e5520d4.png)
-
 
 좌측 사이드 바의 빈 여백을 우클릭한 후에 '계산된 필드 만들기'를 선택한다. 필드명은 '전체 매출 총합', 계산식은 {SUM([매출])}로 입력하고 필드를 드래그해 '세부 정보'마크에 올린다.
 
@@ -32,6 +30,5 @@ toc: true
 ![image](https://user-images.githubusercontent.com/100071667/219524669-b076c10f-b00b-4020-98c2-4d57aea1b7eb.png)
 
 계산식은 {SUM([매출])} 대신 TOTAL(SUM([매출]))을 활용해도 된다.
-
 
 ![image](https://user-images.githubusercontent.com/100071667/219524795-f7debbfb-0336-4457-a233-5bd93d41ec67.png)

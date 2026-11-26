@@ -8,7 +8,6 @@ toc: true
 
 ## 전치 연산, 영벡터, 일벡터
 
-
 ### 1. 용어 정리
 
  - **전치 행렬** : 행렬 A의 행과 열을 바꾸어 놓은 행렬
@@ -58,6 +57,5 @@ $$
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
-
-**[깃허브 링크](<hhttps://github.com/mgskko/linear-algebra-with-python/blob/master/%EC%A0%84%EC%B9%98%EC%97%B0%EC%82%B0.ipynb>)**
+**[깃허브 링크](hhttps://github.com/mgskko/linear-algebra-with-python/blob/master/%EC%A0%84%EC%B9%98%EC%97%B0%EC%82%B0.ipynb)**
 {: .notice--primary}

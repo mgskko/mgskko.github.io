@@ -1,10 +1,11 @@
 ---
 layout: single
-title:  "분산형 차트"
+title: "분산형 차트"
 categories: Tableau
 tag: [Tableau]
 toc: true
 ---
+
 ## 분산형 차트
 
 **분산형 차트**는 측정값 간의 관계를 파악하기 위한 시각화의 한 방식이다.
@@ -16,7 +17,7 @@ toc: true
 ![image](https://user-images.githubusercontent.com/100071667/220392582-a8cd0c72-976c-423f-8d5b-675bbb0fe4d6.png)
 
 자동으로 분산형 차트가 표현이 된다.
-열선반에 있는 할인율을 제거 한 후에 [할인율]필드의 집계 방식을 '평균'으로 변경해준다. 
+열선반에 있는 할인율을 제거 한 후에 [할인율]필드의 집계 방식을 '평균'으로 변경해준다.
 
 ![image](https://user-images.githubusercontent.com/100071667/220392907-40a48f19-1196-4e04-94aa-2d2966315de2.png)
 

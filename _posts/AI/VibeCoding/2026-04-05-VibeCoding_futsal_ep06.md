@@ -119,7 +119,6 @@ $$\text{Score}_{badge} = \text{ratio} \times 100 \times \begin{cases} 1.0 & \tex
 
 2024년 경기들이 전부 **"예정(Scheduled)"** 상태로 떴다. 이미 끝난 경기인데.
 
-
 원인 추적 결과, Lovable이 경기 상태를 판별하는 로직이 이랬다.
 
 ```javascript

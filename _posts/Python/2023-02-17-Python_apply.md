@@ -63,7 +63,6 @@ df
 
 ![image](https://user-images.githubusercontent.com/100071667/219605580-7aa89344-defe-4875-8ed9-0b4de44a374c.png)
 
-
 ### lambda & apply 함께 사용
 
 ```python
@@ -81,16 +80,3 @@ df
 ```
 
 ![image](https://user-images.githubusercontent.com/100071667/219607355-578beb3d-8cce-48ec-a512-4b592e7f50bc.png)
-
-
-
-
-
-
-
-
-
-
-
-
-

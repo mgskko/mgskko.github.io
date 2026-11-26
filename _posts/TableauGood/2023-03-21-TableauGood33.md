@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "필터"
+title: "필터"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -13,7 +13,7 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/226599000-5eda4e35-7339-4e5f-8411-10f14861340e.png)
 
-불연속형 '월'로 화면을 나누기 위해 차원에 있는 주문일자 필드를 마우스 오른쪽과 왼쪽을 동시에 누른상태에서 열선반 뒤에 올려주고 불연속형 '월(주문 일자)'를 선택해준다. 
+불연속형 '월'로 화면을 나누기 위해 차원에 있는 주문일자 필드를 마우스 오른쪽과 왼쪽을 동시에 누른상태에서 열선반 뒤에 올려주고 불연속형 '월(주문 일자)'를 선택해준다.
 
 ![image](https://user-images.githubusercontent.com/100071667/226600542-bf00ad99-a253-4069-be03-2aafcb606dd7.png)
 
@@ -21,7 +21,7 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/226601035-402dad4a-ebf5-4389-87cb-e8291c1969b4.png)
 
-새 대시보드를 연다음 '연간 매출 하이라이트', '고객 세그먼트별 연월 매출'을 대시보드에 올려준다. 
+새 대시보드를 연다음 '연간 매출 하이라이트', '고객 세그먼트별 연월 매출'을 대시보드에 올려준다.
 
 ![image](https://user-images.githubusercontent.com/100071667/226602521-79cecc4a-f959-4d74-ac63-0ffcc2203c09.png)
 

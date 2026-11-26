@@ -200,10 +200,6 @@ model.fit(train_scaled, train_target, epochs=5)
     Epoch 5/5
     1500/1500 [==============================] - 3s 2ms/step - loss: 0.4375 - accuracy: 0.8558
 
-
-
-
-
     <keras.callbacks.History at 0x7fd2d2195950>
 
 evaluate() 메서드도 fit() 메서드와 비슷한 출력을 보여줍니다.
@@ -214,16 +210,11 @@ model.evaluate(val_scaled, val_target)
 
     375/375 [==============================] - 1s 2ms/step - loss: 0.4627 - accuracy: 0.8428
 
-
-
-
-
     [0.4627155661582947, 0.8427500128746033]
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
-
-**[깃허브 주소](<https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_7%EA%B0%95_1.ipynb>)**
+**[깃허브 주소](https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_7%EA%B0%95_1.ipynb)**
 {: .notice--primary}
 
 ---

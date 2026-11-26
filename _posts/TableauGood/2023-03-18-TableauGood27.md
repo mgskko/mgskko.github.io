@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "집계 계산식 만들기"
+title: "집계 계산식 만들기"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -17,7 +17,7 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/226095863-e9671067-c930-479a-8dca-4504517d1a4c.png)
 
-좌측 사이드 바의 화살표 모양을 클릭하여 '계산된 필드 만들기'를 선택하여 '수익률'이라는 계산된 필드를 만든다. sum([수익])/sum([매출])로, 전체 매출에 대한 수익의 비율을 계산한다. 
+좌측 사이드 바의 화살표 모양을 클릭하여 '계산된 필드 만들기'를 선택하여 '수익률'이라는 계산된 필드를 만든다. sum([수익])/sum([매출])로, 전체 매출에 대한 수익의 비율을 계산한다.
 
 ![image](https://user-images.githubusercontent.com/100071667/226095910-1a755a0a-e170-4f17-9ee6-85ee990f2970.png)
 

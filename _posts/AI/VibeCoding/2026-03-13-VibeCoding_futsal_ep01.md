@@ -7,7 +7,6 @@ tag: [VibeCoding, Lovable, Supabase, Gemini, 바이브코딩, 풀스택, 사이�
 toc: true
 ---
 
-
 > **바이브코딩 일대기** | 수학과·컴공과 출신 기획자가 Lovable로 풀스택 앱을 처음 만든 현실 연재.
 
 ---
@@ -47,7 +46,6 @@ toc: true
 팀원 입장에선 가벼운 질문이다. 총무 입장에선 매번 5분짜리 작업이다.
 
 ---
-
 
 ![엑셀 전체 시트](/assets/images/ep01_excel_full_sheet.png)
 

@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "집합 값 변경"
+title: "집합 값 변경"
 categories: Tableau
 tag: [Tableau]
 toc: true

@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "목록형 매개 변수(1)"
+title: "목록형 매개 변수(1)"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -21,11 +21,9 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/226111891-0132965b-37b2-48cf-bcef-7e59674b4caf.png)
 
-
 ![image](https://user-images.githubusercontent.com/100071667/226112067-d5cb57e9-92b1-482e-a555-8ef648fd199d.png)
 
 ## (2) 측정값 선택 계산된 필드 만들기
-
 
 [p_측정값 선택] 매개변수의 값이 0이면 매출 합계를, 1이면 수량 합계를, 2이면 수익 합계를 반환하는 'c_측정값 선택'이라는 필드를 설정해준다.
 

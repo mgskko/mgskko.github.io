@@ -1,15 +1,13 @@
 ---
 layout: single
-title:  "[이것이 데이터 분석이다(with 파이썬)] 멕시코풍 프랜차이즈 chipotle의 주문 데이터 분석하기"
+title: "[이것이 데이터 분석이다(with 파이썬)] 멕시코풍 프랜차이즈 chipotle의 주문 데이터 분석하기"
 categories: DataAnalysis
 tag: [python, DataAnalysis]
 toc: true
 ---
 
-
-**[참고 깃허브 링크](<https://github.com/yoonkt200/python-data-analysis>)**
+**[참고 깃허브 링크](https://github.com/yoonkt200/python-data-analysis)**
 {: .notice--primary}
-
 
 ### chipotle 데이터셋의 기초 정보 출력하기
 
@@ -41,7 +39,6 @@ dtypes: int64(2), object(3)
 memory usage: 180.7+ KB
 None
 ```
-
 
 choice_description의 데이터는 3376개가 채워져 있고 1246개의 결측값이 존재한다는 것을 확인할 수 있다.
 
@@ -100,8 +97,7 @@ TOP 10 : Chips and Fresh Tomato Salsa 110
 
 value_counts()함수를 적용하여 'Chicken Bowl'이 가장 많이 주문한 아이템인 것을 확인할 수 있다.
 
-
-###  아이템별 주문 총량 시각화하여 보기
+### 아이템별 주문 총량 시각화하여 보기
 
 아이템별 주문의 총량을 막대 그래프를 이용하여 시각화해볼 수 있다. tolist()와 넘파이의 arrange()함수를 이용한다.
 
@@ -179,7 +175,6 @@ price_per_item.sort_values(by = "item_price", ascending = False)[:10]
 
 #### 시각화하기
 
-
 ##### 막대 그래프
 
 ```python
@@ -222,7 +217,5 @@ chipo.groupby('order_id').sum().sort_values(by='item_price', ascending=False)[:5
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
-
-**[깃허브 주소](<https://github.com/mgskko/Python_Data_Analysis/blob/main/chapter1/01-chipotle-eda.ipynb>)**
+**[깃허브 주소](https://github.com/mgskko/Python_Data_Analysis/blob/main/chapter1/01-chipotle-eda.ipynb)**
 {: .notice--primary}
-

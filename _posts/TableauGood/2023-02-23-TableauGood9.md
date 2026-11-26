@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "누적 막대 차트"
+title: "누적 막대 차트"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -18,7 +18,7 @@ toc: true
 
 세그먼트, 매출, 메출 비율에 대한 레이블을 설정해주고 매출 레이블의 퀵테이블 계산을 '구성 비율'로 바꾸어준다.
 
-그 후 레이블 마크에서 ...을 선택 후 아래와 같이 설정해준다. 
+그 후 레이블 마크에서 ...을 선택 후 아래와 같이 설정해준다.
 
 ![image](https://user-images.githubusercontent.com/100071667/220892481-3750514b-c6fe-4ce7-b902-b683873e4359.png)
 

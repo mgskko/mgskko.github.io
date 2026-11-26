@@ -8,10 +8,9 @@ toc: true
 
 ## 벡터의 곱셈
 
-
 ### 1. 용어 정리
 
- - **내적(inner product)** : 내적은 벡터의 특정 방향, 성분 등을 구할 때 필요하다. 마치 **벡터를 수처럼 곱하는 개념**이다. 
+ - **내적(inner product)** : 내적은 벡터의 특정 방향, 성분 등을 구할 때 필요하다. 마치 **벡터를 수처럼 곱하는 개념**이다.
 
  - **외적(outer product)** : 외적은 면 벡터의 표현등을 구할때 필요하다. **내적의 결과가 스칼라인 숫자와 달리 외적의 결과는 벡터인 것이 큰 차이**이다.
 
@@ -73,11 +72,9 @@ A@B
 [[10 13]]
 ```
 
-
 ---
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
-
-**[깃허브 링크](<https://github.com/mgskko/linear-algebra-with-python/blob/master/%EB%B2%A1%ED%84%B0%EC%9D%98%20%EA%B3%B1%EC%85%88.ipynb>)**
+**[깃허브 링크](https://github.com/mgskko/linear-algebra-with-python/blob/master/%EB%B2%A1%ED%84%B0%EC%9D%98%20%EA%B3%B1%EC%85%88.ipynb)**
 {: .notice--primary}

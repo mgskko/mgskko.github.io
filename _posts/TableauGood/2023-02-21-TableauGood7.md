@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "하이라이트 테이블"
+title: "하이라이트 테이블"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -27,6 +27,5 @@ toc: true
 좀 더 색상 구분을 명확히 하기 위해 색상 범례를 '주황색-파랑색'을 선택하고 적용한다.
 
 ![image](https://user-images.githubusercontent.com/100071667/220404420-452b43a7-1509-4830-a864-723e49638ec8.png)
-
 
 ![image](https://user-images.githubusercontent.com/100071667/220404352-4ed84378-491a-4dcb-8c08-8d165f48ff26.png)

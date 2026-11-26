@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "라운드형 막대차트"
+title: "라운드형 막대차트"
 categories: Tableau
 tag: [Tableau]
 toc: true

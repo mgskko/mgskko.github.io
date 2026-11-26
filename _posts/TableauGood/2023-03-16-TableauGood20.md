@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "채워진 맵"
+title: "채워진 맵"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -27,6 +27,5 @@ toc: true
 [국가,시군구.시도(그룹)]을 우클릭 후 '그룹 편집'을 선택하고 그룹 편집 대화 상자에서 필드명을 '서울시 생활권'으로 변경해준다.
 
 ![image](https://user-images.githubusercontent.com/100071667/225493922-1dbec7f3-f391-4f6d-b789-10999f8f035d.png)
-
 
 ![image](https://user-images.githubusercontent.com/100071667/225494157-25cb75f2-7eba-4bca-a3de-0e986c4e935d.png)

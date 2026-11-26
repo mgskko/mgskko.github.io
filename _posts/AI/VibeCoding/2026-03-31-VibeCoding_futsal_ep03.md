@@ -257,7 +257,6 @@ SET age_category = EXCLUDED.age_category;
 
 데이터가 이미 들어가 있었으니 `ALTER TABLE`로 해결했다.
 
-
 ## 실제 데이터가 들어간 goal_events 테이블
 
 데이터를 다 넣고 나면 Supabase Table Editor에서 이렇게 보인다.

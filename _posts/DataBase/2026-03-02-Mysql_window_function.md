@@ -1,16 +1,16 @@
 ---
 layout: single
-title:  MySQL Window Function
+title: MySQL Window Function
 categories: DataBase
 tag: [MySQL, DATABASE, WindowFunction, SQL, cs]
 toc: true
 ---
 
-# MySQL Window Function 완전정복 — 진짜 동작 원리부터 실전 패턴까지
+## MySQL Window Function 완전정복 — 진짜 동작 원리부터 실전 패턴까지
 
 ---
 
-## 목차
+### 목차
 
 1. [Window Function이란 무엇인가](#1-window-function이란-무엇인가)
 2. [GROUP BY와 결정적 차이](#2-group-by와-결정적-차이)
@@ -25,13 +25,13 @@ toc: true
 
 ---
 
-## 1. Window Function이란 무엇인가
+### 1. Window Function이란 무엇인가
 
 Window Function(윈도우 함수)은 **행을 그룹으로 묶지 않고, 각 행에서 주변 행들을 참조하여 계산**하는 함수입니다.
 
 MySQL 8.0부터 공식 지원되었으며, 이전 버전에서는 변수(`@var`)를 이용한 트릭으로 흉내냈습니다.
 
-### 핵심 개념: "창문(Window)"
+#### 핵심 개념: "창문(Window)"
 
 Window라는 이름은 **각 행마다 바라보는 창문(범위)이 있다**는 개념에서 왔습니다.
 
@@ -52,11 +52,11 @@ Window라는 이름은 **각 행마다 바라보는 창문(범위)이 있다**�
 
 ---
 
-## 2. GROUP BY와 결정적 차이
+### 2. GROUP BY와 결정적 차이
 
 가장 중요한 개념입니다. 많은 분들이 Window Function을 GROUP BY의 확장으로 이해하는데, **근본적으로 다릅니다.**
 
-### 예시 데이터
+#### 예시 데이터
 
 ```sql
 CREATE TABLE sales (
@@ -74,7 +74,7 @@ INSERT INTO sales VALUES
 (5, '영업팀', '정수연', 400);
 ```
 
-### GROUP BY — 행이 줄어든다
+#### GROUP BY — 행이 줄어든다
 
 ```sql
 SELECT dept, SUM(amount) AS total
@@ -91,7 +91,7 @@ dept    | total
 
 > 5행 → 2행으로 압축됨. 개별 직원 정보 사라짐.
 
-### Window Function — 행이 유지된다
+#### Window Function — 행이 유지된다
 
 ```sql
 SELECT
@@ -118,7 +118,7 @@ emp_name | dept   | amount | dept_total
 
 ---
 
-## 3. 문법 구조 완전 분석
+### 3. 문법 구조 완전 분석
 
 ```sql
 함수명() OVER (
@@ -138,7 +138,7 @@ emp_name | dept   | amount | dept_total
 
 ---
 
-## 4. PARTITION BY 동작 원리
+### 4. PARTITION BY 동작 원리
 
 PARTITION BY는 데이터를 **논리적으로 분리**합니다. 물리적으로 테이블을 나누는 게 아닙니다.
 
@@ -160,7 +160,7 @@ SUM(amount) OVER (PARTITION BY dept)
 3. 각 행에 해당 파티션의 결과값 붙여서 반환
 ```
 
-### PARTITION BY 없이 사용
+#### PARTITION BY 없이 사용
 
 ```sql
 SELECT
@@ -174,12 +174,12 @@ FROM sales;
 
 ---
 
-## 5. ORDER BY와 Frame의 관계
+### 5. ORDER BY와 Frame의 관계
 
 Window Function에서 ORDER BY는 **단순 정렬이 아닙니다.**
 ORDER BY를 쓰면 **기본 Frame이 자동으로 설정**됩니다.
 
-### ORDER BY 없을 때
+#### ORDER BY 없을 때
 
 ```sql
 SUM(amount) OVER (PARTITION BY dept)
@@ -188,7 +188,7 @@ SUM(amount) OVER (PARTITION BY dept)
 Frame = **파티션 전체** (처음부터 끝까지)
 → 모든 행이 같은 값 반환
 
-### ORDER BY 있을 때
+#### ORDER BY 있을 때
 
 ```sql
 SUM(amount) OVER (PARTITION BY dept ORDER BY amount)
@@ -209,11 +209,11 @@ emp_name | amount | 누적합(dept 내)
 
 ---
 
-## 6. ROWS vs RANGE — 헷갈리는 핵심 차이
+### 6. ROWS vs RANGE — 헷갈리는 핵심 차이
 
 가장 많이 헷갈리는 부분입니다. 예시로 정확하게 짚고 넘어갑니다.
 
-### Frame 문법
+#### Frame 문법
 
 ```sql
 ROWS  BETWEEN [시작] AND [끝]
@@ -230,7 +230,7 @@ RANGE BETWEEN [시작] AND [끝]
 | `N FOLLOWING` | 현재 행에서 N행 뒤 |
 | `UNBOUNDED FOLLOWING` | 파티션의 마지막 행 |
 
-### ROWS — 물리적 행 기준
+#### ROWS — 물리적 행 기준
 
 ```sql
 SUM(amount) OVER (
@@ -250,7 +250,7 @@ amount | 계산 대상        | 결과
 900    | [700, 900, 400] | 2000  ← 다른 파티션이면 불포함
 ```
 
-### RANGE — 값의 범위 기준
+#### RANGE — 값의 범위 기준
 
 ```sql
 SUM(amount) OVER (
@@ -273,9 +273,9 @@ amount | 계산 대상 (200 범위 내)   | 결과
 
 ---
 
-## 7. 함수별 완전 분석
+### 7. 함수별 완전 분석
 
-### 7-1. 순위 함수
+#### 7-1. 순위 함수
 
 ```sql
 SELECT
@@ -317,7 +317,7 @@ amount | RANK | DENSE_RANK | ROW_NUMBER
 
 ---
 
-### 7-2. LAG / LEAD — 이전/다음 행 참조
+#### 7-2. LAG / LEAD — 이전/다음 행 참조
 
 ```sql
 SELECT
@@ -360,7 +360,7 @@ FROM monthly_revenue;
 
 ---
 
-### 7-3. FIRST_VALUE / LAST_VALUE
+#### 7-3. FIRST_VALUE / LAST_VALUE
 
 ```sql
 SELECT
@@ -387,7 +387,7 @@ LAST_VALUE(emp_name) OVER (
 
 ---
 
-### 7-4. NTILE — 구간 분할
+#### 7-4. NTILE — 구간 분할
 
 ```sql
 SELECT
@@ -401,7 +401,7 @@ FROM sales;
 
 ---
 
-### 7-5. PERCENT_RANK / CUME_DIST
+#### 7-5. PERCENT_RANK / CUME_DIST
 
 ```sql
 SELECT
@@ -427,9 +427,9 @@ emp_name | amount | pct_rank | cume_dist
 
 ---
 
-## 8. 실전 분석 패턴
+### 8. 실전 분석 패턴
 
-### 패턴 1. 각 부서에서 상위 N명 추출
+#### 패턴 1. 각 부서에서 상위 N명 추출
 
 서브쿼리 없이 깔끔하게:
 
@@ -448,7 +448,7 @@ WHERE rnk <= 2;
 
 > Window Function은 WHERE 절에서 직접 사용 불가 → 서브쿼리나 CTE로 감싸야 합니다.
 
-### 패턴 2. 누적 합계 (Running Total)
+#### 패턴 2. 누적 합계 (Running Total)
 
 ```sql
 SELECT
@@ -460,7 +460,7 @@ SELECT
 FROM daily_sales;
 ```
 
-### 패턴 3. 이동 평균 (Moving Average)
+#### 패턴 3. 이동 평균 (Moving Average)
 
 ```sql
 SELECT
@@ -473,7 +473,7 @@ SELECT
 FROM daily_sales;
 ```
 
-### 패턴 4. 전체 대비 비율
+#### 패턴 4. 전체 대비 비율
 
 ```sql
 SELECT
@@ -485,7 +485,7 @@ SELECT
 FROM sales;
 ```
 
-### 패턴 5. 중복 제거 (ROW_NUMBER 활용)
+#### 패턴 5. 중복 제거 (ROW_NUMBER 활용)
 
 동일 사용자의 가장 최근 주문만 가져오기:
 
@@ -500,7 +500,7 @@ FROM (
 WHERE rn = 1;
 ```
 
-### 패턴 6. 연속된 이벤트 탐지 (Gap & Island)
+#### 패턴 6. 연속된 이벤트 탐지 (Gap & Island)
 
 연속 출석일 계산:
 
@@ -516,9 +516,9 @@ FROM user_logins;
 
 ---
 
-## 9. 성능 이슈와 최적화
+### 9. 성능 이슈와 최적화
 
-### Window Function은 느릴 수 있다
+#### Window Function은 느릴 수 있다
 
 Window Function은 내부적으로 **정렬(Sort) + 스캔** 과정을 거칩니다.
 
@@ -531,7 +531,7 @@ FROM sales;
 
 실행 계획에서 `Using filesort`가 보이면 **디스크 정렬이 발생**하고 있다는 신호입니다.
 
-### 최적화 전략
+#### 최적화 전략
 
 **1. 인덱스 활용**
 
@@ -566,9 +566,9 @@ Frame을 명시하지 않는 게 더 빠를 수도 있습니다. Frame 범위가
 
 ---
 
-## 10. 자주 하는 실수 모음
+### 10. 자주 하는 실수 모음
 
-### 실수 1. WHERE에서 Window Function 사용
+#### 실수 1. WHERE에서 Window Function 사용
 
 ```sql
 -- ❌ 오류 발생
@@ -586,7 +586,7 @@ SELECT * FROM ranked WHERE rnk <= 3;
 
 Window Function은 WHERE보다 늦게 실행되기 때문에 WHERE에서 참조할 수 없습니다.
 
-### 실수 2. LAST_VALUE의 Frame 미지정
+#### 실수 2. LAST_VALUE의 Frame 미지정
 
 ```sql
 -- ❌ 파티션의 마지막이 아닌 CURRENT ROW가 반환됨
@@ -600,7 +600,7 @@ LAST_VALUE(amount) OVER (
 )
 ```
 
-### 실수 3. ORDER BY 생략으로 인한 비결정적 순서
+#### 실수 3. ORDER BY 생략으로 인한 비결정적 순서
 
 ```sql
 -- ❌ 어떤 순서로 ROW_NUMBER가 부여될지 모름
@@ -610,7 +610,7 @@ ROW_NUMBER() OVER (PARTITION BY dept)
 ROW_NUMBER() OVER (PARTITION BY dept ORDER BY id)
 ```
 
-### 실수 4. NULL 처리
+#### 실수 4. NULL 처리
 
 LAG/LEAD에서 첫 번째/마지막 행은 NULL을 반환합니다. 기본값을 반드시 지정하세요.
 
@@ -621,7 +621,7 @@ LAG(amount, 1, 0) OVER (ORDER BY id)
 
 ---
 
-## 마무리
+### 마무리
 
 Window Function을 제대로 이해하면:
 
@@ -630,7 +630,6 @@ Window Function을 제대로 이해하면:
 - 누적합, 이동평균, 순위, 비율 등 분석 쿼리를 한 방에 해결
 
 특히 `ROWS vs RANGE`의 차이와 **ORDER BY가 기본 Frame을 변경한다**는 사실을 이해하는 것이 Window Function을 진짜로 아는 것입니다.
-
 
 ---
 

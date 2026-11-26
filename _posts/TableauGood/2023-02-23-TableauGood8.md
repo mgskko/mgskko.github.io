@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "영역 차트"
+title: "영역 차트"
 categories: Tableau
 tag: [Tableau]
 toc: true

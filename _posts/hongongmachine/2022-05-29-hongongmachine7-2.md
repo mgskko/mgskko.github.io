@@ -178,10 +178,6 @@ model.fit(train_scaled, train_target, epochs=5)
     Epoch 5/5
     1500/1500 [==============================] - 4s 3ms/step - loss: 0.3339 - accuracy: 0.8784
 
-
-
-
-
     <keras.callbacks.History at 0x7ffa973ae450>
 
 #### 2 - 4. 롈루 함수
@@ -242,10 +238,6 @@ model.fit(train_scaled, train_target, epochs=5)
     1500/1500 [==============================] - 5s 3ms/step - loss: 0.3340 - accuracy: 0.8797
     Epoch 5/5
     1500/1500 [==============================] - 4s 3ms/step - loss: 0.3176 - accuracy: 0.8865
-
-
-
-
 
     <keras.callbacks.History at 0x7ffa97358ed0>
 
@@ -319,10 +311,6 @@ model.fit(train_scaled, train_target, epochs=5)
     Epoch 5/5
     1500/1500 [==============================] - 3s 2ms/step - loss: 0.3095 - accuracy: 0.8866
 
-
-
-
-
     <keras.callbacks.History at 0x7ffa97293fd0>
 
 ```python
@@ -331,16 +319,11 @@ model.evaluate(val_scaled, val_target)
 
     375/375 [==============================] - 1s 2ms/step - loss: 0.3461 - accuracy: 0.8765
 
-
-
-
-
     [0.3461076319217682, 0.8765000104904175]
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
-
-**[깃허브 주소](<https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_7%EA%B0%95_2.ipynb>)**
+**[깃허브 주소](https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_7%EA%B0%95_2.ipynb)**
 {: .notice--primary}
 
 ---
