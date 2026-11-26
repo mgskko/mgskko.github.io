@@ -128,6 +128,19 @@
   if (window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { readColor(); });
   document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else if (visible) start(); });
   if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) start(); else stop(); }).observe(cv);
+  // 스크롤 패럴랙스: 내려갈수록 신경망이 뒤로 물러나며 흐려진다
+  if (!reduce) {
+    var sTick = false;
+    window.addEventListener("scroll", function () {
+      if (sTick) return; sTick = true;
+      requestAnimationFrame(function () {
+        var y = Math.min(window.scrollY, 700), p = y / 700;
+        cv.style.transform = "translate3d(0," + (y * 0.28).toFixed(1) + "px,0) scale(" + (1 - p * 0.12).toFixed(3) + ")";
+        cv.style.opacity = (1 - p * 0.85).toFixed(3);
+        sTick = false;
+      });
+    }, { passive: true });
+  }
   var host = cv.parentNode;
   if (canHover) host.addEventListener("pointermove", function (e) { var r = host.getBoundingClientRect(); mouse.tx = ((e.clientX - r.left) / r.width - 0.5) * 2; mouse.ty = ((e.clientY - r.top) / r.height - 0.5) * 2; });
   host.addEventListener("pointerleave", function () { mouse.tx = 0; mouse.ty = 0; });

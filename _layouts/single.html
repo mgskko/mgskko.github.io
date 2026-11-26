@@ -82,7 +82,7 @@ post_js: true
       {% endif %}
 
       <aside class="card authorbox reveal" aria-label="글쓴이">
-        <span class="avatar avatar--lg" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
+        <span class="avatar avatar--lg" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar | relative_url }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
         <div class="authorbox__body">
           <p class="authorbox__label">글쓴이</p>
           <p class="authorbox__name">{{ site.author.name }}</p>

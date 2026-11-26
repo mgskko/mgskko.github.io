@@ -1,10 +1,17 @@
 ---
 layout: single
 title: "총계 만들기"
+description: "행·열 총계와 소계를 추가하고 위치와 서식을 바꾸는 총계 만들기를 정리했어요."
 categories: Tableau
 tag: [Tableau]
 toc: true
 ---
+
+> **핵심 요약**
+> - 총계는 각 요소의 TOTAL(총합계·소계)을 보여 주는 방식이다.
+> - 분석 패널에서 '총계'를 드래그해 열 총합계에 올린다.
+> - 총계 위치를 왼쪽·위쪽으로 바꾸고 테두리 라인을 정리한다.
+{: .notice--primary}
 
 ## 총계
 
