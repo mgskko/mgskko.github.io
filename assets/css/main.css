@@ -1176,3 +1176,25 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 .sim .chip.is-active { background: var(--blue); color: #fff; box-shadow: none; }
 .sim__info { margin-top: 12px; }
 .sim .lw__seg { background: var(--fill-strong); }
+
+/* ---------- 지식 은하 (3D 데이터 시각화) ---------- */
+.cosmos-wrap { margin-top: 8px; margin-bottom: 8px; }
+.cosmos { padding: 22px 22px 18px; overflow: hidden; }
+.cosmos__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 8px; }
+.cosmos__modes { display: flex; gap: 6px; flex-wrap: wrap; }
+.cosmos .chip { background: var(--fill); }
+.cosmos .chip.is-active { background: var(--t1); color: var(--surface); }
+.cosmos__stage { position: relative; margin: 6px -22px 0; background: radial-gradient(ellipse at 50% 40%, var(--blue-weak) 0%, transparent 68%); }
+.cosmos__cv { display: block; width: 100%; height: 500px; cursor: grab; touch-action: pan-y; }
+.cosmos__cv:active { cursor: grabbing; }
+.cosmos__tip { position: absolute; left: 0; top: 0; z-index: 2; max-width: min(320px, calc(100% - 16px)); display: grid; gap: 4px; padding: 12px 14px; background: var(--surface); border-radius: var(--r-md); box-shadow: var(--shadow-pop); font-size: 13px; color: var(--t2); }
+.cosmos__tip[hidden] { display: none; }
+.cosmos__tip b { color: var(--t1); font-size: 14px; line-height: 1.4; }
+.cosmos__tip small { color: var(--t3); font-size: 12px; }
+.cosmos__dot { position: absolute; top: 15px; right: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.cosmos__go { color: var(--blue-text); font-weight: 700; font-size: 13px; }
+.cosmos__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+.cosmos__desc { margin: 0; font-size: 13px; color: var(--t3); }
+.cosmos__legend { display: flex; gap: 6px; flex-wrap: wrap; }
+.cosmos__legend .chip.is-off { opacity: 0.4; }
+@media (max-width: 640px) { .cosmos { padding: 18px 16px 14px; } .cosmos__stage { margin: 6px -16px 0; } .cosmos__cv { height: 380px; } }

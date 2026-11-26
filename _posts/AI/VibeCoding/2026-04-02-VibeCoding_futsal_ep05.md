@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "5편. 뱃지 시스템 — 팀원들의 심장을 훔친 게임화 설계"
+description: "뱃지·칭호·Data MOM으로 풋살 앱에 게임화 요소를 설계한 과정을 정리했어요."
 categories: VibeCoding
 series: "풋살 앱 연재"
 tag: [VibeCoding, Lovable, Gamification, 바이브코딩, 뱃지, 통계, ChartJS]

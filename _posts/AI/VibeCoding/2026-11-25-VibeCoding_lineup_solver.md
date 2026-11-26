@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "라인업 생성기: 프롬프트로 풀다 포기하고 솔버를 짰다 — 풋살 4쿼터 로테이션을 제약 만족 문제로 다시 세우고, 백트래킹 솔버와 Artifact 런타임으로 옮긴 기록"
+description: "풋살 4쿼터 로테이션을 제약 만족 문제로 다시 세우고 백트래킹 솔버로 푼 과정을 인터랙티브 예제와 함께 기록했어요."
 date: 2026-11-25 02:00:00 +0900
 categories: VibeCoding
 tag: [vibe-coding, claude, artifact, csp, backtracking, javascript, 바이브코딩]

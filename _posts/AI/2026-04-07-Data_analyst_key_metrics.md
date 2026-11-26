@@ -1,6 +1,7 @@
 ---
 layout: single
 title: 데이터 분석가가 반드시 알아야 할 핵심 지표 완전정복
+description: "리텐션, 전환율, LTV·CAC, A/B 테스트까지 데이터 분석가가 꼭 알아야 할 핵심 지표를 AARRR 순서로 정리했어요."
 categories: DataAnalytics
 tag: [DataAnalytics, Retention, LTV, CAC, ABTest, DAU, MAU, Cohort, KPI, 데이터분석]
 toc: true

@@ -1,6 +1,7 @@
 ---
 layout: single
 title: 멀티 에이전트 시스템 — AI들이 서로 협력하는 법
+description: "여러 AI 에이전트가 역할을 나눠 협력하는 멀티 에이전트 시스템의 구조와 방식을 정리했어요."
 categories: AI
 tag: [AI, MultiAgent, LangGraph, LangChain, Agent, CrewAI, AutoGen, Python]
 toc: true

@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "3편. 데이터를 갖다 바치다 — 엑셀에서 DB로의 대이동"
+description: "엑셀 데이터를 DB 스키마로 옮기고 연령대를 정규화하며 만난 에러를 정리했어요."
 categories: VibeCoding
 series: "풋살 앱 연재"
 tag: [VibeCoding, Supabase, SQL, PostgreSQL, 바이브코딩, 데이터마이그레이션, Gemini]

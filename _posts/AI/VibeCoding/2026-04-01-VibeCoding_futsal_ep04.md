@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "4편. 자체전이라는 괴물 — 가장 복잡한 로직과의 싸움"
+description: "풋살 앱에서 가장 복잡했던 자체전 로직을 세 번의 시도 끝에 해결한 과정을 정리했어요."
 categories: VibeCoding
 series: "풋살 앱 연재"
 tag: [VibeCoding, Supabase, SQL, 바이브코딩, 자체전, 버그, Lovable]

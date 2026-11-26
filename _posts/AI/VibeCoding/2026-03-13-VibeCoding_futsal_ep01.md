@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "1편. 엑셀로 2년을 버티다 — 기획자가 앱을 만들어야겠다고 결심한 날"
+description: "엑셀로 2년간 풋살 기록을 관리하던 기획자가 앱을 만들기로 결심하고 Lovable을 고르기까지의 이야기예요."
 categories: VibeCoding
 series: "풋살 앱 연재"
 tag: [VibeCoding, Lovable, Supabase, Gemini, 바이브코딩, 풀스택, 사이드프로젝트]
