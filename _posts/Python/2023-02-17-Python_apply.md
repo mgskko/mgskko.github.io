@@ -7,11 +7,11 @@ toc: true
 author_profile: true
 ---
 
-### lambda & apply 사용이유
+## lambda & apply 사용이유
 
 데이터 전처리 과정에서 `DataFrame`을 원하는 대로 조작해야 할 경우가 생긴다. 여러가지 방법들 중에 apply() 함수와 lambda 사용법은 자주 사용한다.
 
-### lambda
+## lambda
 
 lambda 매개변수 : 표현식
 
@@ -37,7 +37,7 @@ add(1, 2)
 3
 ```
 
-### apply
+## apply
 
 `DataFrame`을 조작하다보면 내가 정의한 함수에 따라 데이터프레임의 값들을 변경하고 싶을때 사용된다.
 
@@ -63,7 +63,7 @@ df
 
 ![image](https://user-images.githubusercontent.com/100071667/219605580-7aa89344-defe-4875-8ed9-0b4de44a374c.png)
 
-### lambda & apply 함께 사용
+## lambda & apply 함께 사용
 
 ```python
 df['year'] = df['yyyy-mm-dd'].apply(lambda row : row.split('-')[0])

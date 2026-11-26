@@ -6,13 +6,13 @@ tag: [python, Machine Learning]
 toc: true
 ---
 
-### 1. 파라미터 (Parameter)
+## 1. 파라미터 (Parameter)
 
 머신러닝에서 사용되는 파라미터는 모델 파라미터라고도 하며, 즉 파라미터는 모델 내부에서 결정되는 변수입니다.
 * 가중치 계수 (weight coefficient)
 * 편향 (bias)
 
-### 2. 하이퍼 파라미터 (Hyper parameter)
+## 2. 하이퍼 파라미터 (Hyper parameter)
 
 모델이 학습할 수 없어서 사용자가 지정해야만 하는 파라미터를 **하이퍼파라미터**라고 합니다.
 
