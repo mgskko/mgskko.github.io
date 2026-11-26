@@ -21,6 +21,11 @@ author:
   location: "Republic of Korea"
   github: "mgskko"
 
+# 검색엔진 소유 확인 (Search Console / Naver Search Advisor / Bing Webmaster 에서 받은 메타태그 값)
+google_site_verification:
+naver_site_verification:
+bing_site_verification:
+
 # Analytics (Google gtag)
 analytics:
   google:
@@ -57,7 +62,6 @@ kramdown:
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-  - jekyll-seo-tag
 
 include:
   - _pages
