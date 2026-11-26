@@ -43,7 +43,7 @@ nav: categories
         {%- if item[1].group == g.id -%}
           {%- assign ik = item[0] -%}{%- assign cposts = site.categories[ik] -%}
           {%- if cposts.size > 0 -%}
-          <a class="cat-card card pressable" href="{{ item[1].url | relative_url }}">
+          <a class="cat-card card pressable" data-tilt href="{{ item[1].url | relative_url }}">
             <span class="cat-card__count">{{ cposts.size }}<small>개</small></span>
             <span class="cat-card__name">{{ item[1].label }}</span>
             <span class="cat-card__desc">{{ item[1].desc }}</span>

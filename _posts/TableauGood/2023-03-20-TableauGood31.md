@@ -1,10 +1,16 @@
 ---
 layout: single
 title: "목록형 매개 변수(2)"
+description: "숫자 레이블의 단위를 바꾸는 목록형 매개 변수를 만드는 방법을 정리했어요."
 categories: Tableau
 tag: [Tableau]
 toc: true
 ---
+
+> **핵심 요약**
+> - 서식 변경 대신 목록형 매개 변수로 레이블 단위를 선택하게 만들 수 있다.
+> - 여러 필드를 선택해 시각화한 뒤 단위 변경용 매개 변수를 만든다.
+{: .notice--primary}
 
 ## 목록형 매개 변수
 

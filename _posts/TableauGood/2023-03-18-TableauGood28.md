@@ -1,10 +1,17 @@
 ---
 layout: single
 title: "IF로 계산된 필드 만들기"
+description: "IF 조건으로 매출 기준을 구분하는 계산된 필드를 만들고 IIF로 단순화하는 방법을 정리했어요."
 categories: Tableau
 tag: [Tableau]
 toc: true
 ---
+
+> **핵심 요약**
+> - IF 함수는 조건이 참이면 TRUE 값을, 아니면 FALSE 값을 반환한다.
+> - 매출 2억을 기준으로 구분하는 계산된 필드를 만들고 참조선을 추가한다.
+> - IIF 함수를 쓰면 같은 계산식을 더 간단하게 쓸 수 있다.
+{: .notice--primary}
 
 ## IF함수
 

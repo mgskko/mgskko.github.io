@@ -15,9 +15,9 @@ timezone: "Asia/Seoul"
 
 # Author
 author:
-  name: "Happy Day:)"
-  bio: "Math, Computer Engineering"
-  avatar: "https://i.esdrop.com/d/f/uVJApfFjHN/JuPS6b7yOr.png"
+  name: "Study Note"
+  bio: "배우고, 기록하고, 데이터로 돌아봐요"
+  avatar: "/assets/logo.ico/avatar.svg"
   location: "Republic of Korea"
   github: "mgskko"
 

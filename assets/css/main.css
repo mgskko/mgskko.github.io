@@ -1198,3 +1198,17 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 .cosmos__legend { display: flex; gap: 6px; flex-wrap: wrap; }
 .cosmos__legend .chip.is-off { opacity: 0.4; }
 @media (max-width: 640px) { .cosmos { padding: 18px 16px 14px; } .cosmos__stage { margin: 6px -16px 0; } .cosmos__cv { height: 380px; } }
+.cosmos__cv--city { height: 520px; }
+@media (max-width: 640px) { .cosmos__cv--city { height: 360px; } }
+
+/* ---------- 3D 깊이감: 카드 안쪽 요소가 떠오르고, 스크롤하면 기울어진 채 들어와요 ---------- */
+[data-tilt] { transform-style: preserve-3d; will-change: transform; }
+[data-tilt].is-tilting .cat-card__count, [data-tilt].is-tilting .bento__title, [data-tilt].is-tilting .featured__title { transform: translateZ(34px); }
+[data-tilt].is-tilting .cat-card__name, [data-tilt].is-tilting .cat-card__desc { transform: translateZ(18px); }
+[data-tilt].is-tilting .meter { transform: translateZ(10px); }
+.cat-card__count, .cat-card__name, .cat-card__desc, .meter, .bento__title, .featured__title { transition: transform 0.25s var(--ease); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .card.reveal, .js .bento__item.reveal, .js .cosmos-wrap.reveal { transform: perspective(900px) translateY(18px) rotateX(7deg); transform-origin: 50% 100%; }
+  .js .card.reveal.is-in, .js .bento__item.reveal.is-in, .js .cosmos-wrap.reveal.is-in { transform: none; }
+}
+.hero3d { will-change: transform, opacity; }

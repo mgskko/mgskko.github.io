@@ -11,7 +11,7 @@ charts: true
   <canvas class="hero3d" data-hero3d aria-hidden="true"></canvas>
   <div class="container hero reveal">
     <div class="hero__who">
-      <span class="avatar" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
+      <span class="avatar" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar | relative_url }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
       <span class="hero__name">{{ site.author.name }}<small>{{ site.author.bio }}</small></span>
     </div>
     <h1 class="hero__title">공부한 걸 기록하고,<br><span class="grad">데이터로 돌아봐요</span></h1>
@@ -59,6 +59,23 @@ charts: true
   <script src="{{ '/assets/js/cosmos.js' | relative_url }}" defer></script>
 </section>
 
+<section class="container cosmos-wrap reveal" aria-labelledby="city-title">
+  <div class="cosmos card" data-city>
+    <div class="cosmos__head">
+      <div>
+        <h2 class="section-title" id="city-title">기록 도시</h2>
+        <p class="section-desc">월별로 쓴 글의 수를 3D 막대로 쌓았어요. 높을수록 많이 쓴 달이에요</p>
+      </div>
+    </div>
+    <div class="cosmos__stage">
+      <canvas class="cosmos__cv cosmos__cv--city" role="img" aria-label="연도와 월별 글 수를 보여주는 3D 막대 그래프"></canvas>
+      <div class="cosmos__tip" data-city-tip hidden></div>
+    </div>
+    <div class="cosmos__foot"><p class="cosmos__desc">드래그해서 돌려 보고, 막대에 올리면 글 수가 나와요</p></div>
+  </div>
+  <script src="{{ '/assets/js/city.js' | relative_url }}" defer></script>
+</section>
+
 <div class="container home">
   <div class="home__main" id="feed">
     {%- include post-excerpt.html post=latest len=170 -%}
@@ -101,7 +118,7 @@ charts: true
     <section class="card side reveal">
       <h2 class="side__title">소개</h2>
       <div class="side__who">
-        <span class="avatar avatar--lg" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
+        <span class="avatar avatar--lg" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar | relative_url }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
         <span><strong>{{ site.author.name }}</strong><small>{{ site.author.bio }}</small></span>
       </div>
       <p class="side__text">수학과 컴퓨터공학을 공부하며 배운 것을 기록해요. 코딩테스트, 데이터 분석, AI·ML, CS를 다뤄요.</p>
