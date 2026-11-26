@@ -1,0 +1,60 @@
+{%- comment -%} 검색엔진·공유 미리보기용 메타 태그 (글마다 설명문을 본문에서 뽑는다) {%- endcomment -%}
+{%- assign is_post = false -%}{%- if page.collection == "posts" -%}{%- assign is_post = true -%}{%- endif -%}
+
+{%- if page.title and page.url != "/" -%}
+  {%- assign seo_title = page.title | strip_html | strip | append: " | " | append: site.title -%}
+  {%- assign seo_name = page.title | strip_html | strip -%}
+{%- else -%}
+  {%- assign seo_title = site.title | append: " | " | append: site.tagline -%}
+  {%- assign seo_name = site.title -%}
+{%- endif -%}
+
+{%- assign seo_desc = page.description | default: "" -%}
+{%- if seo_desc == "" and is_post -%}
+  {%- assign d_parts = page.content | split: "</p>" -%}
+  {%- for part in d_parts -%}
+    {%- if seo_desc == "" -%}
+      {%- unless part contains "notice" or part contains "<div" or part contains "<pre" or part contains "<table" or part contains "<script" or part contains "<style" or part contains "<details" -%}
+        {%- assign seg = part | split: "</h2>" | last | split: "</h3>" | last | split: "</h4>" | last -%}
+        {%- assign txt = seg | strip_html | strip_newlines | strip -%}
+        {%- if txt.size > 25 -%}{%- assign seo_desc = txt -%}{%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if seo_desc == "" -%}{%- assign seo_desc = site.description -%}{%- endif -%}
+{%- assign seo_desc = seo_desc | normalize_whitespace | truncate: 155 -%}
+{%- assign seo_url = page.url | replace: "index.html", "" | absolute_url -%}
+
+<title>{{ seo_title | escape }}</title>
+<meta name="description" content="{{ seo_desc | escape }}">
+<link rel="canonical" href="{{ seo_url }}">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:locale" content="{{ site.locale | replace: '-', '_' }}">
+<meta property="og:type" content="{% if is_post %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ seo_name | escape }}">
+<meta property="og:description" content="{{ seo_desc | escape }}">
+<meta property="og:url" content="{{ seo_url }}">
+{%- if is_post %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- for t in page.tag %}
+<meta property="article:tag" content="{{ t | escape }}">
+{%- endfor %}
+{%- endif %}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ seo_name | escape }}">
+<meta name="twitter:description" content="{{ seo_desc | escape }}">
+{%- if site.google_site_verification %}
+<meta name="google-site-verification" content="{{ site.google_site_verification }}">
+{%- endif %}
+{%- if site.naver_site_verification %}
+<meta name="naver-site-verification" content="{{ site.naver_site_verification }}">
+{%- endif %}
+{%- if site.bing_site_verification %}
+<meta name="msvalidate.01" content="{{ site.bing_site_verification }}">
+{%- endif %}
+{%- if is_post %}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":{{ seo_name | jsonify }},"description":{{ seo_desc | jsonify }},"datePublished":{{ page.date | date_to_xmlschema | jsonify }},"dateModified":{{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},"inLanguage":"ko","author":{"@type":"Person","name":{{ site.author.name | jsonify }}},"publisher":{"@type":"Person","name":{{ site.author.name | jsonify }}},"mainEntityOfPage":{"@type":"WebPage","@id":{{ seo_url | jsonify }}},"url":{{ seo_url | jsonify }}}</script>
+{%- elsif page.url == "/" %}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":{{ site.title | jsonify }},"description":{{ site.description | jsonify }},"url":{{ site.url | jsonify }},"inLanguage":"ko"}</script>
+{%- endif %}
