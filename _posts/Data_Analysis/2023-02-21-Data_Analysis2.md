@@ -1,10 +1,18 @@
 ---
 layout: single
 title: "[이것이 데이터 분석이다(with 파이썬)] 국가별 음주 데이터 분석하기"
+description: "국가별 음주 데이터로 탐색, 시각화, 스무고개식 탐색적 분석을 거쳐 t-test로 집단 간 차이를 검정하는 흐름을 정리했어요."
 categories: DataAnalysis
 tag: [python, DataAnalysis]
 toc: true
 ---
+
+> **핵심 요약**
+> - 분석은 **탐색 → 시각화로 인사이트 발견 → 스무고개식 탐색적 분석 → 통계적 검정**의 4단계로 진행한다.
+> - 대륙별 통계, 전체 평균 비교, 맥주 소비량이 가장 높은 대륙 찾기 등으로 가설을 세운다.
+> - 탐색적 분석은 분석가의 주관이 들어가므로, t-test로 아프리카와 유럽의 맥주 소비량 평균 차이를 검정한다 (p-value 0.000).
+> - `alcohol_rate` 피처(순수 알코올 ÷ 총 소비량)를 만들어 국가별 술의 독한 정도를 비교하고 대한민국의 순위를 확인한다.
+{: .notice--primary}
 
 **[참고 깃허브 링크](https://github.com/yoonkt200/python-data-analysis)**
 {: .notice--primary}

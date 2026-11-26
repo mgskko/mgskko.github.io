@@ -1,10 +1,18 @@
 ---
 layout: single
 title: "[이것이 데이터 분석이다(with 파이썬)] 멕시코풍 프랜차이즈 chipotle의 주문 데이터 분석하기"
+description: "chipotle 주문 데이터로 기초 정보 확인, 인기 메뉴 집계, apply와 lambda 전처리, 고액 주문 추출까지 판다스 탐색적 분석 과정을 정리했어요."
 categories: DataAnalysis
 tag: [python, DataAnalysis]
 toc: true
 ---
+
+> **핵심 요약**
+> - 데이터는 4,622행 5열이고, `choice_description`에는 결측값이 1,246개 있다.
+> - `order_id`는 숫자의 의미가 없어 문자열로 바꾸고, 평균 주문 수량이 약 1.07이라 한 메뉴를 여러 개 사는 경우는 드물다.
+> - `value_counts()`로 인기 메뉴 TOP 10을, `apply()`와 `lambda`로 가격의 `$` 기호를 제거해 숫자로 전처리한다.
+> - `groupby('order_id')`로 주문별 합계를 구해 가장 비싼 주문과 10달러 이상 주문을 찾는다.
+{: .notice--primary}
 
 **[참고 깃허브 링크](https://github.com/yoonkt200/python-data-analysis)**
 {: .notice--primary}
@@ -71,7 +79,7 @@ print(chipo.describe()) # chipo 데이터 프레임에서 수치형 피처들의
 ```
 
 아이템의 평균 주문 수량(mean)은 약 1.07이라는 것을 알 수 있다.
-즉 대부분 1개 정도만 주문했고 `한 사람이 같은 메뉴를 여러개 구매하는 경우는 많지 않다.`라는 인사이트를 얻을 수 있다.
+즉 대부분 1개 정도만 주문했고 `한 사람이 같은 메뉴를 여러 개 구매하는 경우는 많지 않다.`라는 인사이트를 얻을 수 있다.
 
 ## 가장 많이 주문한 item
 

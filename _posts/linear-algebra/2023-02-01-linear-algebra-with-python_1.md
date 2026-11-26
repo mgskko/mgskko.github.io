@@ -1,11 +1,18 @@
 ---
 layout: single
 title: "[선형대수(with 파이썬)] 1. 스칼라, 벡터, 텐서"
+description: "선형대수의 기본 단위인 스칼라, 벡터, 행렬, 텐서가 무엇인지 차원 순서로 정리했어요."
 categories: Linear-algebra
 tag: [python, Linear-algebra]
 toc: true
 author_profile: True
 ---
+
+> **핵심 요약**
+> - **스칼라**는 숫자 하나, **벡터**는 수의 1차원 배열, **행렬**은 2차원 배열, **텐서**는 n차원 배열로 일반화한 개념이다.
+> - 텐서의 Rank는 몇 차원 배열인지를 뜻한다.
+> - 벡터와 배열은 같은 개념이 아니다.
+{: .notice--primary}
 
 ## 스칼라, 벡터, 텐서
 

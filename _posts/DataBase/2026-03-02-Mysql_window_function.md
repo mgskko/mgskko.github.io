@@ -1,10 +1,18 @@
 ---
 layout: single
 title: MySQL Window Function
+description: "MySQL 윈도우 함수의 동작 원리, GROUP BY와의 차이, PARTITION BY·프레임, 순위·LAG/LEAD 등 함수별 사용법과 실전 패턴, 성능·실수 모음을 정리했어요."
 categories: DataBase
 tag: [MySQL, DATABASE, WindowFunction, SQL, cs]
 toc: true
 ---
+
+> **핵심 요약**
+> - 윈도우 함수는 **행을 그룹으로 묶지 않고**, 각 행에서 주변 행(창문)을 참조해 계산한다. GROUP BY와 달리 **행 수가 줄지 않는다**.
+> - `PARTITION BY`가 계산 범위를 나누고, `ORDER BY`와 프레임(`ROWS`/`RANGE`)이 그 안에서 어디까지 볼지 정한다.
+> - 함수는 순위(ROW_NUMBER·RANK 등), 이전/다음 행(LAG·LEAD), FIRST/LAST_VALUE, NTILE, PERCENT_RANK로 나뉜다.
+> - 실전 패턴(그룹별 상위 N명 등)과 성능 이슈, 자주 하는 실수까지 함께 정리했다.
+{: .notice--primary}
 
 ## MySQL Window Function 완전정복 — 진짜 동작 원리부터 실전 패턴까지
 

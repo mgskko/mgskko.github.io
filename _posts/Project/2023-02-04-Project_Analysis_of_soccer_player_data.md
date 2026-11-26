@@ -1,10 +1,18 @@
 ---
 layout: single
 title: "[프로젝트] ⚽축구 분석 사이트(트랜스퍼마켓)를 통한 축구 선수 데이터 비교⚽"
+description: "트랜스퍼마켓에서 선수 몸값 데이터를 크롤링해 나이·포지션과 몸값의 관계를 분석한 프로젝트 정리예요."
 categories: Project
 tag: [python, Project]
 toc: true
 ---
+
+> **핵심 요약**
+> - BeautifulSoup으로 트랜스퍼마켓의 몸값 상위 선수 정보를 크롤링해 pandas로 분석했다.
+> - 나이 분포, 나이대별 몸값 순위·분포, 나이와 포지션의 관계 4가지를 분석했다.
+> - 결과적으로 30대와 10대보다 20대 선수들이 높은 몸값을 가지고 있었다.
+> - 국가·대륙별 분석을 하지 못한 점이 보완 사항이다.
+{: .notice--primary}
 
 ## ⚽축구 분석 사이트(트랜스퍼마켓)를 통한 축구 선수 데이터 비교⚽
 
@@ -30,7 +38,7 @@ toc: true
 
 ```
 1. 라이브러리 import 하기
-2. 얻고자 싶은 정보 리스트에 담아두기
+2. 얻고 싶은 정보 리스트에 담아두기
 3. 파싱할 페이지 요청 후 담기
 4. 사전형으로 데이터 파일 만들기
 ```
@@ -58,10 +66,9 @@ headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit
 
 이 사이트에 접속한 후에 보이는 코드를 복사 붙여넣기를 해주면 된다.
 
-#### 3-2-2. 얻고자 싶은 정보 리스트에 담아두기
+#### 3-2-2. 얻고 싶은 정보 리스트에 담아두기
 
 ```python
-number=[]
 number=[]
 name=[]
 position=[]
@@ -81,7 +88,7 @@ for i in range(1,21):
     r.status_code
 
     soup = BeautifulSoup(r.text,'html.parser')
-#얻고자 싶은 데이터 담기
+#얻고 싶은 데이터 담기
     player_info=soup.find_all('tr', {'class':['odd','even']})
     for info in player_info:
         player = info.find_all('td')
@@ -101,6 +108,13 @@ df=pd.DataFrame({"순위":number,"이름":name,"포지션":position,"나이":age
 ```
 
 초기 설정으로 웹 크롤링을 통해 트랜스퍼마켓에 있는 데이터들을 파이썬으로 뽑아 왔다.
+
+|분석|내용|
+|:---:|:---|
+|4-1|나이 분포표 (4개 구간으로 나누어 원그래프)|
+|4-2|원하는 나이대 선수 몸값 순위|
+|4-3|나이대별 분포표|
+|4-4|나이와 포지션의 관계 (누적 막대그래프)|
 
 ## 4. 데이터 분석
 
