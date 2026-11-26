@@ -6,7 +6,7 @@ tag: [python, Machine Learning]
 toc: true
 ---
 
-### 1. 선형회귀란?
+## 1. 선형회귀란?
 
 어떤 변수의 값에 따라서 x값이 증가하거나 감소할 때 y값 또한 증가하거나 감소하는 하는 경우 독립 변수가 1개라면 단순 선형 회귀라고 합니다.
 
@@ -26,7 +26,7 @@ $h(x)=θx+z$
 
 ***
 
-### 2. 선형회귀에서의 오차, 손실
+## 2. 선형회귀에서의 오차, 손실
 
 우리는 선형회귀에서 정확한 값을 찾을 수 없고 근사값을 찾을 수 있습니다. 이와 같이 정확한 값과의 차이를 우리는 오차, 머신러닝에서는 **손실**이라고 부릅니다.
 
@@ -48,7 +48,7 @@ $h(x)=θx+z$
 
 ***
 
-### 3. 경사하강법(Gradient Descent)
+## 3. 경사하강법(Gradient Descent)
 
 어떻게 하면 손실을 최소화할지 생각해 봅시다. 최적의 선형회귀 모델을 만든 후에 그 모델의 Mean Square Error(=Cost function)을 최소로 만드는 최적의 직선을 찾아야 합니다. cost를 최소화하는 직선을 만드는 과정을 머신 러닝에서 훈련(training) 또는 학습(learning)이라고 부르고 사용되는 알고리즘이 **경사 하강법(Gradient Descent) 알고리즘**입니다.<br>
 손실을 함수로 나타내면 아래와 같습니다. 우리는 기울기인 θ를 최소로 하는 것이 목적입니다
@@ -64,16 +64,16 @@ $h(x)=θx+z$
 
 ![Alt text](https://i.esdrop.com/d/f/uVJApfFjHN/i5xXfjvlIn.jpg)
 
-### 4. 수렴
+## 4. 수렴
 
 이제 우리는 Learning Rate(α)를 어떻게 설정을 해야되는지 알아보겠습니다. Learning Rate는 θ가 변하는 양을 상수로서 앞에 붙어서 조절합니다. <br>
-#### 4 - 1. Learning Rate가 낮을 경우
+### 4 - 1. Learning Rate가 낮을 경우
 
 Learning Rate가 낮으면 시간이 오래걸립니다. 그러면 converge를 찾는 과정이 오래 걸리기 때문에 효율적이지 못합니다.
 
 ![Alt text](https://i.esdrop.com/d/f/uVJApfFjHN/xZ6LS9q0jE.png)
 <br>
-#### 4 - 2. Learning Rate가 높을 경우
+### 4 - 2. Learning Rate가 높을 경우
 그렇다고 Learning Rate(α)가 높으면 안좋은 결과를 초래합니다. Learning Rate(α)가 높기 때문에 최저점을 수렴하지 않고 converge를 지나칠 수 있습니다.
 
 ![Alt text](https://i.esdrop.com/d/f/uVJApfFjHN/DEmuLQ6cWp.jpg)

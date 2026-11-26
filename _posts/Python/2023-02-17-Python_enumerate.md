@@ -7,7 +7,7 @@ toc: true
 author_profile: true
 ---
 
-### range()의 단점
+## range()의 단점
 
 다음과 같은 리스트가 있을 때 range를 활용하면 리스트의 요소를 반복할 때 현재 인덱스가 몇번째인지 확인도 해야 하고 코드도 길어진다.
 
@@ -26,7 +26,7 @@ for i in range(len(example_list)):
 
 이런 코드를 쉽게 작성할 수 있도록 도와주는 함수가 enumerate() 함수입니다.
 
-### enumerate() 함수
+## enumerate() 함수
 
 반복문을 사용할때 리스트의 인덱스 정보를 알고 싶을때 사용한다. enumerate() 함수는 리스트의 원소에 순서값을 부여해주는 함수이다.
 
