@@ -5,35 +5,122 @@ charts: true
 ---
 {%- assign posts = site.posts -%}
 {%- assign latest = posts.first -%}
+{%- assign total = posts.size -%}
 
-<section class="hero container reveal">
-  <span class="eyebrow">{% include icon.html name="flame" %} 공부일지</span>
-  <h1 class="hero__title">배운 것을 기록하고,<br>데이터로 돌아봐요</h1>
-  <p class="hero__desc">{{ site.description }}</p>
-  <div class="hero__cta">
-    <a class="btn btn--primary pressable" href="#posts">글 보러 가기</a>
-    <a class="btn btn--ghost pressable" href="{{ '/categories/' | relative_url }}">분야별로 보기</a>
+<section class="masthead3d">
+  <canvas class="hero3d" data-hero3d aria-hidden="true"></canvas>
+  <div class="container hero reveal">
+    <div class="hero__who">
+      <span class="avatar" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
+      <span class="hero__name">{{ site.author.name }}<small>{{ site.author.bio }}</small></span>
+    </div>
+    <h1 class="hero__title">공부한 걸 기록하고,<br><span class="grad">데이터로 돌아봐요</span></h1>
+    <p class="hero__desc">{{ site.description }}</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary pressable" href="#feed">최신 글 읽기</a>
+      <a class="btn btn--ghost pressable" href="{{ '/categories/' | relative_url }}">분야별로 보기</a>
+    </div>
+    <ul class="hero__stats" aria-label="블로그 요약">
+      <li><b data-count="{{ total }}">{{ total }}</b><span>글</span></li>
+      <li><b data-count="{{ site.categories.size }}">{{ site.categories.size }}</b><span>분야</span></li>
+      <li><b><span data-stat="streak">-</span></b><span>일 연속 기록</span></li>
+    </ul>
   </div>
 </section>
 
-<section class="container stats" aria-label="요약">
-  <div class="stat card reveal">
-    <span class="stat__label">전체 글</span>
-    <strong class="stat__value"><span data-count="{{ posts.size }}">{{ posts.size }}</span><small>개</small></strong>
+<div class="container home">
+  <div class="home__main" id="feed">
+    {%- include post-excerpt.html post=latest len=170 -%}
+    {%- include title-parse.html title=latest.title -%}
+    {%- assign lk = latest.categories[0] -%}
+    {%- include cat-meta.html key=lk -%}
+    {%- include read-time.html content=latest.content -%}
+    <article class="featured card reveal" data-tilt>
+      <a class="featured__link" href="{{ latest.url | relative_url }}">
+        <span class="featured__cover">{% include cover.html post=latest class="cover--lg" %}<span class="featured__new">NEW</span></span>
+        <span class="featured__body">
+          <span class="row__badges">{% include title-badges.html %}</span>
+          <span class="featured__title">{{ tp_title | escape }}</span>
+          {%- if tp_sub != "" %}<span class="featured__sub">{{ tp_sub | escape }}</span>{% endif %}
+          <span class="featured__ex">{{ ex_text | escape }}</span>
+          <span class="postcard__meta">{{ cm_label }}<i class="dot"></i><time datetime="{{ latest.date | date_to_xmlschema }}">{{ latest.date | date: site.date_format }}</time><i class="dot"></i>{{ rt }}분이면 읽어요</span>
+        </span>
+      </a>
+    </article>
+
+    <div class="section-head reveal">
+      <div>
+        <h2 class="section-title">최신 글</h2>
+        <p class="section-desc"><span data-list-count>{{ total | minus: 1 }}</span>개의 글이 있어요</p>
+      </div>
+    </div>
+    <div class="chips-scroll reveal" role="tablist" aria-label="분야 필터" data-filter>
+      <button class="chip pressable is-active" type="button" data-filter-value="all">전체</button>
+      {%- for g in site.data.categories.groups %}
+      <button class="chip pressable" type="button" data-filter-value="{{ g.id }}"><i class="swatch s{{ g.slot }}"></i>{{ g.label }}</button>
+      {%- endfor %}
+    </div>
+    <ul class="feed" data-list data-page-size="8">
+      {%- for post in posts offset: 1 %}{% include post-card.html post=post %}{% endfor %}
+    </ul>
+    <button class="btn btn--ghost btn--block pressable" type="button" data-more hidden>더 보기</button>
   </div>
-  <div class="stat card reveal">
-    <span class="stat__label">다룬 분야</span>
-    <strong class="stat__value"><span data-count="{{ site.categories.size }}">{{ site.categories.size }}</span><small>개</small></strong>
-  </div>
-  <div class="stat card reveal">
-    <span class="stat__label">가장 오래 이어 쓴 기록</span>
-    <strong class="stat__value"><span data-stat="streak">-</span><small>일 연속</small></strong>
-  </div>
-  <div class="stat card reveal">
-    <span class="stat__label">최근 글</span>
-    <strong class="stat__value stat__value--sm"><span data-stat="since">{{ latest.date | date: site.date_format }}</span></strong>
-  </div>
-</section>
+
+  <aside class="home__side" aria-label="블로그 정보">
+    <section class="card side reveal">
+      <h2 class="side__title">소개</h2>
+      <div class="side__who">
+        <span class="avatar avatar--lg" aria-hidden="true"><b>{{ site.author.name | slice: 0 }}</b>{% if site.author.avatar %}<img src="{{ site.author.avatar }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}</span>
+        <span><strong>{{ site.author.name }}</strong><small>{{ site.author.bio }}</small></span>
+      </div>
+      <p class="side__text">수학과 컴퓨터공학을 공부하며 배운 것을 기록해요. 코딩테스트, 데이터 분석, AI·ML, CS를 다뤄요.</p>
+      <div class="side__links">
+        <a class="chip chip--sm pressable" href="https://github.com/{{ site.author.github }}" rel="noopener">{% include icon.html name="github" %}GitHub</a>
+        <a class="chip chip--sm pressable" href="{{ '/feed.xml' | relative_url }}">{% include icon.html name="rss" %}구독</a>
+      </div>
+    </section>
+
+    <section class="card side reveal">
+      <h2 class="side__title">분야</h2>
+      <ul class="side__cats">
+        {%- for g in site.data.categories.groups %}
+          {%- assign gcount = 0 -%}
+          {%- for item in site.data.categories.items -%}{%- if item[1].group == g.id -%}{%- assign ik = item[0] -%}{%- assign n = site.categories[ik].size | default: 0 -%}{%- assign gcount = gcount | plus: n -%}{%- endif -%}{%- endfor -%}
+          <li><a class="pressable" href="{{ '/categories/' | relative_url }}#{{ g.id }}"><span class="cat-icon cat-icon--xs s{{ g.slot }}">{% include icon.html name=g.icon %}</span><span class="side__cn">{{ g.label }}</span><b>{{ gcount }}</b></a></li>
+        {%- endfor %}
+      </ul>
+    </section>
+
+    <section class="card side reveal">
+      <h2 class="side__title">자주 쓰는 태그</h2>
+      {%- assign tag_arr = "" | split: "" -%}
+      {%- for t in site.tags -%}
+        {%- assign tk = t[1].size | plus: 1000 | append: "|" | append: t[0] -%}
+        {%- assign tag_arr = tag_arr | push: tk -%}
+      {%- endfor -%}
+      {%- assign tag_arr = tag_arr | sort | reverse -%}
+      <div class="side__tags">
+        {%- for tk in tag_arr limit: 16 -%}
+          {%- assign tparts = tk | split: "|" -%}
+          <a class="chip chip--sm pressable" href="{{ '/tags/' | relative_url }}#{{ tparts[1] | uri_escape }}">#{{ tparts[1] }}<b>{{ tparts[0] | minus: 1000 }}</b></a>
+        {%- endfor -%}
+      </div>
+      <a class="side__more" href="{{ '/tags/' | relative_url }}">태그 전체 보기{% include icon.html name="chevron" %}</a>
+    </section>
+
+    <section class="card side reveal">
+      <h2 class="side__title">연도별 기록</h2>
+      {%- assign years = posts | group_by_exp: "p", "p.date | date: '%Y'" -%}
+      {%- assign ymax = 1 -%}{%- for y in years -%}{%- if y.items.size > ymax -%}{%- assign ymax = y.items.size -%}{%- endif -%}{%- endfor -%}
+      <ul class="side__years">
+        {%- for y in years %}
+        <li><a class="pressable" href="{{ '/archive/' | relative_url }}#y{{ y.name }}"><span>{{ y.name }}</span><i style="--w: {{ y.items.size | times: 100.0 | divided_by: ymax }}"></i><b>{{ y.items.size }}</b></a></li>
+        {%- endfor %}
+      </ul>
+      <a class="side__more" href="{{ '/archive/' | relative_url }}">아카이브 보기{% include icon.html name="chevron" %}</a>
+    </section>
+  </aside>
+</div>
 
 <section class="container" aria-labelledby="series-title">
   <div class="section-head reveal">
@@ -55,9 +142,8 @@ charts: true
       {%- assign b_name = cm_label -%}{%- assign b_desc = cm_desc -%}
       {%- if sk == "VibeCoding" -%}{%- assign b_name = "풋살 앱 연재" -%}{%- assign b_desc = "Lovable과 Supabase로 풋살 기록 앱을 만든 이야기" -%}{%- endif -%}
       {%- assign s_first = sp | reverse | first -%}
-      {%- assign s_latest = sp | first -%}
       {%- include title-parse.html title=s_first.title -%}
-      <a class="bento__item card pressable reveal s{{ cm_slot }}{% if forloop.first %} bento__item--hero{% endif %}" href="{{ s_first.url | relative_url }}">
+      <a class="bento__item card pressable reveal s{{ cm_slot }}{% if forloop.first %} bento__item--hero{% endif %}" href="{{ s_first.url | relative_url }}" data-tilt>
         <span class="bento__top">
           <span class="cat-icon s{{ cm_slot }}">{% include icon.html name=cm_icon %}</span>
           <span class="bento__count">{{ sp.size }}<small>편</small></span>
@@ -124,25 +210,6 @@ charts: true
       <ol class="rank" data-rank aria-label="분야별 글 수"><li class="skeleton skeleton--row"></li><li class="skeleton skeleton--row"></li><li class="skeleton skeleton--row"></li></ol>
     </article>
   </div>
-</section>
-
-<section class="container" id="posts" aria-labelledby="posts-title">
-  <div class="section-head reveal">
-    <div>
-      <h2 class="section-title" id="posts-title">전체 글</h2>
-      <p class="section-desc"><span data-list-count>{{ posts.size }}</span>개의 글이 있어요</p>
-    </div>
-  </div>
-  <div class="chips-scroll reveal" role="tablist" aria-label="분야 필터" data-filter>
-    <button class="chip pressable is-active" type="button" data-filter-value="all">전체</button>
-    {%- for g in site.data.categories.groups %}
-    <button class="chip pressable" type="button" data-filter-value="{{ g.id }}"><i class="swatch s{{ g.slot }}"></i>{{ g.label }}</button>
-    {%- endfor %}
-  </div>
-  <ul class="list card" data-list data-page-size="12">
-    {%- for post in posts %}{% include post-row.html post=post %}{% endfor %}
-  </ul>
-  <button class="btn btn--ghost btn--block pressable" type="button" data-more hidden>더 보기</button>
 </section>
 
 <script type="application/json" id="post-data">[{%- for p in posts -%}{"d":"{{ p.date | date: '%Y-%m-%d' }}","c":{{ p.categories[0] | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]</script>

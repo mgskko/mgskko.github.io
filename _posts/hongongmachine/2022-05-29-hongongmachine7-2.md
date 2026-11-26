@@ -342,3 +342,11 @@ model.evaluate(val_scaled, val_target)
 
 **[깃허브 주소](<https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_7%EA%B0%95_2.ipynb>)**
 {: .notice--primary}
+
+---
+
+## 직접 해보기
+
+뉴런 수와 데이터를 바꾸며 은닉층이 왜 필요한지 확인해 보세요.
+
+<div class="sim" data-sim="nn"></div>

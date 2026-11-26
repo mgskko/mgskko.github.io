@@ -225,3 +225,11 @@ model.evaluate(val_scaled, val_target)
 
 **[깃허브 주소](<https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_7%EA%B0%95_1.ipynb>)**
 {: .notice--primary}
+
+---
+
+## 직접 해보기
+
+신경망이 학습하며 경계를 만들어 가는 과정을 지켜보세요.
+
+<div class="sim" data-sim="nn"></div>
