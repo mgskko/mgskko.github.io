@@ -1,10 +1,17 @@
 ---
 layout: single
 title: "[선형대수(with 파이썬)] 4. 벡터의 곱셈"
+description: "벡터의 내적과 외적의 차이, 넘파이로 내적과 행렬곱(@)을 계산하는 방법을 정리했어요."
 categories: Linear-algebra
 tag: [python, Linear-algebra]
 toc: true
 ---
+
+> **핵심 요약**
+> - **내적**은 벡터를 수처럼 곱하는 개념이고, 결과가 **스칼라**다. 외적의 결과는 벡터다.
+> - 넘파이에서는 `A.dot(B)`로 내적을, `A@B`로 행렬곱을 계산한다.
+> - 행렬이라는 2차원 공간에서는 행렬곱이 내적과 같은 역할을 한다.
+{: .notice--primary}
 
 ## 벡터의 곱셈
 
@@ -18,7 +25,7 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/217165380-b3ab3d33-7a9a-4f9f-b4b7-27b9c1a937e3.png)
 
-백터 내적을 하면 스칼라를 만드는 곱이 됩니다.
+벡터 내적을 하면 스칼라를 만드는 곱이 됩니다.
 
 ```python
 A = np.arange(3).reshape([1,3])
@@ -50,7 +57,7 @@ A.dot(B)
 
 ```python
 A = np.arange(3).reshape([1,3])
-B = np.arange(6).reshape([3,2])-1
+B = np.arange(6).reshape([3,2])
 print('A')
 print(A)
 print('B')

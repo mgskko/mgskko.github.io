@@ -1,10 +1,18 @@
 ---
 layout: single
 title: 데이터 분석가가 실제로 보는 핵심 지표들 — AARRR부터 Cohort까지
+description: "AARRR, DAU/MAU, 코호트 리텐션, 이탈률, LTV/CAC까지 데이터 분석가가 실제로 보는 핵심 서비스 지표를 파이썬 예제와 함께 정리했어요."
 categories: Analyzedata
 tag: [DataAnalytics, AARRR, DAU, MAU, LTV, CAC, Retention, Cohort, Python, Pandas]
 toc: true
 ---
+
+> **핵심 요약**
+> - 지표는 많지만 분석가의 역할은 **어떤 숫자가 문제를 말하는지 골라내는 것**이다.
+> - **AARRR**로 사용자 여정(획득·활성화·유지·수익·추천)을 진단하고, **DAU/MAU**로 서비스의 생활화 정도를 본다.
+> - **코호트 리텐션**과 **N-Day 리텐션 곡선·이탈률**로 사용자가 얼마나 남는지 추적한다.
+> - **LTV/CAC**로 비즈니스의 지속가능성을 판단하고, 지표를 다룰 때 지켜야 할 원칙을 함께 정리했다.
+{: .notice--primary}
 
 ## 데이터 분석가가 실제로 보는 핵심 지표들
 
