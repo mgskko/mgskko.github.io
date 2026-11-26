@@ -1,14 +1,12 @@
 ---
 layout: single
-title:  "MySQL - DATE_FORMAT 날짜 변환"
+title: "MySQL - DATE_FORMAT 날짜 변환"
 categories: DataBase
 tag: [MySQL, DATABASE, cs]
 toc: true
 ---
 
-
 ## DATE_FORMAT 날짜 변환
-
 
 ### DATE_FORMAT 사용 방법
 
@@ -29,10 +27,8 @@ SELECT NOW()
 ```
 
 ### 날짜 8자리 표현
- 
 
 가장 많이 사용되는 표현 형태로 DATE(년/월/일) 관련 정보를 VARCHAR 형태로 저장할 때 많이 사용된다.
-
 
 ```sql
 SELECT DATE_FORMAT(NOW(),'%Y%m%d');
@@ -43,7 +39,7 @@ SELECT DATE_FORMAT(NOW(),'%Y%m%d');
 ```
 
 ### 다양한 기호와 함께 사용
- 
+
 ```sql
 SELECT DATE_FORMAT(NOW(),'%Y-%m-%d'); -- 2023-02-09
 SELECT DATE_FORMAT(NOW(),'%Y/%m/%d'); -- 2023/02/09
@@ -110,12 +106,12 @@ SELECT DATE_FORMAT(NOW(),'%h-%i-%s');
 | %u                     | 주         | 그해의 몇번째 주인지 표시 (00-54) 월요일이 주의 첫번째일 |
 | %X                     | 연         | 그주가 시작된 해을 표시, %V와 같이 사용            |
 | %x                     | 연         | 그주가 시작된 해을 표시, %v와 같이 사용            |
-| %V                     | 주         | 그주가 시작된 해의 몇번째 주인지 표시 (01-53) <br>  일요일이 주의 첫번째일 %X 와 함께사용    
+| %V                     | 주         | 그주가 시작된 해의 몇번째 주인지 표시 (01-53) <br>  일요일이 주의 첫번째일 %X 와 함께사용  
 | %v                     | 주         | 그주가 시작된 해의 몇번째 주인지 표시 (01-53) <br>    월요일이 주의 첫번째일 %x 와 함께사용    |
 
 ### 참고 사이트
 
 더 자세한 변경 양식을 보고 싶다면 아래 링크를 참고
 
-**[참고 사이트 링크](<https://www.w3schools.com/sql/func_mysql_date_format.asp>)**
+**[참고 사이트 링크](https://www.w3schools.com/sql/func_mysql_date_format.asp)**
 {: .notice--primary}

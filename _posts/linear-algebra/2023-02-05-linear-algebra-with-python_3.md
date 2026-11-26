@@ -8,7 +8,6 @@ toc: true
 
 ## 벡터와 행렬의 덧셈뺄셈
 
-
 ### 1. 용어 정리
 
  - **정방행렬(square matrix)** : 같은 수의 행과 열을 가지는 행렬을 의미한다.
@@ -102,6 +101,5 @@ $$
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
-
-**[깃허브 링크](<https://github.com/mgskko/linear-algebra-with-python/blob/master/%EB%B2%A1%ED%84%B0%EC%99%80%20%ED%96%89%EB%A0%AC%EC%9D%98%20%EB%8D%A7%EC%85%88%EB%BA%84%EC%85%88.ipynb>)**
+**[깃허브 링크](https://github.com/mgskko/linear-algebra-with-python/blob/master/%EB%B2%A1%ED%84%B0%EC%99%80%20%ED%96%89%EB%A0%AC%EC%9D%98%20%EB%8D%A7%EC%85%88%EB%BA%84%EC%85%88.ipynb)**
 {: .notice--primary}

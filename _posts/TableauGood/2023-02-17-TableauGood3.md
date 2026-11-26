@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "도넛차트"
+title: "도넛차트"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -12,10 +12,9 @@ toc: true
 
 열선반을 더블클릭하여 MIN(1)이라는 임시계산된 필드를 만들고 '파이 차트'를 선택하고, 열선반에서 복제한다.
 
-
 ![image](https://user-images.githubusercontent.com/100071667/219729159-d1edbb1c-b102-43a6-9627-e0b256b4b1e6.png)
 
-집계(MIN(1))을 선택한 다음 세그먼트 필드를 색상 마크에 올리고, 크기를 크게 해준다. 
+집계(MIN(1))을 선택한 다음 세그먼트 필드를 색상 마크에 올리고, 크기를 크게 해준다.
 세그먼트를 레이블 마크에 올리고, 매출필드를 각도, 레이블 마크에 올리면 아래와 같이 나온다.
 
 ![image](https://user-images.githubusercontent.com/100071667/219730882-c9c6a0d6-ffd1-4fe9-8cdb-5c976a57e35a.png)

@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "이중 축, 결합된 축"
+title: "이중 축, 결합된 축"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -20,14 +20,13 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/221754046-bf3cab17-aa8e-4a53-8c4b-77ba13dcb334.png)
 
-
 행 방향의 라인을 없애기 위해 뷰에서 서식->라인->행->격자선 없음을 선택해준다. '전체' 마크를 선택한 다음, 차원에 있는 [고객 세그먼트]를 드래그해서 전체의 색상 마크 위에 올리면 색상으로 구분된 고객 세그먼트가 나타난다.
 
 ![image](https://user-images.githubusercontent.com/100071667/221754579-2912979e-657e-4217-9f5c-41865bc932d2.png)
 
 ## 결합된 축
 
-'이중 축'은 축을 양쪽에 이중으로 스는 반면에, **결합된 축**은 하나의 축을 공유하는 개념이다. 
+'이중 축'은 축을 양쪽에 이중으로 스는 반면에, **결합된 축**은 하나의 축을 공유하는 개념이다.
 
 ## 결합된 축 만들기
 

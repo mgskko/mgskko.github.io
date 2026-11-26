@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "데이터 설명"
+title: "데이터 설명"
 categories: Tableau
 tag: [Tableau]
 toc: true

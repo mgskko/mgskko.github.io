@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "목록형 매개 변수(2)"
+title: "목록형 매개 변수(2)"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -20,7 +20,7 @@ toc: true
 
 <br>
 
-단위를 변경 할 수 있는 매개 변수를 아래와 같이 만들어준다. 
+단위를 변경 할 수 있는 매개 변수를 아래와 같이 만들어준다.
 
 ![image](https://user-images.githubusercontent.com/100071667/226232671-9522e93f-8e05-47c3-bfc6-23197aa97b2e.png)
 

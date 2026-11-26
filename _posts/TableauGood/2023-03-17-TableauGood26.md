@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "퀵 테이블 계산 - 2(순위,백분위수,이동 평균)"
+title: "퀵 테이블 계산 - 2(순위,백분위수,이동 평균)"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -31,9 +31,7 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/225803753-bdfd64e9-fe7f-40be-838d-ca1a788de430.png)
 
-
 ![image](https://user-images.githubusercontent.com/100071667/225803948-6b9ce5c5-18e5-4f13-968b-5e4202266ee2.png)
-
 
 ## (6) 백분위수(Percentile)
 
@@ -49,7 +47,6 @@ toc: true
 반대로 백분위수를 큰 값을 0%, 작은 값을 100%로 변경하기 위해서는 마크에서 텍스트로 되어 있는 [합계(매출)]을 우클릭 후 '퀵 테이블 계산 편집 선택 후, 디폴트로 '오름차순'으로 되어 있는 것을 '내림차순'으로 변경하면 된다.
 
 ![image](https://user-images.githubusercontent.com/100071667/225863871-ec431bc5-8376-415f-8b1b-92317fd67b80.png)
-
 
 ## (7) 이동 평균(Moving Average)
 

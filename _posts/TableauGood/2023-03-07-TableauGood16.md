@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "캘린더 차트"
+title: "캘린더 차트"
 categories: Tableau
 tag: [Tableau]
 toc: true
@@ -17,7 +17,7 @@ toc: true
 
 ![image](https://user-images.githubusercontent.com/100071667/223612001-f51608b1-3cca-48ee-8ee2-631ae256708a.png)
 
-자세히 보면 각 연월 기준으로 모든 값이 없는 경우들도 있다. 텍스트 테이블내 각 연월 기준 일자가 표현이 안 되는 것은 해당 일자에 매출 데이터가 없기 때문이다. 
+자세히 보면 각 연월 기준으로 모든 값이 없는 경우들도 있다. 텍스트 테이블내 각 연월 기준 일자가 표현이 안 되는 것은 해당 일자에 매출 데이터가 없기 때문이다.
 차원에 있는 [주문 일자]를 우클릭을 통해 필터 선반에 올려준 후 '연도/원'을 선택해준다. 이들을 일괄적으로 해제하기 위해 가운데에 있는 '없음'버튼을 선택하고  '2019년 6월'만 선택해준다.
 
 ![image](https://user-images.githubusercontent.com/100071667/223612568-0d6ea430-b99e-46fe-988c-873982f15659.png)

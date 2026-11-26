@@ -6,14 +6,14 @@ tag: [AI, MultiAgent, LangGraph, LangChain, Agent, CrewAI, AutoGen, Python]
 toc: true
 ---
 
-# 멀티 에이전트 시스템 — AI들이 서로 협력하는 법
+## 멀티 에이전트 시스템 — AI들이 서로 협력하는 법
 
 > "AI 하나도 잘 못 다루는데, 여러 개를 쓴다고요?"  
 > 오히려 AI가 여러 개일 때 더 안정적이고 정확합니다. 이유가 있습니다.
 
 ---
 
-## 단일 에이전트의 한계 — 혼자 다 하려다 망하는 AI
+### 단일 에이전트의 한계 — 혼자 다 하려다 망하는 AI
 
 지난 글에서 ReAct 에이전트를 다뤘습니다. 하나의 AI가 생각(Thought) → 행동(Action) → 관찰(Observation)을 반복하며 문제를 해결하는 구조였죠.
 
@@ -31,8 +31,7 @@ toc: true
 
 ![Single Agent vs Multi-Agent](/assets/images/fig1_single_vs_multi.png)
 
-
-## 멀티 에이전트 시스템이란?
+### 멀티 에이전트 시스템이란?
 
 멀티 에이전트 시스템(Multi-Agent System)은 **여러 개의 전문화된 에이전트가 각자의 역할을 맡아 협력하는 구조**입니다.
 
@@ -56,7 +55,7 @@ toc: true
 
 ---
 
-## 2026년의 표준 — 멀티 에이전트 협업 구조
+### 2026년의 표준 — 멀티 에이전트 협업 구조
 
 2024~2025년 동안 에이전트 프레임워크 생태계는 폭발적으로 성장했고, 2026년 현재 프로덕션 수준의 안정성을 갖춘 세 가지 프레임워크가 시장의 주류로 확립되었습니다.
 
@@ -76,12 +75,11 @@ toc: true
 ---
 ![Multi-Agent Collaboration Patterns](/assets/images/fig2_patterns.png)
 
-
-## 핵심 협업 패턴 3가지
+### 핵심 협업 패턴 3가지
 
 멀티 에이전트 시스템을 설계할 때는 상황에 맞는 패턴을 선택해야 합니다.
 
-### 1. Supervisor 패턴 (상하 관계)
+#### 1. Supervisor 패턴 (상하 관계)
 
 가장 많이 쓰이는 패턴입니다. 하나의 Supervisor 에이전트가 모든 전문 에이전트를 관리하며, Supervisor는 에이전트 기능에 따라 통신을 조정하고 작업을 위임합니다.
 
@@ -96,7 +94,7 @@ Supervisor (총괄)
 - **단점**: Supervisor가 단일 장애점(SPOF)이 될 수 있음
 - **적합한 경우**: 에이전트 간 의존성이 명확한 순차적 작업
 
-### 2. 병렬(Parallel) 패턴
+#### 2. 병렬(Parallel) 패턴
 
 같은 요청을 여러 에이전트에 동시에 보내고, 결과를 취합합니다.
 
@@ -109,7 +107,7 @@ Supervisor (총괄)
 - **장점**: 처리 속도가 빠름
 - **적합한 경우**: 각 에이전트가 독립적으로 처리 가능한 작업
 
-### 3. 피어(Peer-to-Peer) 패턴
+#### 3. 피어(Peer-to-Peer) 패턴
 
 에이전트끼리 직접 메시지를 주고받으며 협업합니다.
 
@@ -122,16 +120,15 @@ Agent A ↔ Agent B ↔ Agent C
 
 ---
 
-## LangGraph로 멀티 에이전트 구현하기
+### LangGraph로 멀티 에이전트 구현하기
 
 LangGraph는 2025년 10월 1.0 정식 릴리스 이후 프로덕션 환경에서 가장 널리 채택되는 에이전트 오케스트레이션 도구로 자리잡았습니다. LinkedIn, Uber, Replit, Klarna 같은 기업들이 실제로 프로덕션에서 사용 중입니다.
 
 LangGraph는 에이전트 워크플로우를 **방향 그래프(Directed Graph)**로 모델링합니다.
 
-
 ![LangGraph Workflow](/assets/images/fig3_langgraph_flow.png)
 
-### 핵심 개념 3가지
+#### 핵심 개념 3가지
 
 LangGraph의 핵심 구성요소는 StateGraph(그래프 진입점), Node(각 에이전트에 대응하는 Python 함수), Conditional Edge(현재 State 값에 기반해 다음 노드를 동적으로 결정하는 라우팅 로직)입니다.
 
@@ -148,7 +145,7 @@ class AgentState(TypedDict):
     final_output: str
 ```
 
-### Supervisor 패턴 실전 코드
+#### Supervisor 패턴 실전 코드
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -282,8 +279,7 @@ writer_node    → 최종 보고서 작성
 
 ![Framework Comparison Radar](/assets/images/fig4_framework_radar.png)
 
-
-## 프레임워크 비교 — LangGraph vs CrewAI vs AutoGen
+### 프레임워크 비교 — LangGraph vs CrewAI vs AutoGen
 
 AutoGen은 대화 기반 멀티 에이전트 상호작용에 특화되어 있고, CrewAI는 역할 기반 에이전트 팀을 직관적인 API로 구성하여 빠른 프로토타이핑과 비즈니스 워크플로우 자동화에 강점을 보이며, LangGraph는 유향 그래프로 에이전트 워크플로우를 모델링하여 복잡한 상태 관리와 조건부 분기가 필요한 프로덕션 시스템에 최적화되어 있습니다.
 
@@ -300,17 +296,17 @@ AutoGen은 대화 기반 멀티 에이전트 상호작용에 특화되어 있고
 
 ---
 
-## 멀티 에이전트의 함정 — 반드시 알아야 할 주의사항
+### 멀티 에이전트의 함정 — 반드시 알아야 할 주의사항
 
-### 1. 비용이 선형적으로 증가한다
+#### 1. 비용이 선형적으로 증가한다
 
 Supervisor가 3개의 에이전트를 순차적으로 호출하면 단일 에이전트 대비 3~4배의 비용이 발생할 수 있습니다. 에이전트 수를 늘릴수록 API 호출 횟수가 곱으로 늘어납니다.
 
-### 2. 에이전트 간 컨텍스트 손실
+#### 2. 에이전트 간 컨텍스트 손실
 
 State에 충분한 컨텍스트가 전달되지 않거나 메시지 히스토리가 잘려 있으면 에이전트 간 핸드오프 시 정보가 유실됩니다. Supervisor가 요약 메시지를 State에 추가하도록 구현하는 것이 해결책입니다.
 
-### 3. 무한 루프
+#### 3. 무한 루프
 
 에이전트들이 서로에게 작업을 넘기다 순환에 빠질 수 있습니다. LangGraph에서는 `recursion_limit`으로 최대 반복 횟수를 반드시 설정해야 합니다.
 
@@ -321,15 +317,15 @@ config = {"recursion_limit": 10}  # 최대 10번 반복으로 제한
 result = app.invoke(inputs, config=config)
 ```
 
-### 4. 보안 문제 (Prompt Injection)
+#### 4. 보안 문제 (Prompt Injection)
 
 에이전트 중 하나가 DB 수정 권한을 가지고 있다면, 악의적인 입력이 에이전트 체인을 타고 들어와 데이터를 조작할 수 있습니다. 에이전트 간 메시지 전달 과정에서 jailbreak 시도가 유입되거나, 특정 에이전트가 허용되지 않은 도구를 호출하거나, 민감한 정보가 에이전트 경계를 넘어 유출될 수 있습니다.
 
 ---
 
-## 실제 활용 사례
+### 실제 활용 사례
 
-### 🛒 커머스 — 고객 문의 자동 처리
+#### 🛒 커머스 — 고객 문의 자동 처리
 
 ```
 Intent Agent     → 문의 의도 분류 (환불/배송/상품문의)
@@ -341,7 +337,7 @@ Response Agent   → 상황에 맞는 답변 생성
 Escalation Agent → 해결 불가 시 상담원 연결
 ```
 
-### 🔬 리서치 — 자동 보고서 생성
+#### 🔬 리서치 — 자동 보고서 생성
 
 ```
 Search Agent     → 논문/기사 수집
@@ -350,7 +346,7 @@ Synthesis Agent  → 전체 내용 종합
 Citation Agent   → 출처 정리 및 검증
 ```
 
-### 💻 DevOps — 코드 리뷰 자동화
+#### 💻 DevOps — 코드 리뷰 자동화
 
 ```
 Code Agent       → 코드 분석 및 버그 탐지
@@ -361,7 +357,7 @@ Review Agent     → 종합 리뷰 코멘트 작성
 
 ---
 
-## 정리하며
+### 정리하며
 
 멀티 에이전트 시스템은 AI를 **전문가 팀**으로 운영하는 방식입니다.
 

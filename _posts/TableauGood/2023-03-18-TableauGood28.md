@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "IF로 계산된 필드 만들기"
+title: "IF로 계산된 필드 만들기"
 categories: Tableau
 tag: [Tableau]
 toc: true

@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "평균 라인"
+title: "평균 라인"
 categories: Tableau
 tag: [Tableau]
 toc: true

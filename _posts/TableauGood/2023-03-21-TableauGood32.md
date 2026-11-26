@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "전체 범위로 필터 적용 및 컨텍스트 필터에 추가하기"
+title: "전체 범위로 필터 적용 및 컨텍스트 필터에 추가하기"
 categories: Tableau
 tag: [Tableau]
 toc: true

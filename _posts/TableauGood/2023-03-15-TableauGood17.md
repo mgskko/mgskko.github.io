@@ -1,12 +1,12 @@
 ---
 layout: single
-title:  "총계 만들기"
+title: "총계 만들기"
 categories: Tableau
 tag: [Tableau]
 toc: true
 ---
 
-## 총계 
+## 총계
 
 **총계**는 각각의 요소들의 TOTAL을 보여주는 방식으로 범위에 따라 총합계 및 소계, 그리고 열과 행 기준으로 각각 TOTAL을 표시할 수 있다.
 또한  TOTAL은 기본적으로는 하단과 우측에 배치되는데 항목이 많아질 경우 TOTAL이 시각적으로 바로 드러나지 않을 수 있다. 이럴 때는 분석 메뉴에서 총계에 대한 행과 열 표시의 위치를 변경하면 된다.
@@ -27,4 +27,3 @@ toc: true
 ![image](https://user-images.githubusercontent.com/100071667/224600869-8363f776-0978-41a0-a893-a3d607efccc0.png)
 
 ![image](https://user-images.githubusercontent.com/100071667/224600642-bb5226d7-b575-4156-a611-33bfabed8093.png)
-
