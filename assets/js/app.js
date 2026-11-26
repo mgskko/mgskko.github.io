@@ -408,7 +408,10 @@
     });
 
     // 목차 + 앵커 + 스크롤 스파이
-    var heads = $$("h2[id], h3[id]", prose).filter(function (h) { return !h.closest("[hidden]"); });
+    var isShown = function (h) { return !h.closest("[hidden]"); };
+    var heads = $$("h2[id], h3[id]", prose).filter(isShown);
+    // 소제목이 적은 글은 h4까지 목차에 넣어 훑어보기 좋게 한다
+    if (heads.length < 6) heads = $$("h2[id], h3[id], h4[id]", prose).filter(isShown);
     var tocBox = $("[data-toc]"), tocList = $("[data-toc-list]"), tocSheet = $("[data-toc-sheet]"), tocOpen = $("[data-toc-open]");
     heads.forEach(function (h) {
       var a = document.createElement("a");

@@ -1,24 +1,28 @@
 ---
 layout: single
 title: "[혼공머신러닝] 5 - 1 결정트리"
+description: "로지스틱 회귀로 와인을 분류한 뒤 결정 트리의 불순도·정보 이득·가지치기·특성 중요도를 정리했어요. (Colab 출력 HTML을 정리해 표만 남겼어요)"
 categories: Hongong_mldl
 tag: [python, Machine Learning]
 toc: true
 ---
+
+> **핵심 요약**
+> - 결정 트리는 **예/아니오 질문**을 이어 가며 학습하고, **지니 불순도**가 가장 많이 줄어드는(정보 이득이 최대인) 질문을 고른다.
+> - 끝까지 자라게 두면 훈련 0.997, 테스트 0.859로 **과대적합**이다. `max_depth=3`으로 **가지치기**하면 0.845 / 0.842로 둘이 가까워진다.
+> - **특성 중요도**는 당도 0.869, 알코올 0.123, pH 0.008 순이라, 결정 트리는 어떤 특성이 중요한지 설명하기 쉽다.
+> - 로지스틱 회귀의 계수는 일반인에게 설명하기 어려워서, 설명이 쉬운 결정 트리를 쓴다.
+{: .notice--primary}
 
 ## 결정 트리
 
 ---
 
 ### 1. 용어 정리
-
-결정트리 : 예 / 아니오에 대한 질문을 이어나가면서 정답을 찾아 학습하는 알고리즘입니다.
-
-불순도 : 결정 트리가 최적의 질문을 찾기 위한 기준입니다. 사이킷런은 지니 불순도와 엔트로피 불순도를 제공합니다.
-
-정보 이득 : 부모 노드와 자식 노드의 불순도 차이입니다. 결정 트리 알고리즘은 정보 이득이 최대화되도록 학습합니다.
-
-특성 중요도 : 결정 트리에 사용된 특성이 불순도를 감소하는데 기여한 정도를 나타내는 값입니다.
+- **결정트리** : 예 / 아니오에 대한 질문을 이어나가면서 정답을 찾아 학습하는 알고리즘입니다.
+- **불순도** : 결정 트리가 최적의 질문을 찾기 위한 기준입니다. 사이킷런은 지니 불순도와 엔트로피 불순도를 제공합니다.
+- **정보 이득** : 부모 노드와 자식 노드의 불순도 차이입니다. 결정 트리 알고리즘은 정보 이득이 최대화되도록 학습합니다.
+- **특성 중요도** : 결정 트리에 사용된 특성이 불순도를 감소하는데 기여한 정도를 나타내는 값입니다.
 
 ---
 
@@ -35,23 +39,7 @@ wine = pd.read_csv('https://bit.ly/wine_csv_data')
 wine.head()
 ```
 
-  <div id="df-4a7b2775-9e56-49dc-8c87-5d23194114a9">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -100,85 +88,9 @@ wine.head()
     </tr>
   </tbody>
 </table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-4a7b2775-9e56-49dc-8c87-5d23194114a9')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
 
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-width="24px">
-<path d="M0 0h24v24H0V0z" fill="none"/>
-<path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-</svg>
-</button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-4a7b2775-9e56-49dc-8c87-5d23194114a9 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-4a7b2775-9e56-49dc-8c87-5d23194114a9');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-
-  </div>
-
-info() 메서드를 통해 데이터가 누락이 되있는지 확인을 해 봅니다.
+info() 메서드를 통해 데이터가 누락되어 있는지 확인을 해 봅니다.
 
 ```python
 wine.info()
@@ -202,23 +114,7 @@ wine.info()
 wine.describe()
 ```
 
-  <div id="df-fa8e79b8-ed50-4ec9-812a-d387b16cee83">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -288,83 +184,7 @@ wine.describe()
     </tr>
   </tbody>
 </table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-fa8e79b8-ed50-4ec9-812a-d387b16cee83')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
 
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-width="24px">
-<path d="M0 0h24v24H0V0z" fill="none"/>
-<path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-</svg>
-</button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-fa8e79b8-ed50-4ec9-812a-d387b16cee83 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-fa8e79b8-ed50-4ec9-812a-d387b16cee83');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-
-  </div>
 
 판다스 데이터 프레임을 넘파이 배열로 바꾼 후 이제 와인 데이터를 타깃과 데이터로 분류 후, 테스트 세트와 훈련 세트로 또 분류합니다.
 각 개수를 6번 코드를 통해 확인 해보니 훈련 세트 5197개, 테스트 세트 1300개로 나뉘어집니다.
@@ -407,7 +227,7 @@ print(lr.coef_, lr.intercept_)
 
 ### 3. 결정트리
 
-사이킷런의 DecisionTreeClassfier 클래스를 사용해 결정 트리 모델을 훈련해 봅니다.<br>
+사이킷런의 DecisionTreeClassifier 클래스를 사용해 결정 트리 모델을 훈련해 봅니다.<br>
 훈련 세트에 대한 점수는 매우 높지만, 그에 비해 테스트 세트의 성능은 낮은 것을 볼 수 있습니다. 즉 과대적합 모델이라고 볼 수 있습니다.
 
 ```python
@@ -450,16 +270,16 @@ plt.show
 
 빨간색 동그라미 친 gini는 **지니 불순도**를 의미합니다.
 지니 불순도는 클래스의 비율을 제곱해서 더한 다음 1에서 빼면 됩니다.
-$$지니 불순도 = 1 - (음성 클래스 비율^2 + 양성 클래스 비율^2)$$
+$$\text{지니 불순도} = 1 - (\text{음성 클래스 비율}^2 + \text{양성 클래스 비율}^2)$$
 
 <br>
 
-결정 트리 모델은 부모 노드와 자식 노드의 불순도 차이가 가능 크도록 트리를 성장시킵니다.
+결정 트리 모델은 부모 노드와 자식 노드의 불순도 차이가 가장 크도록 트리를 성장시킵니다.
 부모와 자식 노드 사이의 불순도 차이를 **정보 이득(information gain)**이라 합니다.
 
 <br>
 
-결정 트리도 '가지 치기'라는 작업이 필요합니다. 무작정 끝까지 자라면 훈련 세트에는 아주 잘 맞지만 테스트 세트에는 그에 못미치게 됩니다.
+결정 트리도 '가지 치기'라는 작업이 필요합니다. 무작정 끝까지 자라면 훈련 세트에는 아주 잘 맞지만 테스트 세트에는 그에 못 미치게 됩니다.
 DecisionTreeClassifier 클래스의 max_depth 매개변수를 3으로 지정해 모델을 만들어 봅니다.
 
 <br>
@@ -495,5 +315,14 @@ print(dt.feature_importances_)
 
     [0.12345626 0.86862934 0.0079144 ]
 
+#### 모델 한눈에 비교
+
+|모델|훈련 점수|테스트 점수|특징|
+|:---:|:---:|:---:|:---|
+|로지스틱 회귀|0.781|0.778|계수가 학습한 값의 의미를 설명하기 어렵다|
+|결정 트리 (제한 없음)|0.997|0.859|훈련 세트에 과대적합이다|
+|결정 트리 (max_depth=3)|0.845|0.842|훈련 점수는 낮아졌지만 테스트 점수는 거의 그대로다|
+
 공부한 전체 코드는 깃허브에 올렸습니다.
-<https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_5%EA%B0%95_1.ipynb>
+**[깃허브 주소](https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_5%EA%B0%95_1.ipynb)**
+{: .notice--primary}

@@ -1,22 +1,26 @@
 ---
 layout: single
 title: "[혼공머신러닝] 7 - 1 인공신경망"
+description: "패션 MNIST 데이터를 확률적 경사 하강법 로지스틱 회귀와 케라스 밀집층 신경망으로 분류하며, 검증 세트와 손실 함수를 정리했어요."
 categories: Hongong_mldl
 tag: [python, Machine Learning]
 toc: true
 ---
 
+> **핵심 요약**
+> - 패션 MNIST는 28×28 이미지 60,000장(레이블 10종, 레이블당 6,000개)이고, 샘플이 많아 **확률적 경사 하강법(SGDClassifier)** 이 효율적이다.
+> - 경사 하강법은 특성의 스케일에 민감해서 픽셀 값을 255로 나눠 0~1로 **표준화**하고, 2차원 이미지는 784개의 1차원 배열로 펼친다.
+> - 딥러닝에서는 **교차 검증 대신 검증 세트**(20%)를 쓴다. 데이터가 충분해 검증 점수가 안정적이고, 교차 검증은 훈련 시간이 오래 걸리기 때문이다.
+> - 케라스 **밀집층**(Dense) 하나(784→10, softmax)로 5 epoch 훈련하면 검증 정확도가 약 0.843이다.
+{: .notice--primary}
+
 ## 인공신경망
 
 ### 1. 용어 정리
-
-인공신경망 : 생물학적 뉴런에서 영감을 받아 만든 머신러닝 알고리즘
-
-텐서플로 : 구글이 만든 딥러닝 라이브러리로 CPU와 GPU를 사용해 인공 신경망 모델을 효율적으로 훈련하며 모델 구축과 서비스에 필요한 다양한 도구를 제공한다.
-
-밀집층 : 가장 간단한 인공 신경망의 층
-
-원-핫 인코딩 : 정숫값을 배열에서 해당 정수 위치의 원소만 1이고 나머지 모두 0으로 변환한다.
+- **인공신경망** : 생물학적 뉴런에서 영감을 받아 만든 머신러닝 알고리즘
+- **텐서플로** : 구글이 만든 딥러닝 라이브러리로 CPU와 GPU를 사용해 인공 신경망 모델을 효율적으로 훈련하며 모델 구축과 서비스에 필요한 다양한 도구를 제공한다.
+- **밀집층** : 가장 간단한 인공 신경망의 층
+- **원-핫 인코딩** : 정숫값을 배열에서 해당 정수 위치의 원소만 1이고 나머지 모두 0으로 변환한다.
 
 ---
 
@@ -31,7 +35,7 @@ from tensorflow import keras
 (train_input, train_target), (test_input, test_target) = keras.datasets.fashion_mnist.load_data()
 ```
 
-훈련 데이터에 60,000개의 이미지로 이루어져 있고 28X28 사이즈의 크기인것을 확인해 볼 수 있습니다.
+훈련 데이터에 60,000개의 이미지로 이루어져 있고 28X28 사이즈의 크기인 것을 확인해 볼 수 있습니다.
 
 ```python
 print(train_input.shape, train_target.shape)
@@ -39,7 +43,7 @@ print(train_input.shape, train_target.shape)
 
     (60000, 28, 28) (60000,)
 
-맷플롭립 라이브러리를 통해 과일을 출력했던 것처럼 훈련 데이터 10개를 그림으로 출력을 해봅니다.
+맷플롯립 라이브러리를 통해 과일을 출력했던 것처럼 훈련 데이터 10개를 그림으로 출력을 해봅니다.
 
 ```python
 import matplotlib.pyplot as plt
@@ -52,7 +56,7 @@ plt.show()
 
 ![png](https://i.esdrop.com/d/f/uVJApfFjHN/jYaE0iWjWd.jpg)
 
-파이썬의 리스트 내포를 사용해 위에서 뽑은 10개의 샘플의 타깃값을 리스트로 만든 후 출력을 해봅니다.타깃은 0~9까지로 이루어져있습니다.
+파이썬의 리스트 내포를 사용해 위에서 뽑은 10개의 샘플의 타깃값을 리스트로 만든 후 출력을 해봅니다. 타깃은 0~9까지로 이루어져 있습니다.
 
 ```python
 print([train_target[i] for i in range(10)])
@@ -130,7 +134,7 @@ from sklearn.model_selection import train_test_split
 train_scaled, val_scaled, train_target, val_target = train_test_split(train_scaled, train_target, test_size=0.2, random_state=42)
 ```
 
-60,000개 중 12,000개각 검증 세트로 분리된 것을 확인해 볼 수 있습니다.
+60,000개 중 12,000개가 검증 세트로 분리된 것을 확인해 볼 수 있습니다.
 
 ```python
 print(train_scaled.shape, train_target.shape)
@@ -148,7 +152,7 @@ print(val_scaled.shape, val_target.shape)
 
 ![png](https://i.esdrop.com/d/f/uVJApfFjHN/D2MUpPLEy0.jpg)
 
-다음 그림에서 왼쪽에 있는 784개의 픽셀과 오른쪽에 있는 10개의뉴런이 모두 연결되어 있습니다. 총 784 \*10 = 7,840개의 연결된 선들이 있습니다. 이러한 이유로 밀집층이라고 불립니다.
+다음 그림에서 왼쪽에 있는 784개의 픽셀과 오른쪽에 있는 10개의 뉴런이 모두 연결되어 있습니다. 총 784 \*10 = 7,840개의 연결된 선들이 있습니다. 이러한 이유로 밀집층이라고 불립니다.
 
 ![png](https://i.esdrop.com/d/f/uVJApfFjHN/VVpzcIxWuU.jpg)
 
@@ -172,6 +176,8 @@ model = keras.Sequential(dense)
 케라스에서 손실 함수를 밑에와 같이 부릅니다.
 이진 분류: loss = 'binary_crossentropy'
 다중 분류: loss = 'categorical_crossentropy'
+
+(이 글의 타깃은 0~9의 정수 레이블이라 코드에서는 `sparse_categorical_crossentropy`를 썼다.)
 
 ```python
 model.compile(loss='sparse_categorical_crossentropy', metrics='accuracy')
@@ -211,6 +217,13 @@ model.evaluate(val_scaled, val_target)
     375/375 [==============================] - 1s 2ms/step - loss: 0.4627 - accuracy: 0.8428
 
     [0.4627155661582947, 0.8427500128746033]
+
+#### 두 모델 비교
+
+|모델|평가 방법|점수|
+|:---|:---:|:---:|
+|SGDClassifier (로지스틱 회귀)|교차 검증|0.820|
+|케라스 밀집층 1개 (softmax)|검증 세트|0.843|
 
 공부한 전체 코드는 깃허브에 올렸습니다.
 
