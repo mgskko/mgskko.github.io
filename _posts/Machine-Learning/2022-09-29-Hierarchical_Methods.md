@@ -1,14 +1,21 @@
 ---
 layout: single
 title: "Hierarchical Methods"
+description: "계층적 군집화(Hierarchical Methods)의 개념, 군집 간 거리 계산 방식, 장단점을 정리했어요."
 categories: MachineLearning
 tag: [python, Machine Learning]
 toc: true
 ---
 
+> **핵심 요약**
+> - **계층적 군집화**는 가장 가까운 두 군집을 차례로 합쳐 가며 군집 수를 줄여 나간다.
+> - K-means와 달리 **사전에 군집 수 k를 정할 필요가 없고**, 나무형 그림(덴드로그램)으로 과정을 볼 수 있다.
+> - 한 번 병합·분리된 군집은 되돌릴 수 없고, 거리 계산 방식에 따라 노이즈·이상치에 취약할 수 있다.
+{: .notice--primary}
+
 ## 1. Hierarchical Methods 알고리즘의 개념
 
-Hierarchical Methods는 계층적 트리 모형을 이용해 여러개의 군집 중에서 가장 유사도가 높은 혹은 거리가 가까운 군집 두 개를 선택하여 하나로 합치면서 군집 개수를 줄여 군집화를 수행하는 알고리즘이다.
+Hierarchical Methods는 계층적 트리 모형을 이용해 여러 개의 군집 중에서 가장 유사도가 높은 혹은 거리가 가까운 군집 두 개를 선택하여 하나로 합치면서 군집 개수를 줄여 군집화를 수행하는 알고리즘이다.
 
 ![Alt text](https://i.esdrop.com/d/f/uVJApfFjHN/mjOgOZPN8y.jpg)
 
@@ -26,9 +33,18 @@ Hierarchical Methods는 계층적 트리 모형을 이용해 여러개의 군집
 - Single-Link Distance : 생성된 군집에서 중심과 거리가 가까운 데이터끼리 비교하여 군집화
 - Complete-Link Distance : 생성된 군집에서 중심과 거리가 먼 데이터끼리 비교하여 가장 먼 데이터끼리 군집화
 - Average-Link Distance : 한 군집 안에 속한 모든 데이터와 다른 군집에 속한 모든 데이터의 두 집단에 대한 거리 평균을 계산하여 군집화
-- Centroid Distance : 집의 중심을 잡아 거리를 계산하여 군집화
+- Centroid Distance : 군집의 중심을 잡아 거리를 계산하여 군집화
 
 ---
+
+#### 군집 간 거리 계산 방식
+
+|방식|거리 계산 기준|
+|:---:|:---|
+|Single-Link|군집에서 거리가 가까운 데이터끼리 비교|
+|Complete-Link|거리가 먼 데이터끼리 비교해 가장 먼 데이터끼리 군집화|
+|Average-Link|두 군집의 모든 데이터 쌍 거리의 평균|
+|Centroid|군집의 중심 사이의 거리|
 
 ## 3. Single-Link, Complete-Link 비교
 
