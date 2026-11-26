@@ -1,22 +1,26 @@
 ---
 layout: single
 title: "[혼공머신러닝] 2 - 2 데이터 전처리"
+description: "특성의 스케일 차이가 만드는 문제와 표준점수 전처리, train_test_split의 stratify, 전처리한 데이터로 모델을 다시 훈련하는 과정을 정리했어요."
 categories: Hongong_mldl
 tag: [python, Machine Learning]
 toc: true
 ---
+
+> **핵심 요약**
+> - 특성마다 값의 범위(**스케일**)가 다르면 거리 기반 알고리즘(k-최근접 이웃)이 범위가 큰 특성에만 휘둘린다.
+> - **표준점수** = (값 − 평균) / 표준편차로 스케일을 맞춘다. 테스트 세트와 새 샘플도 **훈련 세트의 평균과 표준편차**로 똑같이 변환한다.
+> - `train_test_split`의 `stratify`를 쓰면 훈련·테스트 세트의 클래스 비율이 유지된다.
+{: .notice--primary}
 
 ## 데이터 전처리
 
 ---
 
 ### 1. 용어 정리
-
-스케일 : 두 특성의 값이 놓인 범위가 다를 때
-
-표준점수 : 각 특성값이 평균에서 표준편차의 몇 배만큼 떨어져 있는지를 나타내는 것
-
-브로드캐스팅 : 일정 조건을 부합하는 다른 형태의 배열끼리 연산을 수행하는 것을 의미합니다.
+- **스케일** : 두 특성의 값이 놓인 범위가 다를 때
+- **표준점수** : 각 특성값이 평균에서 표준편차의 몇 배만큼 떨어져 있는지를 나타내는 것
+- **브로드캐스팅** : 일정 조건을 부합하는 다른 형태의 배열끼리 연산을 수행하는 것을 의미합니다.
 
 ---
 
@@ -74,9 +78,9 @@ print(fish_target)
 
 ---
 
-#### 2 - 2. 사이킷 런으로 훈련세트 테스트세트 나누기
+#### 2 - 2. 사이킷런으로 훈련세트 테스트세트 나누기
 
-넘파이를 대신하여 사이킷 런으로 훈련세트와 테스트 세트를 더 간단하게 할 수 있다는걸 배웠습니다. 이번에는 사이킷 런으로 분리를 해보겠습니다.
+넘파이를 대신하여 사이킷런으로 훈련세트와 테스트 세트를 더 간단하게 할 수 있다는걸 배웠습니다. 이번에는 사이킷런으로 분리를 해보겠습니다.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -144,7 +148,7 @@ plt.show()
 ![Alt text](https://i.esdrop.com/d/f/uVJApfFjHN/WPDhPBb0Rw.jpg)
 
 위와 같이 크게 달라진 점은 x축과 y축의 범위가 -1.5 ~ 1.5 사이로 바뀐것을 확인해 볼 수 있습니다.
-다시한번 모델을 평가하면 완벽하게 분류가 된 것을 확인해 볼 수 있습니다.
+다시 한 번 모델을 평가하면 완벽하게 분류가 된 것을 확인해 볼 수 있습니다.
 
 ```python
 test_scaled = (test_input - mean) / std
@@ -156,4 +160,5 @@ kn.score(test_scaled, test_target)
 ---
 
 공부한 전체 코드는 깃허브에 올렸습니다.
-<https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_2%EA%B0%95_2.ipynb>
+**[깃허브 주소](https://github.com/mgskko/Data_science_Study-hongongmachine/blob/main/%ED%98%BC%EA%B3%B5%EB%A8%B8%EC%8B%A0_2%EA%B0%95_2.ipynb)**
+{: .notice--primary}
