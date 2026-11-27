@@ -1255,3 +1255,36 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
   .prose a, .prose a *, .prose button { cursor: url("/assets/cursors/link.svg") 4 3, pointer !important; }
   .cursor-dot { display: none; }
 }
+
+/* ---------- 스크롤바: 블로그 색 그라데이션, 글 페이지는 그 분야 색 ---------- */
+:root { --sb1: #5ba4ff; --sb2: #3182f6; --sb-track: transparent; }
+html:has(.post .chip--cat .s2), html:has(.page-head .cat-icon--lg.s2) { --sb1: #f9a066; --sb2: var(--s2); }
+html:has(.post .chip--cat .s3), html:has(.page-head .cat-icon--lg.s3) { --sb1: #4fd9b8; --sb2: var(--s3); }
+html:has(.post .chip--cat .s4), html:has(.page-head .cat-icon--lg.s4) { --sb1: #ffd24d; --sb2: var(--s4); }
+html:has(.post .chip--cat .s5), html:has(.page-head .cat-icon--lg.s5) { --sb1: #f7a8c8; --sb2: var(--s5); }
+
+/* 페이지 스크롤바 (크롬·사파리·엣지) */
+html::-webkit-scrollbar { width: 12px; height: 12px; }
+html::-webkit-scrollbar-track { background: var(--bg); }
+html::-webkit-scrollbar-thumb {
+  border: 3px solid transparent; border-radius: 999px; background-clip: padding-box;
+  background-color: var(--sb2); background-image: linear-gradient(180deg, var(--sb1), var(--sb2));
+  min-height: 48px;
+}
+html::-webkit-scrollbar-thumb:hover { border-width: 2px; }
+html::-webkit-scrollbar-thumb:active { border-width: 2px; background-image: none; background-color: var(--blue-press); }
+html::-webkit-scrollbar-corner { background: transparent; }
+
+/* 안쪽 스크롤 영역 (코드 블록, 표, 위젯): 얇고 조용하게, 올리면 색이 들어온다 */
+.prose ::-webkit-scrollbar, .card ::-webkit-scrollbar, .search ::-webkit-scrollbar, .sheet ::-webkit-scrollbar { width: 8px; height: 8px; }
+.prose ::-webkit-scrollbar-track, .card ::-webkit-scrollbar-track, .search ::-webkit-scrollbar-track, .sheet ::-webkit-scrollbar-track { background: transparent; }
+.prose ::-webkit-scrollbar-thumb, .card ::-webkit-scrollbar-thumb, .search ::-webkit-scrollbar-thumb, .sheet ::-webkit-scrollbar-thumb { border: 2px solid transparent; border-radius: 999px; background-clip: padding-box; background-color: var(--fill-strong); }
+.prose :hover::-webkit-scrollbar-thumb, .card :hover::-webkit-scrollbar-thumb, .search :hover::-webkit-scrollbar-thumb, .sheet :hover::-webkit-scrollbar-thumb { background-color: var(--sb2); }
+.prose pre::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.18); }
+.prose pre:hover::-webkit-scrollbar-thumb { background-color: var(--sb1); }
+
+/* 파이어폭스: 표준 속성 (그라데이션은 지원하지 않아 단색) */
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-color: var(--sb2) transparent; scrollbar-width: thin; }
+  .prose, .card, .search, .sheet { scrollbar-color: var(--fill-strong) transparent; scrollbar-width: thin; }
+}
