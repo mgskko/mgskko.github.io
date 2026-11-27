@@ -212,7 +212,7 @@
     } else if (e.pointerType === "mouse") {
       var h = nearest(mx, my);
       if (h !== hover) { hover = h; if (picked < 0) showTip(h, mx, my); if (reduce) draw(); }
-      cv.style.cursor = h >= 0 ? "pointer" : "grab";
+      cv.classList.toggle("cur-link", h >= 0);
     }
   });
   cv.addEventListener("pointerup", function (e) {

@@ -123,7 +123,7 @@
   cv.addEventListener("pointermove", function (e) {
     var r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
     if (dragging) { var dx = e.clientX - lx, dy = e.clientY - ly; moved += Math.abs(dx) + Math.abs(dy); rot += dx * 0.008; pitch = Math.max(0.25, Math.min(1.1, pitch + dy * 0.005)); lx = e.clientX; ly = e.clientY; if (!running) draw(); }
-    else if (e.pointerType === "mouse") { var h = pick(mx, my); if (h !== hover) { hover = h; showTip(h, mx, my); if (!running) draw(); } cv.style.cursor = h >= 0 ? "pointer" : "grab"; }
+    else if (e.pointerType === "mouse") { var h = pick(mx, my); if (h !== hover) { hover = h; showTip(h, mx, my); if (!running) draw(); } cv.classList.toggle("cur-link", h >= 0); }
   });
   cv.addEventListener("pointerup", function (e) { dragging = false; if (moved < 6) { var r = cv.getBoundingClientRect(), h = pick(e.clientX - r.left, e.clientY - r.top); hover = h; showTip(h, e.clientX - r.left, e.clientY - r.top); if (!running) draw(); } });
   cv.addEventListener("pointerleave", function () { hover = -1; tip.hidden = true; });
