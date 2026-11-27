@@ -14,6 +14,11 @@ nav: categories
 <section class="container">
   <article class="card chart-card reveal">
     <header class="chart-card__head"><div><h2 class="card__title">분야별 비중</h2><p class="card__sub">전체 {{ total }}개 글 기준</p></div></header>
+    {%- capture donut -%}[{%- for g in site.data.categories.groups -%}{%- assign gcount = 0 -%}{%- for item in site.data.categories.items -%}{%- if item[1].group == g.id -%}{%- assign ik = item[0] -%}{%- assign n = site.categories[ik].size | default: 0 -%}{%- assign gcount = gcount | plus: n -%}{%- endif -%}{%- endfor -%}[{{ g.label | jsonify }},{{ gcount }},{{ g.slot }}]{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]{%- endcapture -%}
+    <div class="donut3d">
+      <canvas data-donut3d="{{ donut | strip | escape }}" role="img" aria-label="분야별 글 비중을 보여주는 3D 도넛 차트. 같은 내용이 아래 범례에 있어요."></canvas>
+      <p class="donut3d__tip" data-donut-tip aria-live="polite"></p>
+    </div>
     <div class="stack" role="img" aria-label="분야별 글 비중">
       {%- for g in site.data.categories.groups -%}
         {%- assign gcount = 0 -%}
@@ -57,3 +62,4 @@ nav: categories
   </section>
   {%- endfor %}
 </section>
+<script src="{{ '/assets/js/donut3d.js' | relative_url }}" defer></script>
