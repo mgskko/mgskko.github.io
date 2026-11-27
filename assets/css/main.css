@@ -1242,3 +1242,16 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 .selbubble { position: absolute; left: 0; top: 0; z-index: 9000; padding: 7px 12px; border: 0; border-radius: 10px; background: var(--tip-bg); color: var(--tip-text); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow-pop); }
 .selbubble[hidden] { display: none; }
 .selbubble::after { content: ""; position: absolute; left: 50%; bottom: -5px; width: 10px; height: 10px; margin-left: -5px; background: inherit; transform: rotate(45deg); border-radius: 2px; }
+
+/* ---------- 커서 아이콘 (마우스 기기만) ---------- */
+@media (hover: hover) and (pointer: fine) {
+  html, body { cursor: url("/assets/cursors/default.svg") 4 3, auto; }
+  a, button, [role="button"], summary, label, select, .pressable, .chip, [data-tilt], .tagsphere__tag, .rank__btn, .series__head,
+  .lw__p, .lw__mr, .lw__bench span, .selbubble, .cur-link, .cosmos__cv.cur-link { cursor: url("/assets/cursors/link.svg") 4 3, pointer !important; }
+  .cosmos__cv, .donut3d canvas, .tagsphere, .sim canvas, .lw canvas { cursor: url("/assets/cursors/grab.svg") 16 16, grab; }
+  .cosmos__cv:active, .donut3d canvas:active, .tagsphere:active, .sim canvas:active, .lw canvas:active { cursor: url("/assets/cursors/grabbing.svg") 16 16, grabbing; }
+  input, textarea, [contenteditable="true"], .prose p, .prose li, .prose td, .prose th, .prose blockquote, .prose h1, .prose h2, .prose h3, .prose h4, .prose pre, .prose code,
+  .post__title, .post__sub, .page-title, .page-desc { cursor: text; }
+  .prose a, .prose a *, .prose button { cursor: url("/assets/cursors/link.svg") 4 3, pointer !important; }
+  .cursor-dot { display: none; }
+}
