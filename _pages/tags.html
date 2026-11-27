@@ -18,6 +18,8 @@ nav: tags
       {% include icon.html name="search" %}
       <input type="search" placeholder="태그 이름으로 걸러보기" data-tag-filter autocomplete="off" aria-label="태그 검색">
     </label>
+    <div class="tagsphere" data-tagsphere aria-label="자주 쓴 태그를 3D 구로 보여줘요. 드래그해서 돌리고, 태그를 누르면 글을 보여줘요"></div>
+    <p class="tagsphere__hint">자주 쓴 태그 36개예요. 드래그해서 돌리고, 태그를 눌러 보세요</p>
     <div class="tagcloud" data-tags>
       {%- for t in uniq -%}
         {%- assign n = 0 -%}{%- for x in tags -%}{%- if x == t -%}{%- assign n = n | plus: 1 -%}{%- endif -%}{%- endfor -%}
@@ -34,3 +36,4 @@ nav: tags
     <ul class="list card" data-tag-list></ul>
   </section>
 </section>
+<script src="{{ '/assets/js/tagsphere.js' | relative_url }}" defer></script>

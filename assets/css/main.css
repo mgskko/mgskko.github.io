@@ -1208,7 +1208,19 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 [data-tilt].is-tilting .meter { transform: translateZ(10px); }
 .cat-card__count, .cat-card__name, .cat-card__desc, .meter, .bento__title, .featured__title { transition: transform 0.25s var(--ease); }
 @media (prefers-reduced-motion: no-preference) {
-  .js .card.reveal, .js .bento__item.reveal, .js .cosmos-wrap.reveal { transform: perspective(900px) translateY(18px) rotateX(7deg); transform-origin: 50% 100%; }
-  .js .card.reveal.is-in, .js .bento__item.reveal.is-in, .js .cosmos-wrap.reveal.is-in { transform: none; }
+  .js .cat-grid.reveal, .js .stat.card.reveal, .js .chart-card.reveal, .js .bento__item.reveal, .js .cosmos-wrap.reveal { transform: perspective(900px) translateY(18px) rotateX(7deg); transform-origin: 50% 100%; }
+  .js .cat-grid.reveal.is-in, .js .stat.card.reveal.is-in, .js .chart-card.reveal.is-in, .js .bento__item.reveal.is-in, .js .cosmos-wrap.reveal.is-in { transform: none; }
 }
 .hero3d { will-change: transform, opacity; }
+
+/* ---------- 배경 3D / 태그 구 / 3D 도넛 ---------- */
+.bg3d { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+.tagsphere { position: relative; height: 420px; margin: 4px 0 6px; overflow: hidden; touch-action: pan-y; cursor: grab; border-radius: var(--r-lg); background: radial-gradient(circle at 50% 50%, var(--blue-weak) 0%, transparent 62%); }
+.tagsphere:active { cursor: grabbing; }
+.tagsphere__tag { position: absolute; left: 0; top: 0; padding: 4px 8px; border: 0; border-radius: 999px; background: transparent; color: var(--c); font: inherit; font-weight: 700; white-space: nowrap; cursor: pointer; will-change: transform, opacity; }
+.tagsphere__tag:hover, .tagsphere__tag:focus-visible { background: var(--surface); box-shadow: var(--shadow-pop); opacity: 1 !important; filter: none !important; outline: none; }
+.tagsphere__hint { margin: 0 0 14px; text-align: center; font-size: 13px; color: var(--t3); }
+.donut3d { position: relative; }
+.donut3d canvas { display: block; width: 100%; height: 300px; cursor: grab; touch-action: pan-y; }
+.donut3d__tip { min-height: 1.4em; margin: 0 0 6px; text-align: center; font-size: 13px; color: var(--t3); }
+@media (max-width: 640px) { .tagsphere { height: 340px; } .donut3d canvas { height: 240px; } }
