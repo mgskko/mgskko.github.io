@@ -1224,3 +1224,21 @@ body { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
 .donut3d canvas { display: block; width: 100%; height: 300px; cursor: grab; touch-action: pan-y; }
 .donut3d__tip { min-height: 1.4em; margin: 0 0 6px; text-align: center; font-size: 13px; color: var(--t3); }
 @media (max-width: 640px) { .tagsphere { height: 340px; } .donut3d canvas { height: 240px; } }
+
+/* ---------- 마우스 인터랙션 (cursor.js) ---------- */
+.cursor-ring, .cursor-dot { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; }
+.cursor-ring.is-on, .cursor-dot.is-on { opacity: 1; }
+.cursor-ring::before { content: ""; position: absolute; left: -17px; top: -17px; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--blue); opacity: 0.45; transition: transform 0.25s var(--ease), opacity 0.2s ease, background-color 0.2s ease, border-radius 0.2s ease; }
+.cursor-ring.is-link::before { transform: scale(1.55); opacity: 0.9; background: rgba(49, 130, 246, 0.08); }
+.cursor-ring.is-text::before { transform: scale(0.45); opacity: 0.25; }
+.cursor-ring.is-down::before { transform: scale(0.7); opacity: 1; background: rgba(49, 130, 246, 0.16); }
+.cursor-ring.is-link.is-down::before { transform: scale(1.2); }
+.cursor-dot::before { content: ""; position: absolute; left: -2.5px; top: -2.5px; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
+.has-cursor .cursor-dot.is-on { opacity: 0.85; }
+.fx-layer { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 9998; pointer-events: none; }
+.is-mag { transition: transform 0.18s var(--ease) !important; }
+.card.is-lit { background-image: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(49, 130, 246, 0.07), transparent 45%); }
+[data-theme="dark"] .card.is-lit { background-image: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(100, 168, 255, 0.10), transparent 45%); }
+.selbubble { position: absolute; left: 0; top: 0; z-index: 9000; padding: 7px 12px; border: 0; border-radius: 10px; background: var(--tip-bg); color: var(--tip-text); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow-pop); }
+.selbubble[hidden] { display: none; }
+.selbubble::after { content: ""; position: absolute; left: 50%; bottom: -5px; width: 10px; height: 10px; margin-left: -5px; background: inherit; transform: rotate(45deg); border-radius: 2px; }
